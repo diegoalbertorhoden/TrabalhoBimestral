@@ -1,3 +1,7 @@
+/**
+ * Classe que possui as siglas dos estados e os estados própriamente ditos
+ */
+
 package br.univel;
 
 public enum Estado {
