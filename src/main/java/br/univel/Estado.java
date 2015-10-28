@@ -39,8 +39,4 @@ public enum Estado {
 	private Estado(String nome){
 		this.nome=nome;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 }
