@@ -51,11 +51,11 @@ public class TelaPrincipal extends JFrame {
 
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
 		mntmProdutos.addActionListener(new ActionListener() {
-			TelaProdutos tp = new TelaProdutos();
+//			TelaProdutos tp = new TelaProdutos();
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				tabbedPane.addTab("Tela ", tp);
+//				tabbedPane.addTab("Tela ", tp);
 
 			}
 		});
