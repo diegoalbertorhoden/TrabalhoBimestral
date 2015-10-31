@@ -1,16 +1,28 @@
 package br.univel;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JTextField;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.Insets;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
+
+import java.awt.event.ActionEvent;
 
 public class TelaCadastroProdutos extends JPanel {
 	private JTextField txtId;
@@ -85,24 +97,34 @@ public class TelaCadastroProdutos extends JPanel {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(218, 265, 89, 23);
+		btnSalvar.setBounds(275, 264, 89, 23);
 		add(btnSalvar);
 		
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(132, 266, 76, 23);
+		btnLimpar.setBounds(189, 266, 76, 23);
 		add(btnLimpar);
 		
 		JButton btnNovoCadastro = new JButton("Novo Cadastro");
-		btnNovoCadastro.setBounds(52, 42, 110, 23);
+		btnNovoCadastro.setBounds(36, 42, 123, 23);
 		add(btnNovoCadastro);
 		
 		JButton btnExcluirCadastro = new JButton("Excluir Cadastro");
-		btnExcluirCadastro.setBounds(167, 42, 114, 23);
+		btnExcluirCadastro.setBounds(162, 42, 123, 23);
 		add(btnExcluirCadastro);
 		
 		JButton btnEditarCadastro = new JButton("Editar Cadastro");
-		btnEditarCadastro.setBounds(286, 42, 110, 23);
+		btnEditarCadastro.setBounds(288, 42, 126, 23);
 		add(btnEditarCadastro);
+		
+		JButton btnSair = new JButton("Sair");
+		
+		btnSair.setBounds(109, 266, 69, 23);
+		add(btnSair);
 
+	}
+
+	public void setCloseAction(ActionListener action) {
+		// TODO Auto-generated method stub
+		
 	}
 }

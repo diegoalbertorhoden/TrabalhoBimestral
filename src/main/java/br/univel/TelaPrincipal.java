@@ -2,8 +2,6 @@ package br.univel;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -13,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaPrincipal extends JFrame {
 
@@ -25,6 +25,7 @@ public class TelaPrincipal extends JFrame {
 				try {
 					TelaPrincipal frame = new TelaPrincipal();
 					frame.setVisible(true);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,7 +34,7 @@ public class TelaPrincipal extends JFrame {
 	}
 
 	public TelaPrincipal() {
-		setTitle("Tela Principal");
+		setTitle("Sistema para Lojas de Cal\u00E7ados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -45,14 +46,14 @@ public class TelaPrincipal extends JFrame {
 
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
 		mntmProdutos.addActionListener(new ActionListener() {
-			TelaCadastroProdutos tp = new TelaCadastroProdutos();
-
-			public void actionPerformed(ActionEvent arg0) {
-
-				tabbedPane.addTab("Tela ", tp);
-
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaCadastroProdutos tp = new TelaCadastroProdutos();
+				tabbedPane.addTab("Cadastro de Produtos ", tp);
+				
 			}
 		});
+		
 		mnCadastro.add(mntmProdutos);
 
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
@@ -83,8 +84,7 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
-
 }
