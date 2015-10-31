@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * @author user
- * Classe criada implementado da interface Dao para os comandos do banco 31/10/2015 às 16:40
+ * Classe criada implementado da interface Dao para os comandos do banco 
+ * 31/10/2015 às 16:40
  */
 public class ClienteDaoImplementacao implements ClienteDao {
 
