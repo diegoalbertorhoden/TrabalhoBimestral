@@ -1,4 +1,4 @@
-package br.univel;
+package br.univel.telas;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
