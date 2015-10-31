@@ -1,6 +1,8 @@
-package br.univel;
+package br.univel.banco;
 
 import java.util.List;
+
+import br.univel.Clientes;
 
 /**
  * @author user
