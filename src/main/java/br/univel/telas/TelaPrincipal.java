@@ -1,4 +1,4 @@
-package br.univel;
+package br.univel.telas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
