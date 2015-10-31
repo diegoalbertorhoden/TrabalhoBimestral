@@ -57,6 +57,14 @@ public class TelaPrincipal extends JFrame {
 		mnCadastro.add(mntmProdutos);
 
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		mntmClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaCadastroClientes tc = new TelaCadastroClientes();
+				tabbedPane.addTab("Cadastro de Clientes", tc);
+				
+			}
+		});
 		mnCadastro.add(mntmClientes);
 
 		JMenuItem mntmUsurios = new JMenuItem("Usu\u00E1rios");

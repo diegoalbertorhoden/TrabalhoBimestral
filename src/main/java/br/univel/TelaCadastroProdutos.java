@@ -97,29 +97,24 @@ public class TelaCadastroProdutos extends JPanel {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(275, 264, 89, 23);
+		btnSalvar.setBounds(226, 264, 89, 23);
 		add(btnSalvar);
 		
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(189, 266, 76, 23);
+		btnLimpar.setBounds(142, 266, 76, 23);
 		add(btnLimpar);
 		
-		JButton btnNovoCadastro = new JButton("Novo Cadastro");
-		btnNovoCadastro.setBounds(36, 42, 123, 23);
+		JButton btnNovoCadastro = new JButton("Novo");
+		btnNovoCadastro.setBounds(104, 42, 80, 23);
 		add(btnNovoCadastro);
 		
-		JButton btnExcluirCadastro = new JButton("Excluir Cadastro");
-		btnExcluirCadastro.setBounds(162, 42, 123, 23);
+		JButton btnExcluirCadastro = new JButton("Excluir");
+		btnExcluirCadastro.setBounds(184, 42, 80, 23);
 		add(btnExcluirCadastro);
 		
-		JButton btnEditarCadastro = new JButton("Editar Cadastro");
-		btnEditarCadastro.setBounds(288, 42, 126, 23);
+		JButton btnEditarCadastro = new JButton("Editar");
+		btnEditarCadastro.setBounds(262, 42, 80, 23);
 		add(btnEditarCadastro);
-		
-		JButton btnSair = new JButton("Sair");
-		
-		btnSair.setBounds(109, 266, 69, 23);
-		add(btnSair);
 
 	}
 
