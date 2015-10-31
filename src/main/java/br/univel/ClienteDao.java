@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author user
- * Classe Criada para conectividade com o banco por parte do Cliente
+ * Classe Criada para conectividade com o banco por parte do Cliente em 31/10/2015 às 16:35h
  */
 public interface ClienteDao {
 
