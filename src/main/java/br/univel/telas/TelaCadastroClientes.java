@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingConstants;
 
 public class TelaCadastroClientes extends JPanel {
 	private JTextField txtId;
@@ -31,43 +32,51 @@ public class TelaCadastroClientes extends JPanel {
 		add(lblCadastroDeClientes);
 		
 		JLabel lblId = new JLabel("Id");
+		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblId.setBounds(127, 69, 10, 14);
+		lblId.setBounds(109, 63, 45, 14);
 		add(lblId);
 		
 		JLabel lblNome = new JLabel("Nome");
+		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNome.setBounds(110, 94, 27, 14);
+		lblNome.setBounds(109, 88, 45, 14);
 		add(lblNome);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTelefone.setBounds(95, 119, 42, 14);
+		lblTelefone.setBounds(109, 115, 45, 14);
 		add(lblTelefone);
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
+		lblEndereo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEndereo.setBounds(92, 144, 45, 14);
+		lblEndereo.setBounds(109, 140, 45, 14);
 		add(lblEndereo);
 		
 		JLabel lblCidade = new JLabel("Cidade");
+		lblCidade.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCidade.setBounds(104, 169, 33, 14);
+		lblCidade.setBounds(109, 166, 45, 14);
 		add(lblCidade);
 		
 		JLabel lblEstado = new JLabel("Estado");
+		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEstado.setBounds(104, 194, 33, 14);
+		lblEstado.setBounds(109, 192, 45, 14);
 		add(lblEstado);
 		
 		JLabel lblEmail = new JLabel("E-mail");
+		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEmail.setBounds(109, 219, 28, 14);
+		lblEmail.setBounds(109, 217, 45, 14);
 		add(lblEmail);
 		
 		JLabel lblGnero = new JLabel("G\u00EAnero");
+		lblGnero.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGnero.setBounds(102, 244, 35, 14);
+		lblGnero.setBounds(109, 242, 45, 14);
 		add(lblGnero);
 		
 		txtId = new JTextField();

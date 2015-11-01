@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class TelaCadastroProdutos extends JPanel {
@@ -28,11 +31,13 @@ public class TelaCadastroProdutos extends JPanel {
 		add(lblCadastroDeProdutos);
 
 		JLabel lblNewLabel = new JLabel("ID");
-		lblNewLabel.setBounds(183, 74, 11, 14);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(104, 74, 90, 14);
 		add(lblNewLabel);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setBounds(148, 105, 46, 14);
+		lblDescrio.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDescrio.setBounds(104, 97, 90, 14);
 		add(lblDescrio);
 
 		txtId = new JTextField();
@@ -42,53 +47,57 @@ public class TelaCadastroProdutos extends JPanel {
 
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(204, 102, 208, 20);
+		txtDescricao.setBounds(204, 95, 208, 20);
 		add(txtDescricao);
 		txtDescricao.setColumns(10);
 		txtDescricao.setEnabled(false);
 
 		JLabel lblDepartamento = new JLabel("Departamento");
-		lblDepartamento.setBounds(125, 133, 69, 14);
+		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDepartamento.setBounds(104, 123, 90, 14);
 		add(lblDepartamento);
 
 		JLabel lblUnidade = new JLabel("Unidade");
-		lblUnidade.setBounds(155, 164, 39, 14);
+		lblUnidade.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUnidade.setBounds(104, 148, 90, 14);
 		add(lblUnidade);
 
 		JLabel lblCusto = new JLabel("Custo");
-		lblCusto.setBounds(166, 195, 28, 14);
+		lblCusto.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCusto.setBounds(104, 174, 90, 14);
 		add(lblCusto);
 
 		JLabel lblMarkup = new JLabel("Markup");
-		lblMarkup.setBounds(159, 229, 35, 14);
+		lblMarkup.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMarkup.setBounds(104, 198, 90, 14);
 		add(lblMarkup);
 
 		txtDepartamento = new JTextField();
-		txtDepartamento.setBounds(204, 133, 114, 20);
+		txtDepartamento.setBounds(204, 120, 114, 20);
 		add(txtDepartamento);
 		txtDepartamento.setColumns(10);
 		txtDepartamento.setEnabled(false);
 
 		txtCusto = new JTextField();
-		txtCusto.setBounds(204, 195, 86, 20);
+		txtCusto.setBounds(204, 170, 86, 20);
 		add(txtCusto);
 		txtCusto.setColumns(10);
 		txtCusto.setEnabled(false);
 
 		txtMarkup = new JTextField();
-		txtMarkup.setBounds(204, 226, 86, 20);
+		txtMarkup.setBounds(204, 195, 86, 20);
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 
 		final JComboBox cbUnidade = new JComboBox();
-		cbUnidade.setBounds(205, 164, 39, 20);
+		cbUnidade.setBounds(205, 145, 39, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
 		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(226, 264, 89, 23);
+		btnSalvar.setBounds(226, 219, 89, 23);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
@@ -104,7 +113,7 @@ public class TelaCadastroProdutos extends JPanel {
 	
 			}
 		});
-		btnLimpar.setBounds(142, 266, 76, 23);
+		btnLimpar.setBounds(142, 218, 76, 23);
 		add(btnLimpar);
 
 		JButton btnNovoCadastro = new JButton("Novo");
@@ -135,6 +144,10 @@ public class TelaCadastroProdutos extends JPanel {
 		btnEditarCadastro.setBounds(262, 42, 80, 23);
 		add(btnEditarCadastro);
 		btnEditarCadastro.setEnabled(false);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 253, 415, 207);
+		add(scrollPane);
 
 		SwingUtilities.invokeLater(new Runnable() {  
 			public void run() {  
