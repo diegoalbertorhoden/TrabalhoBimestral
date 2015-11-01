@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class TelaCadastroProdutos extends JPanel {
@@ -79,22 +81,48 @@ public class TelaCadastroProdutos extends JPanel {
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 
-		JComboBox cbUnidade = new JComboBox();
+		final JComboBox cbUnidade = new JComboBox();
 		cbUnidade.setBounds(205, 164, 39, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
-		JButton btnSalvar = new JButton("Salvar");
+		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(226, 264, 89, 23);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				txtDescricao.setText("");
+				txtDescricao.requestFocus();
+				txtDepartamento.setText("");
+				txtCusto.setText("");
+				txtMarkup.setText("");
+	
+			}
+		});
 		btnLimpar.setBounds(142, 266, 76, 23);
 		add(btnLimpar);
 
 		JButton btnNovoCadastro = new JButton("Novo");
+		btnNovoCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				cbUnidade.setEnabled(true);
+				txtDepartamento.setEnabled(true);
+				txtDescricao.setEnabled(true);
+				txtCusto.setEnabled(true);
+				txtMarkup.setEnabled(true);
+				txtId.setEnabled(false);
+				txtDescricao.requestFocus();
+				btnSalvar.setEnabled(true);
+				
+				
+			}
+		});
 		btnNovoCadastro.setBounds(104, 42, 80, 23);
 		add(btnNovoCadastro);
 
