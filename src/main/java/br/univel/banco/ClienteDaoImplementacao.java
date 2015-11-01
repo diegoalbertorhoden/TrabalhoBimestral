@@ -27,11 +27,11 @@ public class ClienteDaoImplementacao implements ClienteDao {
 
 	public void inserir(Clientes c) {
 		String sql = "INSERT INTO .........";
-		try(PreparedStatement ps = getConnection().prepareStatement(sql)){
-
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
+//		try(PreparedStatement ps = getConnection().prepareStatement(sql)){
+//
+//		}catch (SQLException e){
+//			e.printStackTrace();
+//		}
 
 	}
 	public void atualizar(Clientes c) {
