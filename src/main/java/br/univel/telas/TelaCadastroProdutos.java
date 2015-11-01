@@ -1,28 +1,14 @@
 package br.univel.telas;
 
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
-import java.awt.GridBagLayout;
-
-import javax.swing.JTextField;
-
-import java.awt.GridBagConstraints;
-
-import javax.swing.JLabel;
-
 import java.awt.Font;
-
-import javax.swing.JButton;
-
-import java.awt.Insets;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 public class TelaCadastroProdutos extends JPanel {
 	private JTextField txtId;
@@ -31,9 +17,6 @@ public class TelaCadastroProdutos extends JPanel {
 	private JTextField txtCusto;
 	private JTextField txtMarkup;
 
-	/**
-	 * Create the panel.
-	 */
 	public TelaCadastroProdutos() {
 		setLayout(null);
 		
@@ -55,10 +38,12 @@ public class TelaCadastroProdutos extends JPanel {
 		add(txtId);
 		txtId.setColumns(10);
 		
+				
 		txtDescricao = new JTextField();
 		txtDescricao.setBounds(204, 102, 208, 20);
 		add(txtDescricao);
 		txtDescricao.setColumns(10);
+		txtDescricao.setEnabled(false);
 		
 		JLabel lblDepartamento = new JLabel("Departamento");
 		lblDepartamento.setBounds(125, 133, 69, 14);
@@ -80,25 +65,30 @@ public class TelaCadastroProdutos extends JPanel {
 		txtDepartamento.setBounds(204, 133, 114, 20);
 		add(txtDepartamento);
 		txtDepartamento.setColumns(10);
+		txtDepartamento.setEnabled(false);
 		
 		txtCusto = new JTextField();
 		txtCusto.setBounds(204, 195, 86, 20);
 		add(txtCusto);
 		txtCusto.setColumns(10);
+		txtCusto.setEnabled(false);
 		
 		txtMarkup = new JTextField();
 		txtMarkup.setBounds(204, 226, 86, 20);
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
+		txtMarkup.setEnabled(false);
 		
 		JComboBox cbUnidade = new JComboBox();
 		cbUnidade.setBounds(205, 164, 39, 20);
 		add(cbUnidade);
+		cbUnidade.setEnabled(false);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(226, 264, 89, 23);
 		add(btnSalvar);
+		btnSalvar.setEnabled(false);
 		
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.setBounds(142, 266, 76, 23);
@@ -111,10 +101,18 @@ public class TelaCadastroProdutos extends JPanel {
 		JButton btnExcluirCadastro = new JButton("Excluir");
 		btnExcluirCadastro.setBounds(184, 42, 80, 23);
 		add(btnExcluirCadastro);
+		btnExcluirCadastro.setEnabled(false);
 		
 		JButton btnEditarCadastro = new JButton("Editar");
 		btnEditarCadastro.setBounds(262, 42, 80, 23);
 		add(btnEditarCadastro);
+		btnEditarCadastro.setEnabled(false);
+		
+		SwingUtilities.invokeLater(new Runnable() {  
+		    public void run() {  
+		        txtId.requestFocus();  
+		    }  
+		}); 
 
 	}
 

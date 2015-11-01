@@ -50,7 +50,7 @@ public class TelaPrincipal extends JFrame {
 				
 				TelaCadastroProdutos tp = new TelaCadastroProdutos();
 				tabbedPane.addTab("Cadastro de Produtos ", tp);
-				
+							
 			}
 		});
 		
