@@ -16,6 +16,8 @@ import javax.swing.SwingUtilities;
 
 import br.univel.Estado;
 import br.univel.Genero;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class TelaCadastroClientes extends JPanel {
 	private JTextField txtId;
@@ -24,6 +26,7 @@ public class TelaCadastroClientes extends JPanel {
 	private JTextField txtEndereco;
 	private JTextField txtCidade;
 	private JTextField txtEmail;
+	private JTable table;
 
 	/**
 	 * Create the panel.
@@ -131,7 +134,7 @@ public class TelaCadastroClientes extends JPanel {
 		
 		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(219, 269, 89, 23);
+		btnSalvar.setBounds(219, 260, 89, 23);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 				
@@ -149,7 +152,7 @@ public class TelaCadastroClientes extends JPanel {
 				
 			}
 		});
-		btnLimpar.setBounds(127, 269, 89, 23);
+		btnLimpar.setBounds(127, 260, 89, 23);
 		add(btnLimpar);		
 		
 		
@@ -166,6 +169,14 @@ public class TelaCadastroClientes extends JPanel {
 		final JButton btnNovo = new JButton("Novo");
 		btnNovo.setBounds(110, 36, 80, 23);
 		add(btnNovo);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 282, 430, 180);
+		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
 		
 		btnNovo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

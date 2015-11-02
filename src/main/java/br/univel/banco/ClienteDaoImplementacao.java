@@ -1,11 +1,12 @@
 package br.univel.banco;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import br.univel.Clientes;
+import br.univel.Produtos;
+import br.univel.Usuarios;
 
 /**
  * @author user
@@ -15,11 +16,15 @@ import br.univel.Clientes;
 public class ClienteDaoImplementacao implements ClienteDao {
 
 	private static Connection con;
+	private HashMap<Integer, Clientes> clientes = new HashMap<>();
+	private HashMap<Integer, Produtos> produtos = new HashMap<>();
+	private HashMap<Integer, Usuarios> usuarios = new HashMap<>();
+	private HashMap<Integer, Vendas> vendas = new hashMap<>();
 
 	private Connection getConnection(){
 		synchronized (con) {
 			if (con == null){
-
+				
 			}
 			return con;
 		}

@@ -1,6 +1,8 @@
 package br.univel.telas;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -8,18 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.SwingConstants;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-
-import br.univel.Genero;
 import br.univel.Unidade;
+import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class TelaCadastroProdutos extends JPanel {
@@ -28,6 +25,7 @@ public class TelaCadastroProdutos extends JPanel {
 	private JTextField txtDepartamento;
 	private JTextField txtCusto;
 	private JTextField txtMarkup;
+	private JTable table;
 
 	public TelaCadastroProdutos() {
 		setLayout(null);
@@ -160,6 +158,9 @@ public class TelaCadastroProdutos extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 253, 415, 207);
 		add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 
 		SwingUtilities.invokeLater(new Runnable() {  
 			public void run() {  
