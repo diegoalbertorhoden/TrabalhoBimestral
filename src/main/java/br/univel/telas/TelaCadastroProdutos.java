@@ -2,17 +2,24 @@ package br.univel.telas;
 
 import java.awt.Font;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+
+import br.univel.Genero;
+import br.univel.Unidade;
 
 @SuppressWarnings("serial")
 public class TelaCadastroProdutos extends JPanel {
@@ -91,7 +98,7 @@ public class TelaCadastroProdutos extends JPanel {
 		txtMarkup.setEnabled(false);
 
 		final JComboBox cbUnidade = new JComboBox();
-		cbUnidade.setBounds(205, 145, 39, 20);
+		cbUnidade.setBounds(205, 145, 59, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
@@ -116,7 +123,7 @@ public class TelaCadastroProdutos extends JPanel {
 		btnLimpar.setBounds(142, 218, 76, 23);
 		add(btnLimpar);
 
-		JButton btnNovoCadastro = new JButton("Novo");
+		final JButton btnNovoCadastro = new JButton("Novo");
 		btnNovoCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -128,6 +135,11 @@ public class TelaCadastroProdutos extends JPanel {
 				txtId.setEnabled(false);
 				txtDescricao.requestFocus();
 				btnSalvar.setEnabled(true);
+				btnNovoCadastro.setEnabled(false);
+//				carrega as unidades no combobox diretamente da Enum
+				Unidade[] unidades = Unidade.values();  
+			      ComboBoxModel cbmodel = new DefaultComboBoxModel(unidades);  
+			      cbUnidade.setModel(cbmodel);
 				
 				
 			}

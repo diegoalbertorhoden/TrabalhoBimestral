@@ -4,13 +4,18 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import br.univel.Estado;
+import br.univel.Genero;
 
 public class TelaCadastroClientes extends JPanel {
 	private JTextField txtId;
@@ -124,7 +129,7 @@ public class TelaCadastroClientes extends JPanel {
 		add(cbGenero);
 		cbGenero.setEnabled(false);		
 		
-		JButton btnSalvar = new JButton("Salvar");
+		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(219, 269, 89, 23);
 		add(btnSalvar);
@@ -158,7 +163,7 @@ public class TelaCadastroClientes extends JPanel {
 		add(btnExcluir);
 		btnExcluir.setEnabled(false);
 		
-		JButton btnNovo = new JButton("Novo");
+		final JButton btnNovo = new JButton("Novo");
 		btnNovo.setBounds(110, 36, 80, 23);
 		add(btnNovo);
 		
@@ -172,11 +177,22 @@ public class TelaCadastroClientes extends JPanel {
 				txtEmail.setEnabled(true);
 				txtEndereco.setEnabled(true);
 				txtTelefone.setEnabled(true);
+				
 				cbEstado.setEnabled(true);
 				cbGenero.setEnabled(true);
 				btnEditar.setEnabled(false);
 				btnExcluir.setEnabled(false);
-				
+				btnSalvar.setEnabled(true);
+				btnNovo.setEnabled(false);
+//				carregar combobox estado com os dados da enum
+				Estado[] estados = Estado.values();  
+			      ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);  
+			      cbEstado.setModel(cbmodel);
+//				carregar combobox genero com os dados da enum
+			     Genero[] generos = Genero.values();  
+			      ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);  
+			      cbGenero.setModel(cbmodel2);  
+			      
 				
 			}
 		});
