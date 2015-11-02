@@ -26,7 +26,7 @@ public class Banco {
 	private static Connection con;
 	String url = "jdbc:postgresql://localhost:5432/SistemaVendas";
 	String user = "postgres";
-	String pass = "postgres";
+	String pass = "dadedi24072011";
 
 	public Connection getConnection() {
 

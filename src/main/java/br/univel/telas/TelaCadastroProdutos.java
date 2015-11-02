@@ -138,8 +138,6 @@ public class TelaCadastroProdutos extends JPanel {
 				Unidade[] unidades = Unidade.values();  
 			      ComboBoxModel cbmodel = new DefaultComboBoxModel(unidades);  
 			      cbUnidade.setModel(cbmodel);
-				
-				
 			}
 		});
 		btnNovoCadastro.setBounds(104, 42, 80, 23);

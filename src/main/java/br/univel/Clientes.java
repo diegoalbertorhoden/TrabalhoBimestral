@@ -8,7 +8,24 @@ public class Clientes {
 	private String cidade;
 	private String email;
 	private String nome;
+	private Estado estado;
+	private Genero genero;
 	
+	public Estado getEstado() {
+		return estado;
+	}
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	public Genero getGenero() {
+		return genero;
+	}
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 	public String getNome() {
 		return nome;
 	}

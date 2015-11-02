@@ -10,7 +10,10 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -18,12 +21,9 @@ import javax.swing.SwingUtilities;
 import br.univel.Clientes;
 import br.univel.Estado;
 import br.univel.Genero;
-import br.univel.banco.ClienteDao;
 import br.univel.banco.ClienteDaoImplementacao;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
+@SuppressWarnings("serial")
 public class TelaCadastroClientes extends JPanel {
 	
 	private JTextField txtId;
@@ -33,10 +33,7 @@ public class TelaCadastroClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-	
-	/**
-	 * Create the panel.
-	 */
+
 	public TelaCadastroClientes() {
 		setLayout(null);
 		
@@ -146,15 +143,21 @@ public class TelaCadastroClientes extends JPanel {
 				Clientes c = new Clientes();
 				
 				c.setNome(txtNome.getText());
+				c.setTelefone(txtTelefone.getText());
+				c.setEndereço(txtEndereco.getText());
+				c.setCidade(txtCidade.getText());
+				c.setEstado((Estado) cbEstado.getSelectedItem());
+				c.setGenero((Genero) cbGenero.getSelectedItem());
+				c.setEmail(txtEmail.getText());
 								
-				try {
-					dao.inserir(c);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-						
+					try {
+						dao.inserir(c);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				
+				JOptionPane.showMessageDialog(null, "Cliente gravado com sucesso!");
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
