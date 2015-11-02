@@ -3,6 +3,7 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -32,7 +33,6 @@ public class TelaCadastroClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-	private ClienteDaoImplementacao dao = new ClienteDaoImplementacao();
 	
 	/**
 	 * Create the panel.
@@ -142,8 +142,18 @@ public class TelaCadastroClientes extends JPanel {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				dao.inserir(
-						txtNome.getText());
+				ClienteDaoImplementacao dao = new ClienteDaoImplementacao();
+				Clientes c = new Clientes();
+				
+				c.setNome(txtNome.getText());
+								
+				try {
+					dao.inserir(c);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+						
 				
 			}
 		});

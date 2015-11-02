@@ -1,5 +1,6 @@
 package br.univel.banco;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import br.univel.Clientes;
@@ -11,7 +12,7 @@ import br.univel.Clientes;
  */
 public interface ClienteDao {
 
-	public void inserir(String nome);
+	public void inserir(Clientes c) throws SQLException;
 
 	public void atualizar(Clientes c);
 

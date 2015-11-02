@@ -43,7 +43,7 @@ public class Banco {
 		}
 	}
 
-	private Banco() {
+	Banco() {
 	}
 
 	public static Banco getBanco() {
