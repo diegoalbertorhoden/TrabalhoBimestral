@@ -4,10 +4,17 @@ public class Clientes {
 	
 	private int Id;
 	private String telefone;
-	private String endereço;
+	private String endereco;
 	private String cidade;
 	private String email;
+	private String nome;
 	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public int getId() {
 		return Id;
 	}
@@ -20,11 +27,11 @@ public class Clientes {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getEndereço() {
-		return endereço;
+	public String getEndereco() {
+		return endereco;
 	}
 	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+		this.endereco = endereço;
 	}
 	public String getCidade() {
 		return cidade;

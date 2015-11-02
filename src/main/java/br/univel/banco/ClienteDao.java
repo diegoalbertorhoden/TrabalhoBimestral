@@ -11,7 +11,7 @@ import br.univel.Clientes;
  */
 public interface ClienteDao {
 
-	public void inserir(Clientes c);
+	public void inserir(String nome);
 
 	public void atualizar(Clientes c);
 

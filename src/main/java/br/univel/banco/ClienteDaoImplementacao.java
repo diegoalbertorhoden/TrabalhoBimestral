@@ -1,12 +1,17 @@
 package br.univel.banco;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import br.univel.Clientes;
 import br.univel.Produtos;
 import br.univel.Usuarios;
+import br.univel.Vendas;
 
 /**
  * @author user
@@ -14,30 +19,16 @@ import br.univel.Usuarios;
  * 31/10/2015 às 16:40
  */
 public class ClienteDaoImplementacao implements ClienteDao {
-
-	private static Connection con;
-	private HashMap<Integer, Clientes> clientes = new HashMap<>();
-	private HashMap<Integer, Produtos> produtos = new HashMap<>();
-	private HashMap<Integer, Usuarios> usuarios = new HashMap<>();
-	private HashMap<Integer, Vendas> vendas = new hashMap<>();
-
-	private Connection getConnection(){
-		synchronized (con) {
-			if (con == null){
-				
-			}
-			return con;
-		}
-	}
-
-	public void inserir(Clientes c) {
-		String sql = "INSERT INTO .........";
-//		try(PreparedStatement ps = getConnection().prepareStatement(sql)){
-//
-//		}catch (SQLException e){
-//			e.printStackTrace();
-//		}
-
+	
+	public void inserir(String nome) {
+//		c.getCidade();
+//		c.getEmail();
+//		c.getEndereco();3
+//		c.getTelefone();
+		Clientes c = new Clientes();
+		c.getNome();
+		JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso, bagual");
+		
 	}
 	public void atualizar(Clientes c) {
 

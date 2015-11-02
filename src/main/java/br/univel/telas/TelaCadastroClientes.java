@@ -14,12 +14,17 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import br.univel.Clientes;
 import br.univel.Estado;
 import br.univel.Genero;
+import br.univel.banco.ClienteDao;
+import br.univel.banco.ClienteDaoImplementacao;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class TelaCadastroClientes extends JPanel {
+	
 	private JTextField txtId;
 	private JTextField txtNome;
 	private JTextField txtTelefone;
@@ -27,7 +32,8 @@ public class TelaCadastroClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-
+	private ClienteDaoImplementacao dao = new ClienteDaoImplementacao();
+	
 	/**
 	 * Create the panel.
 	 */
@@ -133,6 +139,14 @@ public class TelaCadastroClientes extends JPanel {
 		cbGenero.setEnabled(false);		
 		
 		final JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dao.inserir(
+						txtNome.getText());
+				
+			}
+		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(219, 260, 89, 23);
 		add(btnSalvar);
