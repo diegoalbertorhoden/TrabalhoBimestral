@@ -3,6 +3,9 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.ComboBoxModel;
@@ -10,7 +13,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,9 +23,7 @@ import javax.swing.SwingUtilities;
 import br.univel.Clientes;
 import br.univel.Estado;
 import br.univel.Genero;
-import br.univel.banco.ClienteDaoImplementacao;
 
-@SuppressWarnings("serial")
 public class TelaCadastroClientes extends JPanel {
 	
 	private JTextField txtId;
@@ -33,7 +33,11 @@ public class TelaCadastroClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-
+	private Clientes cliente = new Clientes();
+	
+	/**
+	 * Create the panel.
+	 */
 	public TelaCadastroClientes() {
 		setLayout(null);
 		
@@ -139,26 +143,96 @@ public class TelaCadastroClientes extends JPanel {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ClienteDaoImplementacao dao = new ClienteDaoImplementacao();
-				Clientes c = new Clientes();
-				
-				c.setNome(txtNome.getText());
-				c.setTelefone(txtTelefone.getText());
-				c.setEndereço(txtEndereco.getText());
-				c.setCidade(txtCidade.getText());
-				c.setEstado((Estado) cbEstado.getSelectedItem());
-				c.setGenero((Genero) cbGenero.getSelectedItem());
-				c.setEmail(txtEmail.getText());
-								
-					try {
-						dao.inserir(c);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				
-				JOptionPane.showMessageDialog(null, "Cliente gravado com sucesso!");
+				try {
+					abrirConexao();
+					gravar();
+					fecharConexao();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				limparCampos();
+
 			}
+			
+			public void limparCampos(){
+				
+				txtId.setText("");
+				txtNome.setText("");
+				txtEndereco.setText("");
+				txtCidade.setText("");
+				txtEmail.setText("");				
+				txtTelefone.setText("");				
+				cbEstado.setSelectedIndex(0);
+				cbGenero.setSelectedIndex(0);
+				
+			}
+			
+			Connection conexao = null;
+			private PreparedStatement ps;
+			
+			public void abrirConexao() throws SQLException{ 
+				String url = "jdbc:postgresql://localhost:5432/SistemaVendas";
+				String user = "postgres";
+				String pass = "dadedi24072011";
+				
+				conexao = DriverManager.getConnection(url, user, pass);
+				
+			}
+			
+			public void fecharConexao() throws SQLException {
+				conexao.close();
+			}
+			
+			public void gravar() throws SQLException{
+				
+				cliente.setId(Integer.parseInt(txtId.getText()));
+				cliente.setNome(txtNome.getText());
+				cliente.setTelefone(txtTelefone.getText());
+				cliente.setEndereco(txtEndereco.getText());
+				cliente.setCidade(txtCidade.getText());
+				cliente.setEstado((Estado)cbEstado.getSelectedItem());
+				cliente.setEmail(txtEmail.getText());
+				cliente.setGenero((Genero)cbGenero.getSelectedItem());
+				
+				ps = conexao.prepareStatement(
+						"INSERT INTO CLIENTE (ID, NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO)"
+								+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+				
+				ps.setInt(1, cliente.getId());
+				ps.setString(2, cliente.getNome());
+				ps.setString(3, cliente.getTelefone());
+				ps.setString(4, cliente.getEndereco());
+				ps.setString(5, cliente.getCidade());
+				ps.setString(6, cliente.getEstado().getNome());
+				ps.setString(7, cliente.getEmail());
+				ps.setString(8, cliente.getGenero().getNome());
+				
+				int res = ps.executeUpdate();
+				
+				ps.close();
+			}
+				
+//				ClienteDaoImplementacao dao = new ClienteDaoImplementacao();
+//				Clientes c = new Clientes();
+//				
+//				c.setNome(txtNome.getText());
+//				c.setTelefone(txtTelefone.getText());
+//				c.setEndereço(txtEndereco.getText());
+//				c.setCidade(txtCidade.getText());
+//				c.setEstado((Estado) cbEstado.getSelectedItem());
+//				c.setGenero((Genero) cbGenero.getSelectedItem());
+//				c.setEmail(txtEmail.getText());
+//								
+//					try {
+//						dao.inserir(c);
+//					} catch (SQLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				
+//				JOptionPane.showMessageDialog(null, "Cliente gravado com sucesso!");
+//			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(219, 260, 89, 23);
@@ -229,9 +303,7 @@ public class TelaCadastroClientes extends JPanel {
 //				carregar combobox genero com os dados da enum
 			     Genero[] generos = Genero.values();  
 			      ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);  
-			      cbGenero.setModel(cbmodel2);  
-			      
-				
+			      cbGenero.setModel(cbmodel2);
 			}
 		});
 				

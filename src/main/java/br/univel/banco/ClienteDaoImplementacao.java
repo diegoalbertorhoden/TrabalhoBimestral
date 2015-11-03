@@ -1,81 +1,82 @@
 package br.univel.banco;
 
-import java.io.*;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.swing.JOptionPane;
+
 import br.univel.Clientes;
 /**
  * @author user
  * Classe criada implementado da interface Dao para os comandos do banco 
  * 31/10/2015 às 16:40
  */
-public class ClienteDaoImplementacao implements ClienteDao {
+public class ClienteDaoImplementacao implements ClienteDao  {
 
-	private Clientes c = null;
+		private Connection con;
 
-	public void inserir(Clientes c) throws SQLException {
-
-		Connection con = getConnection();
-
-		PreparedStatement ps;
-		ps = con.prepareStatement("INSERT INTO clientes(nome, telefone, endereco, cidade, Estado, email, genero)"
-				+ "values(?,?,?,?,?,?,?)");
-
-		ps.setString(1, c.getNome());
-		ps.setString(2, c.getTelefone());
-		ps.setString(3, c.getEndereco());
-		ps.setString(4, c.getCidade());
-		ps.setString(5, c.getEstado().getNome());
-		ps.setString(6, c.getEmail());
-		ps.setString(7, c.getGenero().toString());
-
-		int res = ps.executeUpdate();
-		ps.close();
-		con.close();
-
-		JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-
-	}	
-	private static Connection con;
-	public Connection getConnection(){
-		
-		if (con == null){ 
-			try{ 
-				String url = "jdbc:postgresql://localhost:5432/SistemaVendas";
-				String user = "postgres";
-				String pass = "dadedi24072011";
-					
-				con = DriverManager.getConnection(url, user, pass);
-			} catch (SQLException e){ 
-				System.out.println("Erro ao abrir conexão");
-				e.printStackTrace();
-			}
+		public ClienteDaoImplementacao() {
+			
+				try {
+					abrirConexaoBancoDados();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 		}
-		synchronized (con) {
-		return con; 
+		private void abrirConexaoBancoDados() throws SQLException, ClassNotFoundException {
+			Class.forName("org.postgresql.Driver"); 
+			
+			String url = "jdbc:postgresql://localhost:5432/SistemaVendas";
+			String user = "postgres";
+			String pass = "dadedi24072011";
+							
+				con = DriverManager.getConnection(url, user, pass);
+			
+			
+		}
+		public void inserir(Clientes cliente) throws SQLException {
+			PreparedStatement ps = con
+					.prepareStatement("INSERT INTO clientes (id, nome, telefone, endereco, cidade, email) VALUES (?, ?, ?, ?, ?, ?)");
+
+			ps.setInt(1, cliente.getId());
+			ps.setString(2, cliente.getNome());
+			ps.setString(3, cliente.getTelefone());
+			ps.setString(4, cliente.getEndereco());
+			ps.setString(5, cliente.getCidade());
+			ps.setString(6, cliente.getEmail());
+			// ps.setObject(7, (Estado) cliente.getEstado());
+			// ps.setObject(8, (Genero) cliente.getGenero());
+
+			ps.executeUpdate();
+
+			ps.close();
+
+		}
+	
+
+
+		public void atualizar(Clientes c) {
+
+
+		}
+		public void excluir(Clientes c) {
+
+
+		}
+		public Clientes buscar(int id) {
+
+			return null;
+		}
+		public List<Clientes> listar() {
+
+			return null;
+		}
 	}
-}
-
-
-	public void atualizar(Clientes c) {
-
-
-	}
-	public void excluir(Clientes c) {
-
-
-	}
-	public Clientes buscar(int id) {
-
-		return null;
-	}
-	public List<Clientes> listar() {
-
-		return null;
-	}
-}
