@@ -69,7 +69,7 @@ public class TabelaDeClientes extends AbstractTableModel {
 		case 2: return i.getTelefone();
 		case 3: return i.getEndereco();
 		case 4: return i.getCidade();
-		case 5: return i.getEstado().getNome();
+		case 5: return i.getEstado();
 		case 6: return i.getEmail();
 		case 7: return i.getGenero();
 		default: return "";

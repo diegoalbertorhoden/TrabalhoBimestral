@@ -7,7 +7,7 @@
        CONNECTION LIMIT = -1;
 
 CREATE TABLE clientes (
-			id int PRIMARY KEY NOT NULL,
+			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			nome varchar(40),
 			telefone varchar(40),
 			endereco varchar(40),

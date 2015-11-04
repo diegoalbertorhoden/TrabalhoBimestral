@@ -35,9 +35,9 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 			ps.setString(2, c.getTelefone());
 			ps.setString(3, c.getEndereco());
 			ps.setString(4, c.getCidade());
-			ps.setString(5, c.getEstado().name());
+			ps.setString(5, c.getEstado());
 			ps.setString(6, c.getEmail());
-			ps.setString(7, c.getGenero().name());
+			ps.setString(7, c.getGenero());
 			ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
@@ -56,9 +56,9 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 			ps.setString(2, c.getTelefone());
 			ps.setString(3, c.getEndereco());
 			ps.setString(4, c.getCidade());
-			ps.setString(5, c.getEstado().name());
+			ps.setString(5, c.getEstado());
 			ps.setString(6, c.getEmail());
-			ps.setString(7, c.getGenero().name());
+			ps.setString(7, c.getGenero());
 			ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
@@ -84,11 +84,14 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 					+ "FROM CLIENTE WHERE ID_C = " + id);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				c = new Clientes(rs.getString("NOME"), rs.getString("TELEFONE"),
-						rs.getString("ENDERECO"), rs.getString("CIDADE"),
-						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
-								rs.getString("GENERO")));
+				c = new Clientes(
+						rs.getString("NOME"), 
+						rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), 
+						rs.getString("CIDADE"),
+						rs.getString("ESTADO"),
+						rs.getString("EMAIL"),
+						rs.getString("GENERO"));
 			}
 			rs.close();
 			st.close();
@@ -105,11 +108,14 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 					+ "FROM CLIENTE WHERE ID_C = " + id);
 			rs.next();
 			if (rs.getString("NOME") != null) {
-				c = new Clientes(rs.getString("NOME"), rs.getString("TELEFONE"),
-						rs.getString("ENDERECO"), rs.getString("CIDADE"),
-						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
-						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
-								rs.getString("GENERO")));
+				c = new Clientes(
+						rs.getString("NOME"), 
+						rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), 
+						rs.getString("CIDADE"),
+						rs.getString("ESTADO"),
+						rs.getString("EMAIL"), 
+						rs.getString("GENERO"));
 			}
 			rs.close();
 			st.close();
@@ -131,11 +137,9 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 						rs.getString("TELEFONE"), 
 						rs.getString("ENDERECO"), 
 						rs.getString("CIDADE"), 
-						Estado.valueOf(Estado.class,
-								rs.getString("ESTADO")), 
-								rs.getString("EMAIL"), 
-								Genero.valueOf(Genero.class, 
-										rs.getString("GENERO")))); 			
+						rs.getString("ESTADO"), 
+						rs.getString("EMAIL"), 
+						rs.getString("GENERO"))); 			
 			} 			
 			rs.close(); 			
 			st.close(); 			

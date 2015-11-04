@@ -8,8 +8,8 @@ public class Clientes {
 	private String cidade;
 	private String email;
 	private String nome;
-	private Estado estado;
-	private Genero genero;
+	private String estado;
+	private String genero;
 	
 public Clientes(){
 	
@@ -17,7 +17,7 @@ public Clientes(){
 }
 	
 	public Clientes(int id, String nome, String telefone, String endereco,
-			String cidade, Estado estado, String email, Genero genero) {
+			String cidade, String estado, String email, String genero) {
 		this.Id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -29,7 +29,7 @@ public Clientes(){
 	}
 	
 	public Clientes(String nome, String telefone, String endereco,
-			String cidade, Estado estado, String email, Genero genero) {
+			String cidade, String estado, String email, String genero) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco= endereco;
@@ -40,16 +40,16 @@ public Clientes(){
 		
 	}
 	
-	public Estado getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(Estado estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Genero getGenero() {
+	public String getGenero() {
 		return genero;
 	}
-	public void setGenero(Genero genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 	public void setEndereco(String endereco) {

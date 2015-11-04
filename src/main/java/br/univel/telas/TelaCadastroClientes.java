@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -136,12 +134,12 @@ public class TelaCadastroClientes extends JPanel {
 		add(txtEmail);
 		txtEmail.setEnabled(false);
 
-		final JComboBox cbEstado = new JComboBox(Estado.values());
+		this.cbEstado = new JComboBox(Estado.values());
 		cbEstado.setBounds(164, 188, 86, 20);
 		add(cbEstado);
 		cbEstado.setEnabled(false);
 
-		final JComboBox cbGenero = new JComboBox(Genero.values());
+		this.cbGenero = new JComboBox(Genero.values());
 		cbGenero.setBounds(164, 238, 86, 20);
 		add(cbGenero);
 		cbGenero.setEnabled(false);		
@@ -246,13 +244,14 @@ public class TelaCadastroClientes extends JPanel {
 
 	protected void cadastrar() {
 
-		Clientes cliente = new Clientes(txtNome.getText(),
+		Clientes cliente = new Clientes(
+				txtNome.getText(),
 				txtTelefone.getText(), 
 				txtEndereco.getText(),
 				txtCidade.getText(),
-				Estado.valueOf(String.valueOf(cbEstado.getSelectedItem())),
+				cbEstado.getSelectedItem().toString(),
 				txtEmail.getText(),
-				Genero.valueOf(String.valueOf(cbGenero.getSelectedItem())));
+				cbGenero.getSelectedItem().toString());
 		c.inserir(cliente);
 		listaC = c.listar();
 		tabelaclientes.adicionarLista(listaC);
@@ -266,9 +265,9 @@ public class TelaCadastroClientes extends JPanel {
 		txtTelefone.setText(c.getTelefone());
 		txtEndereco.setText(c.getEndereco());
 		txtCidade.setText(c.getCidade());
-		cbEstado.setSelectedItem(c.getEstado().name());
+		cbEstado.setSelectedItem(c.getEstado());
 		txtEmail.setText(c.getEmail());
-		cbGenero.setSelectedItem(c.getGenero().name());
+		cbGenero.setSelectedItem(c.getGenero());
 	}
 
 	public void limparcampos() {
