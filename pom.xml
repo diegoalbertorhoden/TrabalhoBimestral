@@ -7,9 +7,9 @@
 	<name>TrabalhoBimestral</name>
 	<dependencies>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.4-1204-jdbc42</version>
-		</dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.37</version>
+</dependency>
 	</dependencies>
 </project>
