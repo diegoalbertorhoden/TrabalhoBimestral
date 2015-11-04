@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import br.univel.Clientes;
+import br.univel.banco.ClienteDaoImplementacao;
 
 /**
  * @author Diego Alberto Rhoden
@@ -27,23 +28,41 @@ public class TabelaDeClientes extends AbstractTableModel {
 	
 	@Override
 	public String getColumnName(int column) {
-		switch (col) {
+		switch (column) {
 		case 0: return "ID";
 		case 1: return "NOME";
 		case 2: return "TELEFONE";
 		case 3: return "ENDEREÇO";
 		case 4: return "CIDADE";
-		case 5: return i.getEstado().getNome();
-		case 6: return i.getEmail();
-		case 7: return i.getGenero();
+		case 5: return "ESTADO";
+		case 6: return "EMAIL";
+		case 7: return "GENERO";
 		default: return "";
 		}
-		return super.getColumnName(column);
 	}
-
+	
+	public List<Clientes> listar(){
+		ClienteDaoImplementacao c = new ClienteDaoImplementacao();
+		return lista = c.listar();
+	}
+	
+	public void adicionarLista(List<Clientes>c){
+		this.lista = c;
+		this.fireTableStructureChanged();
+	}
+	
+	public void deletar(int indice){
+		this.lista.remove(indice);
+		this.fireTableStructureChanged();
+	}
+	
+//	public List<Clientes> listarRelatorio(String sql){
+//		
+//	}
+	
 	public Object getValueAt(int row, int col) {
 		
-		Cliente i = lista.get(row);
+		Clientes i = lista.get(row);
 		switch (col) {
 		case 0: return i.getId();
 		case 1: return i.getNome();

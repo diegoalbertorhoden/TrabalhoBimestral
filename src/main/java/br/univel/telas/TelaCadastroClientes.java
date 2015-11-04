@@ -22,6 +22,7 @@ import br.univel.Clientes;
 import br.univel.Estado;
 import br.univel.Genero;
 import br.univel.banco.ClienteDaoImplementacao;
+import br.univel.tabelas.TabelaDeClientes;
 
 public class TelaCadastroClientes extends JPanel {
 
