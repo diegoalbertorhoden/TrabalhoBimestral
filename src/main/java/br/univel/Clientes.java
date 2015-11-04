@@ -11,6 +11,35 @@ public class Clientes {
 	private Estado estado;
 	private Genero genero;
 	
+public Clientes(){
+	
+	
+}
+	
+	public Clientes(int id, String nome, String telefone, String endereco,
+			String cidade, Estado estado, String email, Genero genero) {
+		this.Id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco= endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.email = email;
+		this.genero = genero;
+	}
+	
+	public Clientes(String nome, String telefone, String endereco,
+			String cidade, Estado estado, String email, Genero genero) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco= endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.email = email;
+		this.genero = genero;
+		
+	}
+	
 	public Estado getEstado() {
 		return estado;
 	}
@@ -36,7 +65,7 @@ public class Clientes {
 		return Id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.Id = id;
 	}
 	public String getTelefone() {
 		return telefone;

@@ -1,82 +1,120 @@
 package br.univel.banco;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import br.univel.Clientes;
+import br.univel.Conexao;
+import br.univel.Estado;
+import br.univel.Genero;
 /**
  * @author user
  * Classe criada implementado da interface Dao para os comandos do banco 
  * 31/10/2015 às 16:40
  */
-public class ClienteDaoImplementacao implements ClienteDao  {
+public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 
-		private Connection con;
-
-		public ClienteDaoImplementacao() {
-			
-				try {
-					abrirConexaoBancoDados();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-		}
-		private void abrirConexaoBancoDados() throws SQLException, ClassNotFoundException {
-			Class.forName("org.postgresql.Driver"); 
-			
-			String url = "jdbc:postgresql://localhost:5432/SistemaVendas";
-			String user = "postgres";
-			String pass = "dadedi24072011";
-							
-				con = DriverManager.getConnection(url, user, pass);
-			
-			
-		}
-		public void inserir(Clientes cliente) throws SQLException {
-			PreparedStatement ps = con
-					.prepareStatement("INSERT INTO clientes (id, nome, telefone, endereco, cidade, email) VALUES (?, ?, ?, ?, ?, ?)");
-
-			ps.setInt(1, cliente.getId());
-			ps.setString(2, cliente.getNome());
-			ps.setString(3, cliente.getTelefone());
-			ps.setString(4, cliente.getEndereco());
-			ps.setString(5, cliente.getCidade());
-			ps.setString(6, cliente.getEmail());
-			// ps.setObject(7, (Estado) cliente.getEstado());
-			// ps.setObject(8, (Genero) cliente.getGenero());
-
+	private PreparedStatement ps = null;
+	private Statement st = null;
+	private ResultSet rs = null;
+	private Clientes c = null;
+	private List<Clientes> lista = null;
+	private Connection con = Conexao.getInstace().conOpen();
+	public void inserir(Clientes c) {
+		try {
+			ps = con.prepareStatement("INSERT INTO clientes (nome, telefone, endereco, cidade, estado, email, genero) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			ps.setString(1, c.getNome());
+			ps.setString(2, c.getTelefone());
+			ps.setString(3, c.getEndereco());
+			ps.setString(4, c.getCidade());
+			ps.setString(5, c.getEstado().name());
+			ps.setString(6, c.getEmail());
+			ps.setString(7, c.getGenero().name());
 			ps.executeUpdate();
-
 			ps.close();
-
-		}
-	
-
-
-		public void atualizar(Clientes c) {
-
-
-		}
-		public void excluir(Clientes c) {
-
-
-		}
-		public Clientes buscar(int id) {
-
-			return null;
-		}
-		public List<Clientes> listar() {
-
-			return null;
+			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
+					+ "\n Cadastrado com sucesso.");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
+
+	public void atualizar(Clientes c) {
+		try {
+			ps = con.prepareStatement("UPDATE clientes SET nome = ?,"
+					+ " telefone = ?, endereco = ?, cidade = ?, estado = ?,"
+					+ " email = ?, genero = ? WHERE ID_C = " + c.getId());
+			ps.setString(1, c.getNome());
+			ps.setString(2, c.getTelefone());
+			ps.setString(3, c.getEndereco());
+			ps.setString(4, c.getCidade());
+			ps.setString(5, c.getEstado().name());
+			ps.setString(6, c.getEmail());
+			ps.setString(7, c.getGenero().name());
+			ps.executeUpdate();
+			ps.close();
+			JOptionPane.showMessageDialog(null, "Cliente: " + c.getNome()
+					+ "\n Atualizado com sucesso.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void deletar(int id) {
+		try {
+			ps = con.prepareStatement("DELETE FROM clientes WHERE ID_C =" + id);
+			ps.executeUpdate();
+			ps.close();
+			JOptionPane.showMessageDialog(null,"Cliente excluido com sucesso.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public Clientes buscarUm(int id) {
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE WHERE ID_C = " + id);
+			rs.next();
+			if (rs.getString("NOME") != null) {
+				c = new Clientes(rs.getString("NOME"), rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
+								rs.getString("GENERO")));
+			}
+			rs.close();
+			st.close();
+			return c;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public Cliente buscarUm(int id) {
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
+					+ "FROM CLIENTE WHERE ID_C = " + id);
+			rs.next();
+			if (rs.getString("NOME") != null) {
+				c = new Clientes(rs.getString("NOME"), rs.getString("TELEFONE"),
+						rs.getString("ENDERECO"), rs.getString("CIDADE"),
+						Estado.valueOf(Estado.class, rs.getString("ESTADO")),
+						rs.getString("EMAIL"), Genero.valueOf(Genero.class,
+								rs.getString("GENERO")));
+			}
+			rs.close();
+			st.close();
+			return c;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

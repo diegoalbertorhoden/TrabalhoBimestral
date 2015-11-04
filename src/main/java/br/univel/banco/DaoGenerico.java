@@ -1,6 +1,5 @@
 package br.univel.banco;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import br.univel.Clientes;
@@ -10,13 +9,13 @@ import br.univel.Clientes;
  * Classe Criada para conectividade com o banco por parte do Cliente
  * 31/10/2015 às 16:35
  */
-public interface ClienteDao {
+public interface DaoGenerico <T>{
 
-	public void inserir(Clientes c) throws SQLException;
+	public void inserir(T tipo);
 
-	public void atualizar(Clientes c);
+	public void atualizar(T tipo);
 
-	public void excluir(Clientes c);
+	public void excluir(int tipo);
 
 	public Clientes buscar(int id);
 
