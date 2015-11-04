@@ -136,12 +136,12 @@ public class TelaCadastroClientes extends JPanel {
 		add(txtEmail);
 		txtEmail.setEnabled(false);
 
-		final JComboBox cbEstado = new JComboBox();
+		final JComboBox cbEstado = new JComboBox(Estado.values());
 		cbEstado.setBounds(164, 188, 86, 20);
 		add(cbEstado);
 		cbEstado.setEnabled(false);
 
-		final JComboBox cbGenero = new JComboBox();
+		final JComboBox cbGenero = new JComboBox(Genero.values());
 		cbGenero.setBounds(164, 238, 86, 20);
 		add(cbGenero);
 		cbGenero.setEnabled(false);		
@@ -215,13 +215,13 @@ public class TelaCadastroClientes extends JPanel {
 				btnSalvar.setEnabled(true);
 				btnNovo.setEnabled(false);
 				//				carregar combobox estado com os dados da enum
-				Estado[] estados = Estado.values();  
-				ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);  
-				cbEstado.setModel(cbmodel);
-				//				carregar combobox genero com os dados da enum
-				Genero[] generos = Genero.values();  
-				ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);  
-				cbGenero.setModel(cbmodel2);
+//				Estado[] estados = Estado.values();  
+//				ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);  
+//				cbEstado.setModel(cbmodel);
+//				//				carregar combobox genero com os dados da enum
+//				Genero[] generos = Genero.values();  
+//				ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);  
+//				cbGenero.setModel(cbmodel2);
 			}
 		});
 
