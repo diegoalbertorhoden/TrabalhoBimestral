@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 	private Clientes c = null;
 	private List<Clientes> lista = null;
 	private Connection con = Conexao.getInstace().conOpen();
+	
 	public void inserir(Clientes c) {
 		try {
 			ps = con.prepareStatement("INSERT INTO clientes (nome, telefone, endereco, cidade, estado, email, genero) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -65,7 +67,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 			e.printStackTrace();
 		}
 	}
-	public void deletar(int id) {
+	public void excluir(int id) {
 		try {
 			ps = con.prepareStatement("DELETE FROM clientes WHERE ID_C =" + id);
 			ps.executeUpdate();
@@ -96,7 +98,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 		}
 		return null;
 	}
-	public Cliente buscarUm(int id) {
+	public Clientes buscar(int id) {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT NOME, TELEFONE, ENDERECO, CIDADE, ESTADO, EMAIL, GENERO "
@@ -117,4 +119,34 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 		}
 		return null;
 	}
+	public List<Clientes> listar() { 		
+		lista = new ArrayList<Clientes>(); 		
+		try { 			
+			st = con.createStatement(); 			
+			rs = st.executeQuery("SELECT id, nome, telefone, endereco, cidade, estado, email, genero " 					
+					+ "FROM clientes"); 			
+			while (rs.next()) { 				
+				lista.add(c = new Clientes(rs.getInt("id"), 
+						rs.getString("NOME"), 
+						rs.getString("TELEFONE"), 
+						rs.getString("ENDERECO"), 
+						rs.getString("CIDADE"), 
+						Estado.valueOf(Estado.class,
+								rs.getString("ESTADO")), 
+								rs.getString("EMAIL"), 
+								Genero.valueOf(Genero.class, 
+										rs.getString("GENERO")))); 			
+			} 			
+			rs.close(); 			
+			st.close(); 			
+			if (lista != null) 				
+				return lista;  		
+		} catch (Exception e) { 			
+			e.printStackTrace(); 		
+		} 		
+		return null; 	
+	}  	
+	public Connection getCon() { 		
+		return con; 	
+	} 	 	  
 }

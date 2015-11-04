@@ -8,7 +8,7 @@ import br.univel.Produtos;
  * @author user
  *
  */
-public class ProdutoDaoImplementacao implements ProdutoDao {
+public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 
 
 	public void inserir(Produtos p) {
@@ -25,10 +25,10 @@ public class ProdutoDaoImplementacao implements ProdutoDao {
 
 
 	}
-	public Produtos buscar(int id) {
-
-		return null;
-	}
+//	public Produtos buscar(int id) {
+//
+//		return null;
+//	}
 
 	public List<Produtos> listarProdutos() {
 
