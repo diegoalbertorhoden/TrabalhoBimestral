@@ -26,7 +26,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes>  {
 	private ResultSet rs = null;
 	private Clientes c = null;
 	private List<Clientes> lista = null;
-	private Connection con = Conexao.getInstace().conOpen();
+	private Connection con = Conexao.getInstance().conOpen();
 	
 	public void inserir(Clientes c) {
 		try {

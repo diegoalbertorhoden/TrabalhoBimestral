@@ -36,11 +36,11 @@ public class TelaCadastroClientes extends JPanel {
 	private Clientes cliente = new Clientes();
 	private JComboBox<String> cbEstado;
 	private JComboBox<String> cbGenero;
-	
+
 	private TabelaDeClientes tabelaclientes;
 	private ClienteDaoImplementacao c = new ClienteDaoImplementacao();
 	private List<Clientes> listaC = new ArrayList<>();
-	private int indece = -1;
+	private int indice = -1;
 
 	/**
 	 * Create the panel.
@@ -232,7 +232,7 @@ public class TelaCadastroClientes extends JPanel {
 		});
 
 	}
-	
+
 	public void listaDeCliente() {
 		new Thread(new Runnable() {			
 			@Override
@@ -243,7 +243,7 @@ public class TelaCadastroClientes extends JPanel {
 			}
 		}).start();
 	}
-	
+
 	protected void cadastrar() {
 
 		Clientes cliente = new Clientes(txtNome.getText(),
@@ -259,7 +259,7 @@ public class TelaCadastroClientes extends JPanel {
 		limparcampos();
 
 	}
-	
+
 	public void returnCliente(Clientes c) {
 		txtId.setText(String.valueOf(c.getId()));
 		txtNome.setText(c.getNome());
@@ -270,7 +270,7 @@ public class TelaCadastroClientes extends JPanel {
 		txtEmail.setText(c.getEmail());
 		cbGenero.setSelectedItem(c.getGenero().name());
 	}
-	
+
 	public void limparcampos() {
 		txtId.setText("");
 		txtNome.setText("");

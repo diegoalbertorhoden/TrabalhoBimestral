@@ -12,7 +12,7 @@ public class Conexao {
 
 	private static Conexao inst;
 	private Conexao(){}	
-	public static Conexao getInstace(){
+	public static Conexao getInstance(){
 		if(inst == null )
 			return inst = new Conexao();
 		return inst;
@@ -22,7 +22,7 @@ public class Conexao {
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost/SistemaVendas";
 		String user = "root";
-		String pass = "'root'";
+		String pass = "admin";
 		try {
 			Class.forName(driverName);
 			return con = DriverManager.getConnection(url, user, pass);
