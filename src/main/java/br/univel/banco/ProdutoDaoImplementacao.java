@@ -2,7 +2,7 @@ package br.univel.banco;
 
 import java.util.List;
 
-import br.univel.Produtos;
+import br.univel.classes.Produtos;
 
 /**
  * @author user

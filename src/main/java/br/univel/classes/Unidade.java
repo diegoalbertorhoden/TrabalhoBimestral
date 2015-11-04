@@ -1,7 +1,7 @@
 /**
  * Classe que possui as unidades do sistema. como é um sistema de calçados, não precisamos de muita firula, somente par e unidade.
  */
-package br.univel;
+package br.univel.classes;
 
 public enum Unidade {
 	

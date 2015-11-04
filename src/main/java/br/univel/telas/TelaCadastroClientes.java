@@ -18,10 +18,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import br.univel.Clientes;
-import br.univel.Estado;
-import br.univel.Genero;
 import br.univel.banco.ClienteDaoImplementacao;
+import br.univel.classes.Clientes;
+import br.univel.classes.Estado;
+import br.univel.classes.Genero;
 import br.univel.tabelas.TabelaDeClientes;
 
 public class TelaCadastroClientes extends JPanel {

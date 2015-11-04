@@ -10,10 +10,10 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import br.univel.Clientes;
-import br.univel.Conexao;
-import br.univel.Estado;
-import br.univel.Genero;
+import br.univel.classes.Clientes;
+import br.univel.classes.Conexao;
+import br.univel.classes.Estado;
+import br.univel.classes.Genero;
 /**
  * @author user
  * Classe criada implementado da interface Dao para os comandos do banco 

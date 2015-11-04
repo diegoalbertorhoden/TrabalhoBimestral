@@ -1,4 +1,4 @@
-package br.univel;
+package br.univel.classes;
 /**
  * @author Diego Alberto Rhoden
  *4 de nov de 2015 às 01:43:25

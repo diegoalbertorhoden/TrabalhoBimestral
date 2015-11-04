@@ -15,7 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-import br.univel.Unidade;
+import br.univel.classes.Unidade;
+
 import javax.swing.JTable;
 
 @SuppressWarnings("serial")

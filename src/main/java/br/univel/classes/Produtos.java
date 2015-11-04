@@ -2,7 +2,7 @@
 //e margem de lucro (BigDecimal).
 //BigDecimal deve ser utilizado para valores monetários. Nunca deve-se utilizar float e Double para valores monetários por causa 
 //de erros de arredondamento por ponto flutuante em valores fracionários.
-package br.univel;
+package br.univel.classes;
 
 import java.math.BigDecimal;
 
