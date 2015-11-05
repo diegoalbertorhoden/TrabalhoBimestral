@@ -11,7 +11,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import br.univel.classes.Clientes;
-import br.univel.classes.Conexao;
 import br.univel.classes.Estado;
 import br.univel.classes.Genero;
 /**
