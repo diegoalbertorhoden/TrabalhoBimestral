@@ -5,11 +5,10 @@ import java.util.List;
 import br.univel.classes.Clientes;
 
 /**
- * @author user
- * Classe Criada para conectividade com o banco por parte do Cliente e produto
- * 31/10/2015 às 16:35
+ * @author user Classe Criada para conectividade com o banco por parte do
+ *         Cliente e produto 31/10/2015 às 16:35
  */
-public interface DaoGenerico <T>{
+public interface DaoGenerico<T> {
 
 	public void inserir(T tipo);
 

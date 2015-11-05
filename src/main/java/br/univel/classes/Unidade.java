@@ -4,19 +4,17 @@
 package br.univel.classes;
 
 public enum Unidade {
-	
-	PR("PAR"),
-	UN("UNIDADE");
-	
+
+	PR("PAR"), UN("UNIDADE");
+
 	private String nome;
 
 	public String getNome() {
 		return nome;
 	}
-	
-	private Unidade(String nome){
-		this.nome=nome;
+
+	private Unidade(String nome) {
+		this.nome = nome;
 	}
-	
-	
+
 }

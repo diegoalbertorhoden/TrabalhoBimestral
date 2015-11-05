@@ -4,20 +4,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-
-import br.univel.classes.Unidade;
-
-import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class TelaCadastroProdutos extends JPanel {
@@ -27,6 +22,7 @@ public class TelaCadastroProdutos extends JPanel {
 	private JTextField txtCusto;
 	private JTextField txtMarkup;
 	private JTable table;
+	private JComboBox<String> cbUnidade;
 
 	public TelaCadastroProdutos() {
 		setLayout(null);
@@ -50,7 +46,6 @@ public class TelaCadastroProdutos extends JPanel {
 		txtId.setBounds(204, 71, 46, 20);
 		add(txtId);
 		txtId.setColumns(10);
-
 
 		txtDescricao = new JTextField();
 		txtDescricao.setBounds(204, 95, 208, 20);
@@ -96,12 +91,18 @@ public class TelaCadastroProdutos extends JPanel {
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 
-		final JComboBox cbUnidade = new JComboBox();
+		this.cbUnidade = new JComboBox();
 		cbUnidade.setBounds(205, 145, 59, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
 		final JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cadastrar();
+			}
+		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(226, 219, 89, 23);
 		add(btnSalvar);
@@ -109,14 +110,15 @@ public class TelaCadastroProdutos extends JPanel {
 
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				txtDescricao.setText("");
 				txtDescricao.requestFocus();
 				txtDepartamento.setText("");
 				txtCusto.setText("");
 				txtMarkup.setText("");
-	
+
 			}
 		});
 		btnLimpar.setBounds(142, 218, 76, 23);
@@ -124,8 +126,9 @@ public class TelaCadastroProdutos extends JPanel {
 
 		final JButton btnNovoCadastro = new JButton("Novo");
 		btnNovoCadastro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				cbUnidade.setEnabled(true);
 				txtDepartamento.setEnabled(true);
 				txtDescricao.setEnabled(true);
@@ -135,10 +138,11 @@ public class TelaCadastroProdutos extends JPanel {
 				txtDescricao.requestFocus();
 				btnSalvar.setEnabled(true);
 				btnNovoCadastro.setEnabled(false);
-//				carrega as unidades no combobox diretamente da Enum
-				Unidade[] unidades = Unidade.values();  
-			      ComboBoxModel cbmodel = new DefaultComboBoxModel(unidades);  
-			      cbUnidade.setModel(cbmodel);
+
+				// // carrega as unidades no combobox diretamente da Enum
+				// Unidade[] unidades = Unidade.values();
+				// ComboBoxModel cbmodel = new DefaultComboBoxModel(unidades);
+				// cbUnidade.setModel(cbmodel);
 			}
 		});
 		btnNovoCadastro.setBounds(104, 42, 80, 23);
@@ -153,19 +157,24 @@ public class TelaCadastroProdutos extends JPanel {
 		btnEditarCadastro.setBounds(262, 42, 80, 23);
 		add(btnEditarCadastro);
 		btnEditarCadastro.setEnabled(false);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 253, 415, 207);
 		add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		SwingUtilities.invokeLater(new Runnable() {  
-			public void run() {  
-				txtId.requestFocus();  
-			}  
-		}); 
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				txtId.requestFocus();
+			}
+		});
+
+	}
+
+	protected void cadastrar() {
 
 	}
 }

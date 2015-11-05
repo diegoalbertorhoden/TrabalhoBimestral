@@ -1,10 +1,9 @@
 package br.univel.classes;
 
 public enum Genero {
-	
-	M("Masculino"),
-	F("Feminino");
-	
+
+	M("Masculino"), F("Feminino");
+
 	private String nome;
 
 	public String getNome() {

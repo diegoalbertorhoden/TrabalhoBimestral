@@ -142,13 +142,14 @@ public class TelaCadastroClientes extends JPanel {
 		this.cbGenero = new JComboBox(Genero.values());
 		cbGenero.setBounds(164, 238, 86, 20);
 		add(cbGenero);
-		cbGenero.setEnabled(false);		
+		cbGenero.setEnabled(false);
 
 		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cadastrar();
-			}				
+			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnSalvar.setBounds(219, 260, 89, 23);
@@ -157,6 +158,7 @@ public class TelaCadastroClientes extends JPanel {
 
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				txtNome.setText("");
@@ -166,12 +168,10 @@ public class TelaCadastroClientes extends JPanel {
 				txtCidade.setText("");
 				txtEmail.setText("");
 
-
 			}
 		});
 		btnLimpar.setBounds(127, 260, 89, 23);
-		add(btnLimpar);		
-
+		add(btnLimpar);
 
 		final JButton btnEditar = new JButton("Editar");
 		btnEditar.setBounds(188, 36, 80, 23);
@@ -194,8 +194,8 @@ public class TelaCadastroClientes extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-
 		btnNovo.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				txtId.setEnabled(false);
@@ -212,46 +212,43 @@ public class TelaCadastroClientes extends JPanel {
 				btnExcluir.setEnabled(false);
 				btnSalvar.setEnabled(true);
 				btnNovo.setEnabled(false);
-				//				carregar combobox estado com os dados da enum
-//				Estado[] estados = Estado.values();  
-//				ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);  
-//				cbEstado.setModel(cbmodel);
-//				//				carregar combobox genero com os dados da enum
-//				Genero[] generos = Genero.values();  
-//				ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);  
-//				cbGenero.setModel(cbmodel2);
+				// carregar combobox estado com os dados da enum
+				// Estado[] estados = Estado.values();
+				// ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);
+				// cbEstado.setModel(cbmodel);
+				// // carregar combobox genero com os dados da enum
+				// Genero[] generos = Genero.values();
+				// ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);
+				// cbGenero.setModel(cbmodel2);
 			}
 		});
 
-		SwingUtilities.invokeLater(new Runnable() {  
-			public void run() {  
-				txtId.requestFocus();  
-			}  
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				txtId.requestFocus();
+			}
 		});
 
 	}
 
 	public void listaDeCliente() {
-		new Thread(new Runnable() {			
+		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				tabelaclientes = new TabelaDeClientes();
 				listaC = tabelaclientes.listar();
-				table.setModel(tabelaclientes);		
+				table.setModel(tabelaclientes);
 			}
 		}).start();
 	}
 
 	protected void cadastrar() {
 
-		Clientes cliente = new Clientes(
-				txtNome.getText(),
-				txtTelefone.getText(), 
-				txtEndereco.getText(),
-				txtCidade.getText(),
-				cbEstado.getSelectedItem().toString(),
-				txtEmail.getText(),
-				cbGenero.getSelectedItem().toString());
+		Clientes cliente = new Clientes(txtNome.getText(),
+				txtTelefone.getText(), txtEndereco.getText(),
+				txtCidade.getText(), cbEstado.getSelectedItem().toString(),
+				txtEmail.getText(), cbGenero.getSelectedItem().toString());
 		c.inserir(cliente);
 		listaC = c.listar();
 		tabelaclientes.adicionarLista(listaC);

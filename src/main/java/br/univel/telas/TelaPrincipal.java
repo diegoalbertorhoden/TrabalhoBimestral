@@ -2,6 +2,7 @@ package br.univel.telas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,8 +12,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
@@ -22,11 +23,12 @@ public class TelaPrincipal extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					TelaPrincipal frame = new TelaPrincipal();
 					frame.setVisible(true);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,6 +49,7 @@ public class TelaPrincipal extends JFrame {
 
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
 		mntmProdutos.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				TelaCadastroProdutos tp = new TelaCadastroProdutos();
@@ -58,6 +61,7 @@ public class TelaPrincipal extends JFrame {
 
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
 		mntmClientes.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				TelaCadastroClientes tc = new TelaCadastroClientes();
@@ -92,7 +96,7 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
 }

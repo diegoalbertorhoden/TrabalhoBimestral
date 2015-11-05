@@ -1,4 +1,5 @@
 package br.univel.banco;
+
 /**
  * @author Diego Alberto Rhoden
  *4 de nov de 2015 às 01:43:25
@@ -11,14 +12,17 @@ public class Conexao {
 	private Connection con;
 
 	private static Conexao inst;
-	private Conexao(){}	
-	public static Conexao getInstance(){
-		if(inst == null )
+
+	private Conexao() {
+	}
+
+	public static Conexao getInstance() {
+		if (inst == null)
 			return inst = new Conexao();
 		return inst;
 	}
 
-	public Connection conOpen(){
+	public Connection conOpen() {
 		String driverName = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost/SistemaVendas";
 		String user = "root";
@@ -32,7 +36,7 @@ public class Conexao {
 		return null;
 	}
 
-	public void conClose(){
+	public void conClose() {
 		try {
 			con.close();
 		} catch (SQLException e) {
@@ -41,4 +45,3 @@ public class Conexao {
 	}
 
 }
-

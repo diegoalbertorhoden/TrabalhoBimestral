@@ -10,25 +10,24 @@ import br.univel.classes.Produtos;
  */
 public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 
-
+	@Override
 	public void inserir(Produtos p) {
-
 
 	}
 
+	@Override
 	public void atualizar(Produtos p) {
-
 
 	}
 
 	public void excluir(Produtos p) {
 
-
 	}
-//	public Produtos buscar(int id) {
-//
-//		return null;
-//	}
+
+	// public Produtos buscar(int id) {
+	//
+	// return null;
+	// }
 
 	public List<Produtos> listarProdutos() {
 
