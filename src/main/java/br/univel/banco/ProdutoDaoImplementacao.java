@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -78,14 +79,58 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 		}
 	}
 
-	// public Produtos buscar(int id) {
-	//
-	// return null;
-	// }
+	 public Produtos buscar(int id) {
+	
+		 try {
+				st = con.createStatement();
+				rs = st.executeQuery("SELECT barras, categoria, descricao, unidade, custo, margem "
+						+ "FROM produtos WHERE id = " + id);
+				rs.next();
+				if (rs.getString("NOME") != null) {
+					p = new Produtos(id , rs.getInt("barras"),
+							rs.getString("categoria"),
+							rs.getString("descricao"), 
+							rs.getString("unidade"), 
+							rs.getBigDecimal("custo"),
+							rs.getBigDecimal("margem"));
+				}
+				rs.close();
+				st.close();
+				return p;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		 
+	 }
 
 	public List<Produtos> listarProdutos() {
 
+		lista = new ArrayList<Produtos>();
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT id, barras, categoria, descricao, unidade, custo, margem "
+					+ "FROM produtos");
+			while(rs.next()){
+				lista.add(p = new Produtos(rs.getInt("id") , 
+						rs.getInt("barras"),
+						rs.getString("categoria"),
+						rs.getString("descricao"),
+						rs.getString("unidade"), 
+						rs.getBigDecimal("custo"),
+						rs.getBigDecimal("margem")));
+			}
+			rs.close();
+			st.close();
+			if(lista != null)
+				return lista;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
+	}
+	public Connection getCon() {
+		return con;
 	}
 
 }
