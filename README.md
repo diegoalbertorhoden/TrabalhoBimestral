@@ -14,3 +14,8 @@
 * decisão pelo mysql(contra a vontade, mas fui obrigado)
 04/11/2015
 * Reestruturação das conexões para encaixe com o mysql e criação do banco mysql no workbench rodando com o xampp
+10/11/2015
+* criação da moldura abstrata(antes de fazer a tela de venda)
+* na univel funciona 100%, já em casa, na firma... vo te fala... é erro no maven pra lá... falha pra commit pra cá... triste.
+* criação dos miolos em implementação
+* produtodao incrementado com as lists
