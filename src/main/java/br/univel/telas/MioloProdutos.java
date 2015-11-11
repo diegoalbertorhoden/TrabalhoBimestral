@@ -3,16 +3,24 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import br.univel.classes.Produtos;
+import br.univel.classes.TratamentoException;
+import br.univel.tabelas.TabelaProdutos;
 
 @SuppressWarnings("serial")
 public class MioloProdutos extends JPanel {
@@ -23,6 +31,11 @@ public class MioloProdutos extends JPanel {
 	private JTextField txtMarkup;
 	private JTable table;
 	private JComboBox<String> cbUnidade;
+	
+	private TabelaProdutos tabelaProdutos;
+//	private ProdutoDaoImplementacao p = new ProdutoDaoImplementacao();
+	private List<Produtos> listaP = new ArrayList<>();
+	private int indice = -1;
 
 	public MioloProdutos() {
 		setLayout(null);
@@ -175,6 +188,29 @@ public class MioloProdutos extends JPanel {
 	}
 
 	protected void cadastrar() {
+		try {
+			Produtos produtos = new Produtos(
+					Integer.parseInt(txtBarras.getText()),
+					txtCategoria.getText(),
+					txtUnidade.getText(),
+					new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
+					new TratamentoException().tratamentoBigDecimal(txtMargem.getText()));
+			p.inserir(produtos);
+			listaP = p.listar();
+			tableProduto.adicionarLista(listaP);
+			limpar();
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Valor digitado incorreto!");
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null,
+					"Campo somente para números");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	private void limpar() {
+		// TODO Auto-generated method stub
+		
 	}
 }
