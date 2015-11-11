@@ -52,7 +52,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				TelaCadastroProdutos tp = new TelaCadastroProdutos();
+				MioloProdutos tp = new MioloProdutos();
 				tabbedPane.addTab("Cadastro de Produtos ", tp);
 			}
 		});
@@ -64,7 +64,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				TelaCadastroClientes tc = new TelaCadastroClientes();
+				MioloClientes tc = new MioloClientes();
 				tabbedPane.addTab("Cadastro de Clientes", tc);
 
 			}

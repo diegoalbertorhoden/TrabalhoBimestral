@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
-public class TelaCadastroProdutos extends JPanel {
+public class MioloProdutos extends JPanel {
 	private JTextField txtId;
 	private JTextField txtDescricao;
 	private JTextField txtDepartamento;
@@ -24,7 +24,7 @@ public class TelaCadastroProdutos extends JPanel {
 	private JTable table;
 	private JComboBox<String> cbUnidade;
 
-	public TelaCadastroProdutos() {
+	public MioloProdutos() {
 		setLayout(null);
 
 		JLabel lblCadastroDeProdutos = new JLabel("Cadastro de Produtos");

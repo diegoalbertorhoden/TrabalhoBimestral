@@ -22,7 +22,7 @@ import br.univel.classes.Estado;
 import br.univel.classes.Genero;
 import br.univel.tabelas.TabelaDeClientes;
 
-public class TelaCadastroClientes extends JPanel {
+public class MioloClientes extends JPanel {
 
 	private JTextField txtId;
 	private JTextField txtNome;
@@ -43,7 +43,7 @@ public class TelaCadastroClientes extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TelaCadastroClientes() {
+	public MioloClientes() {
 		setLayout(null);
 
 		JLabel lblCadastroDeClientes = new JLabel("Cadastro de Clientes");
