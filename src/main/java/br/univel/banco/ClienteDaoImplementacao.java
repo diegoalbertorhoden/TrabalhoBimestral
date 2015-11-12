@@ -26,7 +26,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes> {
 	private Connection con = Conexao.getInstance().conOpen();
 
 	@Override
-	public void inserir(Clientes c) {
+	public int inserir(Clientes c) {
 		try {
 			ps = con.prepareStatement("INSERT INTO clientes (nome, telefone, endereco, cidade, estado, email, genero) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, c.getNome());
@@ -43,10 +43,11 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	@Override
-	public void atualizar(Clientes c) {
+	public int atualizar(Clientes c) {
 		try {
 			ps = con.prepareStatement("UPDATE clientes SET nome = ?,"
 					+ " telefone = ?, endereco = ?, cidade = ?, estado = ?,"
@@ -65,10 +66,11 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	@Override
-	public void excluir(int id) {
+	public int excluir(int id) {
 		try {
 			ps = con.prepareStatement("DELETE FROM clientes WHERE ID_C =" + id);
 			ps.executeUpdate();
@@ -78,6 +80,7 @@ public class ClienteDaoImplementacao implements DaoGenerico<Clientes> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	public Clientes buscarUm(int id) {

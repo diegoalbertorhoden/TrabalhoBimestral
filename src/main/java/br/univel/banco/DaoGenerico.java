@@ -8,11 +8,11 @@ import java.util.List;
  */
 public interface DaoGenerico<T> {
 
-	public void inserir(T tipo);
+	public int inserir(T tipo);
 
-	public void atualizar(T tipo);
+	public int atualizar(T tipo);
 
-	public void excluir(int tipo);
+	public int excluir(int tipo);
 
 	public T buscar(int id);
 

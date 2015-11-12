@@ -51,10 +51,18 @@ public class TabelaProdutos extends AbstractTableModel {
 		this.fireTableStructureChanged();
 
 	}
+	public void atualizarLista(int indice, Produtos c){
+		this.lista.set(indice,c);
+		this.fireTableStructureChanged();
+	}
+	public void adicionarLista(List<Produtos> c){
+		this.lista=c;
+		this.fireTableStructureChanged();
+	}
 
 	@Override
 	public Object getValueAt(int row, int col) {
-		
+
 		Produtos p = lista.get(row);
 		switch(col){
 		case 0: return p.getId();
@@ -66,7 +74,7 @@ public class TabelaProdutos extends AbstractTableModel {
 		case 6: return p.getMargem();
 		default: return "";
 		}
-		
+
 	}
 }
 

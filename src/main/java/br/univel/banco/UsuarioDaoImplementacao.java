@@ -7,19 +7,22 @@ import br.univel.classes.Usuarios;
 public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 
 	@Override
-	public void inserir(Usuarios usr) {
+	public int inserir(Usuarios usr) {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void atualizar(Usuarios usr) {
+	public int atualizar(Usuarios usr) {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void excluir(int id) {
+	public int excluir(int id) {
+		return 0;
 		// TODO Auto-generated method stub
 		
 	}
