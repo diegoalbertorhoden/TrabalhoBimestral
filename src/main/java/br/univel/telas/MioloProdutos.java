@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.tabelas.TabelaProdutos;
@@ -31,11 +32,12 @@ public class MioloProdutos extends JPanel {
 	private JTextField txtMarkup;
 	private JTable table;
 	private JComboBox<String> cbUnidade;
-	
+
 	private TabelaProdutos tabelaProdutos;
-//	private ProdutoDaoImplementacao p = new ProdutoDaoImplementacao();
+	//	private ProdutoDaoImplementacao p = new ProdutoDaoImplementacao();
 	private List<Produtos> listaP = new ArrayList<>();
 	private int indice = -1;
+	private JTextField txtBarras;
 
 	public MioloProdutos() {
 		setLayout(null);
@@ -52,7 +54,7 @@ public class MioloProdutos extends JPanel {
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
 		lblDescrio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDescrio.setBounds(104, 97, 90, 14);
+		lblDescrio.setBounds(104, 121, 90, 14);
 		add(lblDescrio);
 
 		txtId = new JTextField();
@@ -61,51 +63,51 @@ public class MioloProdutos extends JPanel {
 		txtId.setColumns(10);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(204, 95, 208, 20);
+		txtDescricao.setBounds(204, 119, 208, 20);
 		add(txtDescricao);
 		txtDescricao.setColumns(10);
 		txtDescricao.setEnabled(false);
 
 		JLabel lblDepartamento = new JLabel("Departamento");
 		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDepartamento.setBounds(104, 123, 90, 14);
+		lblDepartamento.setBounds(104, 147, 90, 14);
 		add(lblDepartamento);
 
 		JLabel lblUnidade = new JLabel("Unidade");
 		lblUnidade.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUnidade.setBounds(104, 148, 90, 14);
+		lblUnidade.setBounds(104, 172, 90, 14);
 		add(lblUnidade);
 
 		JLabel lblCusto = new JLabel("Custo");
 		lblCusto.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCusto.setBounds(104, 174, 90, 14);
+		lblCusto.setBounds(104, 198, 90, 14);
 		add(lblCusto);
 
 		JLabel lblMarkup = new JLabel("Markup");
 		lblMarkup.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMarkup.setBounds(104, 198, 90, 14);
+		lblMarkup.setBounds(104, 222, 90, 14);
 		add(lblMarkup);
 
 		txtDepartamento = new JTextField();
-		txtDepartamento.setBounds(204, 120, 114, 20);
+		txtDepartamento.setBounds(204, 144, 114, 20);
 		add(txtDepartamento);
 		txtDepartamento.setColumns(10);
 		txtDepartamento.setEnabled(false);
 
 		txtCusto = new JTextField();
-		txtCusto.setBounds(204, 170, 86, 20);
+		txtCusto.setBounds(204, 194, 86, 20);
 		add(txtCusto);
 		txtCusto.setColumns(10);
 		txtCusto.setEnabled(false);
 
 		txtMarkup = new JTextField();
-		txtMarkup.setBounds(204, 195, 86, 20);
+		txtMarkup.setBounds(204, 219, 86, 20);
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 
 		this.cbUnidade = new JComboBox();
-		cbUnidade.setBounds(205, 145, 59, 20);
+		cbUnidade.setBounds(205, 169, 59, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
@@ -117,7 +119,7 @@ public class MioloProdutos extends JPanel {
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(226, 219, 89, 23);
+		btnSalvar.setBounds(226, 250, 89, 23);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
@@ -125,16 +127,10 @@ public class MioloProdutos extends JPanel {
 		btnLimpar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
-				txtDescricao.setText("");
-				txtDescricao.requestFocus();
-				txtDepartamento.setText("");
-				txtCusto.setText("");
-				txtMarkup.setText("");
-
+				limpar();
 			}
 		});
-		btnLimpar.setBounds(142, 218, 76, 23);
+		btnLimpar.setBounds(142, 249, 76, 23);
 		add(btnLimpar);
 
 		final JButton btnNovoCadastro = new JButton("Novo");
@@ -148,6 +144,7 @@ public class MioloProdutos extends JPanel {
 				txtCusto.setEnabled(true);
 				txtMarkup.setEnabled(true);
 				txtId.setEnabled(false);
+				txtBarras.setEnabled(true);
 				txtDescricao.requestFocus();
 				btnSalvar.setEnabled(true);
 				btnNovoCadastro.setEnabled(false);
@@ -172,11 +169,21 @@ public class MioloProdutos extends JPanel {
 		btnEditarCadastro.setEnabled(false);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 253, 415, 207);
+		scrollPane.setBounds(10, 295, 415, 189);
 		add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
+
+		JLabel lblCdigoDeBarras = new JLabel("C\u00F3digo de Barras");
+		lblCdigoDeBarras.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCdigoDeBarras.setBounds(91, 97, 103, 14);
+		add(lblCdigoDeBarras);
+
+		txtBarras = new JTextField();
+		txtBarras.setBounds(204, 95, 86, 20);
+		add(txtBarras);
+		txtBarras.setColumns(10);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -191,13 +198,13 @@ public class MioloProdutos extends JPanel {
 		try {
 			Produtos produtos = new Produtos(
 					Integer.parseInt(txtBarras.getText()),
-					txtCategoria.getText(),
-					txtUnidade.getText(),
+					txtDepartamento.getText(),
+					cbUnidade.getSelectedItem().getText(),
 					new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
-					new TratamentoException().tratamentoBigDecimal(txtMargem.getText()));
+					new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
 			p.inserir(produtos);
 			listaP = p.listar();
-			tableProduto.adicionarLista(listaP);
+			tabelaProdutos.adicionarLista(listaP);
 			limpar();
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, "Valor digitado incorreto!");
@@ -210,7 +217,12 @@ public class MioloProdutos extends JPanel {
 	}
 
 	private void limpar() {
-		// TODO Auto-generated method stub
-		
+		txtDescricao.setText("");
+		txtDescricao.requestFocus();
+		txtDepartamento.setText("");
+		txtCusto.setText("");
+		txtMarkup.setText("");
+		txtBarras.setText("");
+
 	}
 }

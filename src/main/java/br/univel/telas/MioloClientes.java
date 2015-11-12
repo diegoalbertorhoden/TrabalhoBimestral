@@ -20,7 +20,7 @@ import br.univel.banco.ClienteDaoImplementacao;
 import br.univel.classes.Clientes;
 import br.univel.classes.Estado;
 import br.univel.classes.Genero;
-import br.univel.tabelas.TabelaDeClientes;
+import br.univel.tabelas.TabelaClientes;
 
 public class MioloClientes extends JPanel {
 
@@ -35,7 +35,7 @@ public class MioloClientes extends JPanel {
 	private JComboBox<String> cbEstado;
 	private JComboBox<String> cbGenero;
 
-	private TabelaDeClientes tabelaclientes;
+	private TabelaClientes tabelaclientes;
 	private ClienteDaoImplementacao c = new ClienteDaoImplementacao();
 	private List<Clientes> listaC = new ArrayList<>();
 	private int indice = -1;
@@ -236,7 +236,7 @@ public class MioloClientes extends JPanel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				tabelaclientes = new TabelaDeClientes();
+				tabelaclientes = new TabelaClientes();
 				listaC = tabelaclientes.listar();
 				table.setModel(tabelaclientes);
 			}

@@ -11,7 +11,7 @@ import br.univel.classes.Clientes;
 /**
  * @author Diego Alberto Rhoden 4 de nov de 2015 às 02:40:01
  */
-public class TabelaDeClientes extends AbstractTableModel {
+public class TabelaClientes extends AbstractTableModel {
 
 	List<Clientes> lista = new ArrayList<>();
 
