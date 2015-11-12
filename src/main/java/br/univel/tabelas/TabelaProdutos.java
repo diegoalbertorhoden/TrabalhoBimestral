@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+
+
 import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.classes.Produtos;
 
@@ -36,7 +38,7 @@ public class TabelaProdutos extends AbstractTableModel {
 		default: return "";
 		}
 	}
-	
+
 	public List<Produtos> listar() {
 		ProdutoDaoImplementacao c  = new ProdutoDaoImplementacao(); 
 		this.lista = c.listar();
@@ -44,18 +46,28 @@ public class TabelaProdutos extends AbstractTableModel {
 		return this.lista;
 	}
 
-	@Override
-	public void excluir(int tipo) {
-		// TODO Auto-generated method stub
+	public void excluir(int indice) {
+		this.lista.remove(indice);
+		this.fireTableStructureChanged();
 
 	}
-};
+
+	@Override
+	public Object getValueAt(int row, int col) {
+		
+		Produtos p = lista.get(row);
+		switch(col){
+		case 0: return p.getId();
+		case 1: return p.getBarras();
+		case 2: return p.getDescricao();
+		case 3: return p.getDepartamento();
+		case 4: return p.getUnidade();
+		case 5: return p.getCusto();
+		case 6: return p.getMargem();
+		default: return "";
+		}
+		
+	}
 }
 
-@Override
-public Object getValueAt(int rowIndex, int columnIndex) {
 
-	return null;
-}
-
-}

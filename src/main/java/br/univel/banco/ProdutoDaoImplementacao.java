@@ -15,7 +15,7 @@ import br.univel.classes.Produtos;
 /**
  * @author Diego Alberto Rhoden
  */
-public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
+public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 
 			
 		private PreparedStatement ps = null;
@@ -29,9 +29,9 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 		public void inserir(Produtos pd) {
 			try {
 				ps = con
-						.prepareStatement("INSERT INTO produtos (barras, categoria, descricao, unidade, custo, margem) VALUES (?, ?, ?, ?, ?, ?)");
+						.prepareStatement("INSERT INTO produtos (barras, departamento, descricao, unidade, custo, margem) VALUES (?, ?, ?, ?, ?, ?)");
 				ps.setInt(1, pd.getBarras());
-				ps.setString(2, pd.getCategoria());
+				ps.setString(2, pd.getDepartamento());
 				ps.setString(3, pd.getDescricao());
 				ps.setString(4, pd.getUnidade());
 				ps.setBigDecimal(5, pd.getCusto());
@@ -51,10 +51,10 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 	public void atualizar(Produtos pd) {
 		try {
 			ps = con
-					.prepareStatement("UPDATE produtos SET barras = ?, categoria = ?, descricao = ?,"
+					.prepareStatement("UPDATE produtos SET barras = ?, departamento = ?, descricao = ?,"
 							+ " unidade = ?, custo = ?, margem = ? WHERE id = " + pd.getId());
 			ps.setInt(1, pd.getBarras());
-			ps.setString(2, pd.getCategoria());
+			ps.setString(2, pd.getDepartamento());
 			ps.setString(3, pd.getDescricao());
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
@@ -68,27 +68,16 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 		}
 	}
 
-	public void excluir(Produtos pd) {
-		try {
-			ps =con.prepareStatement("DELETE FROM produtos WHERE id =" + pd.getId());
-			int res = ps.executeUpdate();
-			ps.close();
-			JOptionPane.showMessageDialog(null, "Produtos excluido com sucesso.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	 public Produtos buscar(int id) {
+	public Produtos buscar(int id) {
 	
 		 try {
 				st = con.createStatement();
-				rs = st.executeQuery("SELECT barras, categoria, descricao, unidade, custo, margem "
+				rs = st.executeQuery("SELECT barras, departamento, descricao, unidade, custo, margem "
 						+ "FROM produtos WHERE id = " + id);
 				rs.next();
 				if (rs.getString("NOME") != null) {
 					p = new Produtos(id , rs.getInt("barras"),
-							rs.getString("categoria"),
+							rs.getString("departamento"),
 							rs.getString("descricao"), 
 							rs.getString("unidade"), 
 							rs.getBigDecimal("custo"),
@@ -109,12 +98,12 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 		lista = new ArrayList<Produtos>();
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT id, barras, categoria, descricao, unidade, custo, margem "
+			rs = st.executeQuery("SELECT id, barras, departamento, descricao, unidade, custo, margem "
 					+ "FROM produtos");
 			while(rs.next()){
 				lista.add(p = new Produtos(rs.getInt("id") , 
 						rs.getInt("barras"),
-						rs.getString("categoria"),
+						rs.getString("departamento"),
 						rs.getString("descricao"),
 						rs.getString("unidade"), 
 						rs.getBigDecimal("custo"),
@@ -131,6 +120,28 @@ public abstract class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 	}
 	public Connection getCon() {
 		return con;
+	}
+
+
+
+	@Override
+	public void excluir(Produtos pd) {
+		try {
+			ps =con.prepareStatement("DELETE FROM produtos WHERE id =" + pd.getId());
+			int res = ps.executeUpdate();
+			ps.close();
+			JOptionPane.showMessageDialog(null, "Produtos excluido com sucesso.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+	@Override
+	public List<Produtos> listar() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,4 +1,4 @@
-//Id, código de barras, categoria (LIMPEZA, PEÇAS, ALIMENTAÇÃO, ETC), descrição, unidade (KG, UN, PCT, CX), custo (BigDecimal) 
+//Id, código de barras, departamento (LIMPEZA, PEÇAS, ALIMENTAÇÃO, ETC), descrição, unidade (KG, UN, PCT, CX), custo (BigDecimal) 
 //e margem de lucro (BigDecimal).
 //BigDecimal deve ser utilizado para valores monetários. Nunca deve-se utilizar float e Double para valores monetários por causa 
 //de erros de arredondamento por ponto flutuante em valores fracionários.
@@ -9,26 +9,26 @@ import java.math.BigDecimal;
 public class Produtos {
 
 	private int id, barras;
-	private String categoria, descricao, unidade;
+	private String departamento, descricao, unidade;
 	private BigDecimal custo, margem;
 
 	public Produtos() {
 
 	}
 
-	public Produtos(int id, int barras, String categoria, String descricao,
+	public Produtos(int id, int barras, String departamento, String descricao,
 			String unidade, BigDecimal custo, BigDecimal margem) {
 		this.id = id;
 		this.barras = barras;
-		this.categoria = categoria;
+		this.departamento = departamento;
 		this.custo = custo;
 		this.margem = margem;
 	}
 
-	public Produtos(int barras, String categoria, String descricao,
+	public Produtos(int barras, String departamento, String descricao,
 			String unidade, BigDecimal custo, BigDecimal margem) {
 		this.barras = barras;
-		this.categoria = categoria;
+		this.departamento = departamento;
 		this.custo = custo;
 		this.margem = margem;
 	}
@@ -49,12 +49,12 @@ public class Produtos {
 		this.barras = barras;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getDepartamento() {
+		return departamento;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
 	}
 
 	public String getDescricao() {
