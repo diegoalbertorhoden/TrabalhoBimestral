@@ -23,6 +23,7 @@ public class Produtos {
 		this.departamento = departamento;
 		this.custo = custo;
 		this.margem = margem;
+		this.unidade = unidade;
 	}
 
 	public Produtos(int barras, String departamento, String descricao,
@@ -31,6 +32,7 @@ public class Produtos {
 		this.departamento = departamento;
 		this.custo = custo;
 		this.margem = margem;
+		this.unidade = unidade;
 	}
 
 	public int getId() {

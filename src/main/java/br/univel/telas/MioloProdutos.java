@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import br.univel.banco.ProdutoDaoImplementacao;
+import br.univel.classes.Unidade;
 import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.tabelas.TabelaProdutos;
@@ -34,7 +35,7 @@ public class MioloProdutos extends JPanel {
 	private JComboBox<String> cbUnidade;
 
 	private TabelaProdutos tabelaProdutos;
-	//	private ProdutoDaoImplementacao p = new ProdutoDaoImplementacao();
+	private ProdutoDaoImplementacao p = new ProdutoDaoImplementacao();
 	private List<Produtos> listaP = new ArrayList<>();
 	private int indice = -1;
 	private JTextField txtBarras;
@@ -106,7 +107,7 @@ public class MioloProdutos extends JPanel {
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 
-		this.cbUnidade = new JComboBox();
+		this.cbUnidade = new JComboBox(Unidade.values());
 		cbUnidade.setBounds(205, 169, 59, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
@@ -199,7 +200,8 @@ public class MioloProdutos extends JPanel {
 			Produtos produtos = new Produtos(
 					Integer.parseInt(txtBarras.getText()),
 					txtDepartamento.getText(),
-					cbUnidade.getSelectedItem().getText(),
+					cbUnidade.getSelectedItem().toString(),
+					txtDescricao.getText(), 
 					new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
 					new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
 			p.inserir(produtos);
