@@ -37,7 +37,7 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			ps.setBigDecimal(6, pd.getMargem());
 			ps.executeUpdate();
 			ps.close();
-			JOptionPane.showMessageDialog(null, "Produtos: " + pd.getDescricao()
+			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao()
 					+ "\n Cadastrado com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			ps.setBigDecimal(6, pd.getMargem());
 			ps.executeUpdate();
 			ps.close();
-			JOptionPane.showMessageDialog(null, "Produtos: " + pd.getDescricao()
+			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao()
 					+ "\n Atualizado com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();

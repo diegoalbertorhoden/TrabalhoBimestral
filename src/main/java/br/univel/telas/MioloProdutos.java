@@ -146,7 +146,7 @@ public class MioloProdutos extends JPanel {
 				txtMarkup.setEnabled(true);
 				txtId.setEnabled(false);
 				txtBarras.setEnabled(true);
-				txtDescricao.requestFocus();
+				txtBarras.requestFocus();
 				btnSalvar.setEnabled(true);
 				btnNovoCadastro.setEnabled(false);
 
