@@ -5,6 +5,7 @@
 package br.univel.classes;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 public class Produtos {
 
@@ -89,6 +90,11 @@ public class Produtos {
 
 	public void setMargem(BigDecimal margem) {
 		this.margem = margem;
+	}
+	
+	public Double CalcularMarLucrP(){
+		double valor = this.custo.doubleValue() + (this.custo.doubleValue() * (this.margem.doubleValue() / 100));
+		return Double.valueOf(String.format(Locale.US, "%.3f", valor));
 	}
 
 }

@@ -149,11 +149,6 @@ public class MioloProdutos extends JPanel {
 				txtBarras.requestFocus();
 				btnSalvar.setEnabled(true);
 				btnNovoCadastro.setEnabled(false);
-
-				// // carrega as unidades no combobox diretamente da Enum
-				// Unidade[] unidades = Unidade.values();
-				// ComboBoxModel cbmodel = new DefaultComboBoxModel(unidades);
-				// cbUnidade.setModel(cbmodel);
 			}
 		});
 		btnNovoCadastro.setBounds(104, 42, 80, 23);

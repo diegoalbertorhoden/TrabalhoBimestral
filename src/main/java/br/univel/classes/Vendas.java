@@ -2,12 +2,11 @@ package br.univel.classes;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
 
 /**
  * @author Diego Alberto Rhoden 01/11/2015 às 13:45
  */
+@SuppressWarnings("serial")
 public class Vendas implements Serializable {
 
 	private Clientes c;
@@ -36,7 +35,7 @@ public class Vendas implements Serializable {
 		this.hora = hora;
 		
 	}
-	public Vendas(int cod_V, int id_c, int cod_p, String cliente, String produto,
+	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto,
 			BigDecimal subtotal, BigDecimal valorPago,
 			BigDecimal troco, String data, String hora) {
 		this.cod_v= cod_v;
@@ -51,6 +50,7 @@ public class Vendas implements Serializable {
 
 	}
 	
+	
 	public Vendas(int cod_v, String cliente, String produto,
 			BigDecimal subtotal, BigDecimal valorPago,BigDecimal troco,
 			String data, String hora){
@@ -64,6 +64,11 @@ public class Vendas implements Serializable {
 		this.hora = hora;
 		
 	}
+	
+	public int getCod_v() {
+		return cod_v;
+	}
+	
 	public int getId_c() {
 
 		return id_c;

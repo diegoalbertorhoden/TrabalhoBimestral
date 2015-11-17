@@ -29,6 +29,7 @@ import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.banco.VendaDaoImplementacao;
 import br.univel.classes.Clientes;
 import br.univel.classes.Produtos;
+import br.univel.classes.TratamentoException;
 import br.univel.classes.Vendas;
 import br.univel.tabelas.TabelaVendas;
 
@@ -44,7 +45,7 @@ public class MioloVendas extends JPanel {
 	private JComboBox<String> cbProdutos;
 	private JTable table;
 
-	private TabelaVendas tableVenda;
+	private TabelaVendas tabelaVendas;
 	private VendaDaoImplementacao v = new VendaDaoImplementacao();
 	private List<Vendas> listaDeVendas = new ArrayList<>();
 	protected int indice = -1;
@@ -114,7 +115,7 @@ public class MioloVendas extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
 				if (evt.getClickCount() == 2) {
-//					acaoComboBox();
+					acaoComboBox();
 				}
 			}
 		});
@@ -287,82 +288,82 @@ public class MioloVendas extends JPanel {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				tableVenda = new TabelaVendas();
-				listaDeVendas = tableVenda.listar();
-				table.setModel(tableVenda);
+				tabelaVendas = new TabelaVendas();
+				listaDeVendas = tabelaVendas.listar();
+				table.setModel(tabelaVendas);
 			}
 		}).start();
 	}
 
 	protected void cadastrar() {
 		Vendas vendas;
-//		try {
-//			vendas = new Vendas(
-//					listaCliente.get(cbClientes.getSelectedIndex() - 1)
-//							.getId(),
-//					listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-//							.getCod(),
-//					String.valueOf(cbClientes.getSelectedItem()),
-//					String.valueOf(cbProdutos.getSelectedItem()),
-//					new TratarException().tratarBigDecimal(txtTotal.getText()),
-//					new TratarException().tratarBigDecimal(txtPago.getText()),
-//					new TratarException().tratarBigDecimal(txtTroco.getText()),
-//					txtData.getText(), txtHora.getText());
-//			v.inserir(vendas);
-//			listaDeVendas = v.listar();
-//			tableVenda.adicionarLista(listaDeVendas);
-//			limpar();
-//		} catch (ParseException e) {
-//			JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
-//		} catch (NumberFormatException e) {
-//			JOptionPane.showMessageDialog(null,
-//					"Digite somete números e não letras");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			vendas = new Vendas(
+					listaCliente.get(cbClientes.getSelectedIndex() - 1)
+							.getId(),
+					listaProduto.get(cbProdutos.getSelectedIndex() - 1)
+							.getId(),
+					String.valueOf(cbClientes.getSelectedItem()),
+					String.valueOf(cbProdutos.getSelectedItem()),
+					new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
+					new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
+					new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
+					txtData.getText(), txtHora.getText());
+			v.inserir(vendas);
+			listaDeVendas = v.listar();
+			tabelaVendas.adicionarLista(listaDeVendas);
+			limpar();
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null,
+					"Digite somete números e não letras");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected void atualizar() {
-//		if (indice > -1) {
-//			try {
-//				Vendas vendas = new Vendas(
-//						Integer.parseInt(txtCodigoVenda.getText()),
-//						listaCliente.get(cbClientes.getSelectedIndex() - 1)
-//								.getId(),
-//						listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-//								.getCod(),
-//						String.valueOf(cbClientes.getSelectedItem()),
-//						String.valueOf(cbProdutos.getSelectedItem()),
-//						new TratarException().tratarBigDecimal(txtTotal.getText()),
-//						new TratarException().tratarBigDecimal(txtPago.getText()),
-//						new TratarException().tratarBigDecimal(txtTroco.getText()),
-//						txtData.getText(), txtHora.getText());
-//				v.inserir(vendas);
-//				listaDeVendas = v.listar();
-//				tableVenda.adicionarLista(listaDeVendas);
-//				limpar();
-//				indice = -1;
-//			} catch (ParseException e) {
-//				JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
-//			} catch (NumberFormatException e) {
-//				JOptionPane.showMessageDialog(null,
-//						"Digite somete números e não letras");
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		} else {
-//			JOptionPane.showMessageDialog(null,
-//					"De um duplo click na tabela venda para poder atualizar!");
-//		}
+		if (indice > -1) {
+			try {
+				Vendas vendas = new Vendas(
+						Integer.parseInt(txtCodigoVenda.getText()),
+						listaCliente.get(cbClientes.getSelectedIndex() - 1)
+								.getId(),
+						listaProduto.get(cbProdutos.getSelectedIndex() - 1)
+								.getId(),
+						String.valueOf(cbClientes.getSelectedItem()),
+						String.valueOf(cbProdutos.getSelectedItem()),
+						new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
+						new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
+						new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
+						txtData.getText(), txtHora.getText());
+				v.inserir(vendas);
+				listaDeVendas = v.listar();
+				tabelaVendas.adicionarLista(listaDeVendas);
+				limpar();
+				indice = -1;
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null,
+						"Digite somete números e não letras");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"De um duplo click na tabela venda para poder atualizar!");
+		}
 	}
 
 	private void deletar() {
-//		v.deletar(listaDeVendas.get(table.getSelectedRow()).getCod_p());
-//		tableVenda.deletar(table.getSelectedRow());
+		v.excluir(listaDeVendas.get(table.getSelectedRow()).getCod_p());
+		tabelaVendas.excluir(table.getSelectedRow());
 	}
 
 	private void returnVenda(Vendas v) {
-//		txtCodigoVenda.setText(String.valueOf(v.getCod_v()));
+		txtCodigoVenda.setText(String.valueOf(v.getCod_v()));
 		cbClientes.setSelectedItem(v.getCliente());
 		cbProdutos.setSelectedItem(v.getProduto());
 		txtTotal.setText(String.valueOf(v.getSubTotal()));
@@ -404,30 +405,30 @@ public class MioloVendas extends JPanel {
 			cbProdutos.addItem(p.getDescricao());
 		}
 	}
-//	protected void acaoComboBox() {
-//		try {
-//			
-////////			double vt = listaProduto.get(cbProdutos.getSelectedIndex() - 1) .CalcularMarLucrP();
-//////			txtTotal.setText(String.valueOf(vt));
-//////			double vp = Double.valueOf(JOptionPane.showInputDialog("Digite o valor do pagamento ?"));
-//////			if (vp >= vt) {
-//////				double troco = vp - vt;
-////				txtPago.setText(String.valueOf(vp));
-////				
-////				BigDecimal bd = new BigDecimal(troco).setScale(2, RoundingMode.HALF_EVEN);
-////				txtTroco.setText(bd.toString());
-////			} else {
-////				JOptionPane.showMessageDialog(null,
-////						"Valor recebido é menor que o preço de custo do produto");
-////			}
-////
-////		} catch (Exception e) {
-////			JOptionPane
-////					.showMessageDialog(null,
-////							"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
-////		}
-////
-//	}
+	protected void acaoComboBox() {
+		try {
+			
+			double vt = listaProduto.get(cbProdutos.getSelectedIndex() - 1) .CalcularMarLucrP();
+			txtTotal.setText(String.valueOf(vt));
+			double vp = Double.valueOf(JOptionPane.showInputDialog("Digite o valor do pagamento ?"));
+			if (vp >= vt) {
+				double troco = vp - vt;
+				txtPago.setText(String.valueOf(vp));
+				
+				BigDecimal bd = new BigDecimal(troco).setScale(2, RoundingMode.HALF_EVEN);
+				txtTroco.setText(bd.toString());
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Valor recebido é menor que o preço de custo do produto");
+			}
+
+		} catch (Exception e) {
+			JOptionPane
+					.showMessageDialog(null,
+							"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
+		}
+
+	}
 
 	private void rDataTime() {
 		SimpleDateFormat frm = new SimpleDateFormat("dd/MM/yyyy");

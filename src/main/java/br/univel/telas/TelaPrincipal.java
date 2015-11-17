@@ -84,6 +84,12 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnVendas);
 
 		JMenuItem mntmNovaVenda = new JMenuItem("Nova Venda");
+		mntmNovaVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaVendas tv = new TelaVendas();
+				tabbedPane.addTab("Fazer Venda", tv);
+			}
+		});
 		mnVendas.add(mntmNovaVenda);
 
 		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");

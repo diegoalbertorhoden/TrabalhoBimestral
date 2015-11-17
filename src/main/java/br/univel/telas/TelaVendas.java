@@ -2,6 +2,7 @@ package br.univel.telas;
 
 import java.awt.BorderLayout;
 
+@SuppressWarnings("serial")
 public class TelaVendas extends MolduraAbstrata {
 
 	

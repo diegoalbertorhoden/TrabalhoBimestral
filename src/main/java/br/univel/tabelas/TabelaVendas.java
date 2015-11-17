@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 import br.univel.classes.Vendas;
 
+@SuppressWarnings("serial")
 public class TabelaVendas extends AbstractTableModel {
 
 	@Override
@@ -32,6 +33,11 @@ public class TabelaVendas extends AbstractTableModel {
 	}
 
 	public void adicionarLista(List<Vendas> listaDeVendas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void excluir(int selectedRow) {
 		// TODO Auto-generated method stub
 		
 	}
