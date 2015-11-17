@@ -26,10 +26,10 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 			ps = con.prepareStatement("INSERT INTO vendas (id_cliente, cliente, id_produto, produto, subtotal, valor_pago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, vd.getId_c());
 			ps.setString(2, vd.getCliente());
-			ps.setInt(3, vd.getId_produto());
+			ps.setInt(3, vd.getCod_p());
 			ps.setString(4, vd.getProduto());
-			ps.setBigDecimal(5, vd.getvTotal());
-			ps.setBigDecimal(6, vd.getvPago());
+			ps.setBigDecimal(5, vd.getSubTotal());
+			ps.setBigDecimal(6, vd.getValorPago());
 			ps.setBigDecimal(7, vd.getTroco());
 			ps.setString(8, vd.getData());
 			ps.setString(9, vd.getHora());

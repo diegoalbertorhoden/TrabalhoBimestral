@@ -365,8 +365,8 @@ public class MioloVendas extends JPanel {
 //		txtCodigoVenda.setText(String.valueOf(v.getCod_v()));
 		cbClientes.setSelectedItem(v.getCliente());
 		cbProdutos.setSelectedItem(v.getProduto());
-		txtTotal.setText(String.valueOf(v.getvTotal()));
-		txtPago.setText(String.valueOf(v.getvPago()));
+		txtTotal.setText(String.valueOf(v.getSubTotal()));
+		txtPago.setText(String.valueOf(v.getValorPago()));
 		txtTroco.setText(String.valueOf(v.getTroco()));
 		txtData.setText(v.getData());
 		txtHora.setText(v.getHora());

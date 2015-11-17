@@ -7,6 +7,28 @@ public class Usuarios {
 
 	private int id;
 	private String senha;
+	private int idCliente;
+	private String Cliente;
+	
+	public Usuarios(){
+		
+	}
+	
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public String getCliente() {
+		return Cliente;
+	}
+
+	public void setCliente(String cliente) {
+		Cliente = cliente;
+	}
 
 	public int getId() {
 		return id;
