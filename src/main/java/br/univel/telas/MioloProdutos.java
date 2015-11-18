@@ -3,6 +3,8 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,9 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import br.univel.banco.ProdutoDaoImplementacao;
-import br.univel.classes.Unidade;
 import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
+import br.univel.classes.Unidade;
 import br.univel.tabelas.TabelaProdutos;
 
 @SuppressWarnings("serial")
@@ -106,6 +108,12 @@ public class MioloProdutos extends JPanel {
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
+		
+		txtBarras = new JTextField();
+		txtBarras.setBounds(204, 95, 86, 20);
+		add(txtBarras);
+		txtBarras.setColumns(10);
+		txtBarras.setEnabled(false);
 
 		this.cbUnidade = new JComboBox(Unidade.values());
 		cbUnidade.setBounds(205, 169, 59, 20);
@@ -170,16 +178,13 @@ public class MioloProdutos extends JPanel {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		listaDeProdutos();
 
 		JLabel lblCdigoDeBarras = new JLabel("C\u00F3digo de Barras");
 		lblCdigoDeBarras.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCdigoDeBarras.setBounds(91, 97, 103, 14);
 		add(lblCdigoDeBarras);
-
-		txtBarras = new JTextField();
-		txtBarras.setBounds(204, 95, 86, 20);
-		add(txtBarras);
-		txtBarras.setColumns(10);
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -211,6 +216,54 @@ public class MioloProdutos extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+		
+	public void listaDeProdutos() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				tabelaProdutos = new TabelaProdutos();
+				listaP = tabelaProdutos.listar();
+				table.setModel(tabelaProdutos);
+			}
+		}).start();
+	}
+	
+	protected void atualizar() {
+		if (indice > -1) {
+			try {
+				Produtos produtos = new Produtos(Integer.parseInt(txtId.getText()),
+											  Integer.parseInt(txtBarras.getText()),
+											  txtDepartamento.getText(),
+											  txtDescricao.getText(),
+											  cbUnidade.getSelectedItem().toString(),
+											  new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
+											  new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
+				p.atualizar(produtos);
+				tabelaProdutos.atualizarLista(indice, produtos);
+				limpar();
+				indice = -1;
+			} catch (ParseException e) {
+				JOptionPane.showMessageDialog(null,"Erro com valor digitado!");
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null,"Digite somete números e não letras");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null,"De um duplo click no produtos que deseja alterar!");
+		}
+	}
+	
+	public void returnProduto(Produtos p) {
+		txtId.setText(String.valueOf(p.getId()));
+		txtBarras.setText(String.valueOf(p.getBarras()));
+		txtDepartamento.setText(p.getDepartamento());
+		txtDescricao.setText(p.getDescricao());
+		cbUnidade.getSelectedItem().toString();
+		txtCusto.setText(new BigDecimal(p.getCusto().toString()).setScale(2, RoundingMode.HALF_EVEN).toString());
+		txtMarkup.setText(String.valueOf(p.getMargem()));
 	}
 
 	private void limpar() {

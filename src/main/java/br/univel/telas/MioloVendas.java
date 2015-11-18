@@ -223,6 +223,7 @@ public class MioloVendas extends JPanel {
 		gbc_txtHora.gridy = 8;
 		add(txtHora, gbc_txtHora);
 		txtHora.setColumns(10);
+		
 		GridBagConstraints gbc_btnFazerVenda = new GridBagConstraints();
 		gbc_btnFazerVenda.anchor = GridBagConstraints.EAST;
 		gbc_btnFazerVenda.insets = new Insets(0, 0, 5, 5);
@@ -427,7 +428,6 @@ public class MioloVendas extends JPanel {
 					.showMessageDialog(null,
 							"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
 		}
-
 	}
 
 	private void rDataTime() {
@@ -437,5 +437,4 @@ public class MioloVendas extends JPanel {
 		Calendar hora = Calendar.getInstance();
 		txtHora.setText(String.format("%1$tH:%tM:%1$tS", hora));
 	}
-
 }

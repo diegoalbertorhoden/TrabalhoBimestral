@@ -32,7 +32,7 @@ public class MioloClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-//	private Clientes cliente = new Clientes();
+	private Clientes cliente = new Clientes();
 	private JComboBox<String> cbEstado;
 	private JComboBox<String> cbGenero;
 
@@ -191,6 +191,8 @@ public class MioloClientes extends JPanel {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		listaDeCliente();
 
 		btnNovo.addActionListener(new ActionListener() {
 			@Override
@@ -210,14 +212,7 @@ public class MioloClientes extends JPanel {
 				btnExcluir.setEnabled(false);
 				btnSalvar.setEnabled(true);
 				btnNovo.setEnabled(false);
-				// carregar combobox estado com os dados da enum
-				// Estado[] estados = Estado.values();
-				// ComboBoxModel cbmodel = new DefaultComboBoxModel(estados);
-				// cbEstado.setModel(cbmodel);
-				// // carregar combobox genero com os dados da enum
-				// Genero[] generos = Genero.values();
-				// ComboBoxModel cbmodel2 = new DefaultComboBoxModel(generos);
-				// cbGenero.setModel(cbmodel2);
+
 			}
 		});
 
