@@ -1,9 +1,7 @@
+package br.univel.classes;
 /**
  * Classe que possui as siglas dos estados e os estados própriamente ditos
  */
-
-package br.univel.classes;
-
 public enum Estado {
 
 	AC("Acre"), AL("Alagoas"), AP("Amapá"), AM("Amazonas"), BA("Bahia"), CE(
@@ -24,4 +22,14 @@ public enum Estado {
 	private Estado(String nome) {
 		this.nome = nome;
 	}
+
+	public static String transformar(String estado) {
+		for(Estado e: Estado.values()){
+			if(e.getNome().equals(estado)){
+				return e.name();
+			}
+		}
+		return "";
+	}
+	
 }

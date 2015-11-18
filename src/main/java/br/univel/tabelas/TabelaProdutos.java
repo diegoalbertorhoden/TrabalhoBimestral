@@ -7,9 +7,11 @@ import javax.swing.table.AbstractTableModel;
 
 
 
+
 import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.classes.Produtos;
 
+@SuppressWarnings("serial")
 public class TabelaProdutos extends AbstractTableModel {
 
 	List<Produtos> lista = new ArrayList<>();

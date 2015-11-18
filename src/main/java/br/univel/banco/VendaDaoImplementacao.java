@@ -23,7 +23,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 
 	public int inserir(Vendas vd) {
 		try {
-			ps = con.prepareStatement("INSERT INTO vendas (id_cliente, cliente, id_produto, produto, subtotal, valor_pago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			ps = con.prepareStatement("INSERT INTO vendas (id_c, cliente, cod_p, produto, subtotal, valorPago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, vd.getId_c());
 			ps.setString(2, vd.getCliente());
 			ps.setInt(3, vd.getCod_p());
@@ -54,18 +54,18 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 	public Vendas buscarUm(int cod_v) {
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT * FROM vendas WHERE COD_V ="+ cod_v);
+			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v ="+ cod_v);
 			rs.next();
-			if (rs.getString("ID_C") != null) {
-				v = new Vendas(rs.getInt("ID_C"),
-						rs.getInt("COD_P"),
-						rs.getString("CLIENTE"),
-						rs.getString("PRODUTO"),
+			if (rs.getString("id_c") != null) {
+				v = new Vendas(rs.getInt("id_c"),
+						rs.getInt("cod_p"),
+						rs.getString("cliente"),
+						rs.getString("produto"),
 						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valor_pago"),
-						rs.getBigDecimal("TROCO"),
-						rs.getString("DATA"),
-						rs.getString("HORA"));
+						rs.getBigDecimal("valoPago"),
+						rs.getBigDecimal("troco"),
+						rs.getString("data"),
+						rs.getString("hora"));
 			}
 			rs.close();
 			st.close();
@@ -80,19 +80,19 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 		lista = new ArrayList<Vendas>();
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT COD_V, id_cliente, CLIENTE, id_produto,"
-					+ "PRODUTO, subtotal, valor_pago, TROCO, DATA, HORA FROM vendas");
+			rs = st.executeQuery("SELECT cod_v, id_c, cliente, cod_p,"
+					+ "PRODUTO, subtotal, valorPago, troco, data, hora FROM vendas");
 			while (rs.next()) {
-				lista.add(v = new Vendas(rs.getInt("COD_V"),
-						rs.getInt("ID_C"),
-						rs.getInt("COD_P"),
-						rs.getString("CLIENTE"),
-						rs.getString("PRODUTO"),
+				lista.add(v = new Vendas(rs.getInt("cod_v"),
+						rs.getInt("id_c"),
+						rs.getInt("cod_p"),
+						rs.getString("cliente"),
+						rs.getString("produto"),
 						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valor_pago"),
-						rs.getBigDecimal("TROCO"),
-						rs.getString("DATA"),
-						rs.getString("HORA")));
+						rs.getBigDecimal("valorPago"),
+						rs.getBigDecimal("troco"),
+						rs.getString("data"),
+						rs.getString("hora")));
 			}
 			rs.close();
 			st.close();
@@ -111,7 +111,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 	@Override
 	public int excluir(int cod_v) {
 		try {
-			ps = con.prepareStatement("DELETE FROM vendas WHERE COD_V =" + cod_v);
+			ps = con.prepareStatement("DELETE FROM vendas WHERE cod_v =" + cod_v);
 			int res = ps.executeUpdate();
 			ps.close();
 			if(res == 1)
@@ -129,18 +129,18 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 	public Vendas buscar(int cod_v) {
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT * FROM vendas WHERE COD_V ="+ cod_v);
+			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v ="+ cod_v);
 			rs.next();
-			if (rs.getString("ID_C") != null) {
-				v = new Vendas(rs.getInt("ID_C"),
-						rs.getInt("COD_P"),
-						rs.getString("CLIENTE"),
-						rs.getString("PRODUTO"),
+			if (rs.getString("id_c") != null) {
+				v = new Vendas(rs.getInt("id_c"),
+						rs.getInt("cod_p"),
+						rs.getString("cliente"),
+						rs.getString("produto"),
 						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valor_pago"),
-						rs.getBigDecimal("TROCO"),
-						rs.getString("DATA"),
-						rs.getString("HORA"));
+						rs.getBigDecimal("valoPago"),
+						rs.getBigDecimal("troco"),
+						rs.getString("data"),
+						rs.getString("hora"));
 			}
 			rs.close();
 			st.close();

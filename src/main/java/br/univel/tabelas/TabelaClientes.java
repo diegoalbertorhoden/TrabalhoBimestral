@@ -6,11 +6,13 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import br.univel.banco.ClienteDaoImplementacao;
+import br.univel.banco.RelatoriosDao;
 import br.univel.classes.Clientes;
 
 /**
  * @author Diego Alberto Rhoden 4 de nov de 2015 às 02:40:01
  */
+@SuppressWarnings("serial")
 public class TabelaClientes extends AbstractTableModel {
 
 	List<Clientes> lista = new ArrayList<>();
@@ -66,9 +68,14 @@ public class TabelaClientes extends AbstractTableModel {
 		this.fireTableStructureChanged();
 	}
 
-	// public List<Clientes> listarRelatorio(String sql){
-	//
-	// }
+	 public List<Clientes> listarRelatorio(String sql){
+		 
+		 RelatoriosDao d = new RelatoriosDao();
+			this.lista = d.listarClienteRel(sql);
+			this.fireTableDataChanged();		
+			return lista;
+	
+	 }
 
 	@Override
 	public Object getValueAt(int row, int col) {

@@ -277,14 +277,14 @@ public class MioloVendas extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
-		listaDeVenda();
+		listaDeVendas();
 		
 		listaClienteProduto();
 		
 		rDataTime();
 	}
 
-	public void listaDeVenda() {
+	public void listaDeVendas() {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -347,7 +347,7 @@ public class MioloVendas extends JPanel {
 				JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null,
-						"Digite somete números e não letras");
+						"Digite somente números e não letras");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -22,6 +22,7 @@ import br.univel.classes.Estado;
 import br.univel.classes.Genero;
 import br.univel.tabelas.TabelaClientes;
 
+@SuppressWarnings("serial")
 public class MioloClientes extends JPanel {
 
 	private JTextField txtId;

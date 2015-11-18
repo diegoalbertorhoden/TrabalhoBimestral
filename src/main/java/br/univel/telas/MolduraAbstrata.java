@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public abstract class MolduraAbstrata extends JPanel {
 
 	private JButton btnFechar;

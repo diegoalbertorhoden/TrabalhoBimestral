@@ -2,6 +2,7 @@ package br.univel.tabelas;
 
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class TabelaUsuarios extends AbstractTableModel {
 
 	@Override
