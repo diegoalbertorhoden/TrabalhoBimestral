@@ -71,7 +71,7 @@ public class TabelaClientes extends AbstractTableModel {
 	 public List<Clientes> listarRelatorio(String sql){
 		 
 		 RelatoriosDao d = new RelatoriosDao();
-			this.lista = d.listarClienteRel(sql);
+			this.lista = d.relacionarClientes(sql);
 			this.fireTableDataChanged();		
 			return lista;
 	

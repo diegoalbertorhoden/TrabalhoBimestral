@@ -33,7 +33,7 @@ public class RelatorioClientes extends JPanel {
 	private List<Clientes> listaC;
 	private TabelaClientes tbClienteModelo;
 	private String sql = "SELECT id_c, nome, telefone, endereco, cidade, estado, email, genero FROM clientes";
-	
+
 	public RelatorioClientes() {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -145,7 +145,7 @@ public class RelatorioClientes extends JPanel {
 		listarDDF();
 	}
 
-	
+
 	private void modeloTable() {
 		tbClienteModelo = new TabelaClientes();
 		listaC = tbClienteModelo.listar();
@@ -157,7 +157,7 @@ public class RelatorioClientes extends JPanel {
 		}).start();
 	}
 
-	
+
 	private void listarDDF() {
 		int indice = 0;
 		for (Estado e : Estado.values()) {
@@ -186,7 +186,7 @@ public class RelatorioClientes extends JPanel {
 		}
 	}
 
-	
+
 	protected void filtroEC() {
 		if (cdCidade.getSelectedItem() != "" && cbEstado.getSelectedItem() != "") {
 			StringBuilder filtrosql = new StringBuilder();
@@ -218,7 +218,7 @@ public class RelatorioClientes extends JPanel {
 		if (cbEstado.getSelectedItem() != "") {
 			StringBuilder filtrosql = new StringBuilder();
 			filtrosql.append(sql+ " WHERE estado = '"
-						+ Estado.transformar(cbEstado.getSelectedItem().toString()) + "'");
+					+ Estado.transformar(cbEstado.getSelectedItem().toString()) + "'");
 			listaC = tbClienteModelo.listarRelatorio(filtrosql.toString());
 			table.setModel(tbClienteModelo);
 		}
@@ -228,7 +228,7 @@ public class RelatorioClientes extends JPanel {
 		new GerarPDF("Cliente", getTableModelProduto());
 	}
 
-	// gera uma table com os dados presentes na tela
+
 	private TableModel getTableModelProduto() {
 		String[] columnNames = { "id_c", "nome", "telefone", "endereco",
 				"cidade", "estado", "email", "genero" };
@@ -241,13 +241,13 @@ public class RelatorioClientes extends JPanel {
 			data[i][j++] = listaC.get(i).getTelefone();
 			data[i][j++] = listaC.get(i).getEndereco();
 			data[i][j++] = listaC.get(i).getCidade();
-			data[i][j++] = listaC.get(i).getEstado().getNome();
+			data[i][j++] = listaC.get(i).getEstado().toString();
 			data[i][j++] = listaC.get(i).getEmail();
-			data[i][j++] = listaC.get(i).getGenero().getNome();
+			data[i][j++] = listaC.get(i).getGenero().toString();
 		}
 		return new DefaultTableModel(data, columnNames);
 	}
-		
-	}
 
 }
+
+

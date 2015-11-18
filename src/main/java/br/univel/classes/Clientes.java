@@ -11,7 +11,7 @@ public class Clientes {
 	private String estado;
 	private String genero;
 
-	public Clientes() {
+	public Clientes(int i, String string, String string2, String string3, String string4, Estado estado2, String string5, Genero genero2) {
 
 	}
 

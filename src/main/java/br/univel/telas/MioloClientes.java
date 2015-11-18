@@ -32,7 +32,7 @@ public class MioloClientes extends JPanel {
 	private JTextField txtCidade;
 	private JTextField txtEmail;
 	private JTable table;
-	private Clientes cliente = new Clientes();
+//	private Clientes cliente = new Clientes();
 	private JComboBox<String> cbEstado;
 	private JComboBox<String> cbGenero;
 
@@ -41,9 +41,6 @@ public class MioloClientes extends JPanel {
 	private List<Clientes> listaC = new ArrayList<>();
 	private int indice = -1;
 
-	/**
-	 * Create the panel.
-	 */
 	public MioloClientes() {
 		setLayout(null);
 
