@@ -1,9 +1,13 @@
 package br.univel.tabelas;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+
+
 
 
 
@@ -72,7 +76,7 @@ public class TabelaProdutos extends AbstractTableModel {
 		case 2: return p.getDescricao();
 		case 3: return p.getDepartamento();
 		case 4: return p.getUnidade();
-		case 5: return p.getCusto();
+		case 5: return new BigDecimal(p.getCusto().toString()).setScale(2, RoundingMode.HALF_EVEN);
 		case 6: return p.getMargem();
 		default: return "";
 		}

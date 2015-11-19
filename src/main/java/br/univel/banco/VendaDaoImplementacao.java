@@ -81,7 +81,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT cod_v, id_c, cliente, cod_p,"
-					+ "PRODUTO, subtotal, valorPago, troco, data, hora FROM vendas");
+					+ "produto, subtotal, valorPago, troco, data, hora FROM vendas");
 			while (rs.next()) {
 				lista.add(v = new Vendas(rs.getInt("cod_v"),
 						rs.getInt("id_c"),

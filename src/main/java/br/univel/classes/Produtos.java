@@ -22,6 +22,7 @@ public class Produtos {
 		this.id = id;
 		this.barras = barras;
 		this.departamento = departamento;
+		this.descricao = descricao;
 		this.custo = custo;
 		this.margem = margem;
 		this.unidade = unidade;
@@ -31,6 +32,7 @@ public class Produtos {
 			String unidade, BigDecimal custo, BigDecimal margem) {
 		this.barras = barras;
 		this.departamento = departamento;
+		this.descricao = descricao;
 		this.custo = custo;
 		this.margem = margem;
 		this.unidade = unidade;

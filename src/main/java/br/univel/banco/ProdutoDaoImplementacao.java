@@ -17,7 +17,6 @@ import br.univel.classes.Produtos;
  */
 public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 
-
 	private PreparedStatement ps = null;
 	private Statement st = null;
 	private ResultSet rs = null;
@@ -35,18 +34,15 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
 			ps.setBigDecimal(6, pd.getMargem());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao()
 					+ "\n Cadastrado com sucesso.");
+			return res;
 		} catch (Exception e) {
-			e.printStackTrace();
-
-		}
+			e.printStackTrace();		}
 		return 0;
 	}
-
-
 
 	public int atualizar(Produtos pd) {
 		try {
@@ -59,14 +55,15 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
 			ps.setBigDecimal(6, pd.getMargem());
-			ps.executeUpdate();
+			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produto: " + pd.getDescricao()
 					+ "\n Atualizado com sucesso.");
+			return res;
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();		
+			return 0;
 		}
-		return 0;
 	}
 
 	public Produtos buscar(int id) {
@@ -76,7 +73,7 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			rs = st.executeQuery("SELECT barras, departamento, descricao, unidade, custo, margem "
 					+ "FROM produtos WHERE id = " + id);
 			rs.next();
-			if (rs.getString("NOME") != null) {
+			if (rs.getString("barras") != null) {
 				p = new Produtos(id , rs.getInt("barras"),
 						rs.getString("departamento"),
 						rs.getString("descricao"), 
@@ -128,9 +125,10 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Produtos excluido com sucesso.");
+			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
 		}
-		return 0;
 	}
 }

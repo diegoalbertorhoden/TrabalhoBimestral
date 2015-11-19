@@ -1,15 +1,13 @@
 package br.univel.classes;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author Diego Alberto Rhoden 01/11/2015 às 13:45
  */
-@SuppressWarnings("serial")
-public class Vendas implements Serializable {
 
-	private Clientes c;
+public class Vendas {
+
 	private int cod_v;
 	private int id_c;
 	private int cod_p;
@@ -20,6 +18,10 @@ public class Vendas implements Serializable {
 	private BigDecimal troco;
 	private String data;
 	private String hora;
+
+	public Vendas(){
+
+	}
 
 	public Vendas(int id_c, int cod_p, String cliente, String produto,
 			BigDecimal subtotal, BigDecimal valorPago,

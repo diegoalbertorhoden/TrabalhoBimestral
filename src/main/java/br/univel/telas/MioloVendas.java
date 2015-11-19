@@ -47,7 +47,7 @@ public class MioloVendas extends JPanel {
 
 	private TabelaVendas tabelaVendas;
 	private VendaDaoImplementacao v = new VendaDaoImplementacao();
-	private List<Vendas> listaDeVendas = new ArrayList<>();
+	private List<Vendas> listarVendas = new ArrayList<>();
 	protected int indice = -1;
 
 	private List<Clientes> listaCliente = new ArrayList<Clientes>();
@@ -270,7 +270,7 @@ public class MioloVendas extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
 				if (evt.getClickCount() == 2) {
-					Vendas vd = listaDeVendas.get(table.getSelectedRow());
+					Vendas vd = listarVendas.get(table.getSelectedRow());
 					returnVenda(vd);
 					indice = table.getSelectedRow();
 				}
@@ -290,7 +290,7 @@ public class MioloVendas extends JPanel {
 			@Override
 			public void run() {
 				tabelaVendas = new TabelaVendas();
-				listaDeVendas = tabelaVendas.listar();
+				listarVendas = tabelaVendas.listar();
 				table.setModel(tabelaVendas);
 			}
 		}).start();
@@ -311,8 +311,8 @@ public class MioloVendas extends JPanel {
 					new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
 					txtData.getText(), txtHora.getText());
 			v.inserir(vendas);
-			listaDeVendas = v.listar();
-			tabelaVendas.adicionarLista(listaDeVendas);
+			listarVendas = v.listar();
+			tabelaVendas.adicionarLista(listarVendas);
 			limpar();
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
@@ -340,8 +340,8 @@ public class MioloVendas extends JPanel {
 						new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
 						txtData.getText(), txtHora.getText());
 				v.inserir(vendas);
-				listaDeVendas = v.listar();
-				tabelaVendas.adicionarLista(listaDeVendas);
+				listarVendas = v.listar();
+				tabelaVendas.adicionarLista(listarVendas);
 				limpar();
 				indice = -1;
 			} catch (ParseException e) {
@@ -359,7 +359,7 @@ public class MioloVendas extends JPanel {
 	}
 
 	private void deletar() {
-		v.excluir(listaDeVendas.get(table.getSelectedRow()).getCod_p());
+		v.excluir(listarVendas.get(table.getSelectedRow()).getCod_p());
 		tabelaVendas.excluir(table.getSelectedRow());
 	}
 
