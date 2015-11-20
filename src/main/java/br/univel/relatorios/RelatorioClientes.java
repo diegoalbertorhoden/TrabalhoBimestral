@@ -24,6 +24,7 @@ import br.univel.classes.Clientes;
 import br.univel.classes.Estado;
 import br.univel.tabelas.TabelaClientes;
 
+@SuppressWarnings("serial")
 public class RelatorioClientes extends JPanel {
 
 	private JComboBox<String> cbEstado;
@@ -32,7 +33,7 @@ public class RelatorioClientes extends JPanel {
 
 	private List<Clientes> listaC;
 	private TabelaClientes tbClienteModelo;
-	private String sql = "SELECT id_c, nome, telefone, endereco, cidade, estado, email, genero FROM clientes";
+	private String sql = "SELECT id, nome, telefone, endereco, cidade, estado, email, genero FROM clientes";
 
 	public RelatorioClientes() {
 
@@ -230,7 +231,7 @@ public class RelatorioClientes extends JPanel {
 
 
 	private TableModel getTableModelProduto() {
-		String[] columnNames = { "id_c", "nome", "telefone", "endereco",
+		String[] columnNames = { "id", "nome", "telefone", "endereco",
 				"cidade", "estado", "email", "genero" };
 
 		Object[][] data = new Object[listaC.size()][8];

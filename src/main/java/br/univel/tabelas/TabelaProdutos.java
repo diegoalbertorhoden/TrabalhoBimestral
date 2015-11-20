@@ -12,7 +12,10 @@ import javax.swing.table.AbstractTableModel;
 
 
 
+
+
 import br.univel.banco.ProdutoDaoImplementacao;
+import br.univel.banco.RelatoriosDao;
 import br.univel.classes.Produtos;
 
 @SuppressWarnings("serial")
@@ -81,6 +84,14 @@ public class TabelaProdutos extends AbstractTableModel {
 		default: return "";
 		}
 
+	}
+
+	public List<Produtos> listarRelatorio(String sql) {
+		
+		RelatoriosDao d = new RelatoriosDao();
+		this.lista = d.relacionarProdutos(sql);
+		this.fireTableDataChanged();		
+		return lista;
 	}
 }
 

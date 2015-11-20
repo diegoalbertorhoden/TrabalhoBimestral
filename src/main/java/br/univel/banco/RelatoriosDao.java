@@ -24,7 +24,7 @@ public class RelatoriosDao {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
-				lista.add(new Clientes(rs.getInt("id_c"), rs.getString("nome"), rs
+				lista.add(new Clientes(rs.getInt("id"), rs.getString("nome"), rs
 						.getString("telefone"), rs.getString("endereco"), rs
 						.getString("cidade"), Estado.valueOf(Estado.class,
 						rs.getString("estado")), rs.getString("email"), Genero
@@ -47,7 +47,7 @@ public class RelatoriosDao {
 			st = con.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()){
-				lista.add(new Produtos(rs.getInt("cod_p") , 
+				lista.add(new Produtos(rs.getInt("id") , 
 						rs.getInt("barras"),
 						rs.getString("departamento"),
 						rs.getString("descricao"),
