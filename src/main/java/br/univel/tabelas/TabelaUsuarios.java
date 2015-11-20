@@ -44,8 +44,7 @@ public class TabelaUsuarios extends AbstractTableModel {
 		case 2: return temp.getCliente();
 		case 3: return temp.getSenha();
 		default: return "";
-		}
-		
+		}		
 	}
 	public List<Usuarios> listar(){
 		UsuarioDaoImplementacao udi = new UsuarioDaoImplementacao();
@@ -57,6 +56,10 @@ public class TabelaUsuarios extends AbstractTableModel {
 	}
 	public void deletar(int indice){
 		lista.remove(indice);
+		this.fireTableStructureChanged();
+	}
+	public void atualizarLista(int indice, Usuarios u) {		
+		lista.set(indice, u);
 		this.fireTableStructureChanged();
 	}
 

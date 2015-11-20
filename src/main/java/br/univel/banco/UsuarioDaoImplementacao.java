@@ -26,9 +26,9 @@ public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 
 		try {
 			ps = con.prepareStatement("INSERT INTO usuarios (id_cliente, cliente, senha) VALUES (?, ?, MD5(?))");
-			ps.setInt(1, u.getIdCliente());
-			ps.setString(2, u.getCliente());
-			ps.setString(3, u.getSenha());
+			ps.setInt(1, usr.getIdCliente());
+			ps.setString(2, usr.getCliente());
+			ps.setString(3, usr.getSenha());
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
