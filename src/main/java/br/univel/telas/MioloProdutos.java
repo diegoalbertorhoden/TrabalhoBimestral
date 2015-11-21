@@ -199,9 +199,9 @@ public class MioloProdutos extends JPanel {
 		try {
 			Produtos produtos = new Produtos(
 					Integer.parseInt(txtBarras.getText()),
+					txtDescricao.getText(),
 					txtDepartamento.getText(),
-					cbUnidade.getSelectedItem().toString(),
-					txtDescricao.getText(), 
+					cbUnidade.getSelectedItem().toString(), 
 					new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
 					new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
 			p.inserir(produtos);
@@ -235,8 +235,8 @@ public class MioloProdutos extends JPanel {
 			try {
 				Produtos produtos = new Produtos(Integer.parseInt(txtId.getText()),
 											  Integer.parseInt(txtBarras.getText()),
-											  txtDepartamento.getText(),
 											  txtDescricao.getText(),
+											  txtDepartamento.getText(),
 											  cbUnidade.getSelectedItem().toString(),
 											  new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
 											  new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
@@ -247,7 +247,7 @@ public class MioloProdutos extends JPanel {
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null,"Erro com valor digitado!");
 			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null,"Digite somete números e não letras");
+				JOptionPane.showMessageDialog(null,"Digite somente números e não letras");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -259,8 +259,8 @@ public class MioloProdutos extends JPanel {
 	public void returnProduto(Produtos p) {
 		txtId.setText(String.valueOf(p.getId()));
 		txtBarras.setText(String.valueOf(p.getBarras()));
-		txtDepartamento.setText(p.getDepartamento());
 		txtDescricao.setText(p.getDescricao());
+		txtDepartamento.setText(p.getDepartamento());
 		cbUnidade.getSelectedItem().toString();
 		txtCusto.setText(new BigDecimal(p.getCusto().toString()).setScale(2, RoundingMode.HALF_EVEN).toString());
 		txtMarkup.setText(String.valueOf(p.getMargem()));
@@ -273,6 +273,5 @@ public class MioloProdutos extends JPanel {
 		txtCusto.setText("");
 		txtMarkup.setText("");
 		txtBarras.setText("");
-
 	}
 }

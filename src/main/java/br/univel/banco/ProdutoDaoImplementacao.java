@@ -27,10 +27,10 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 	public int inserir(Produtos pd) {
 		try {
 			ps = con
-					.prepareStatement("INSERT INTO produtos (barras, departamento, descricao, unidade, custo, margem) VALUES (?, ?, ?, ?, ?, ?)");
+					.prepareStatement("INSERT INTO produtos (barras, descricao, departamento, unidade, custo, margem) VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, pd.getBarras());
-			ps.setString(2, pd.getDepartamento());
-			ps.setString(3, pd.getDescricao());
+			ps.setString(2, pd.getDescricao());
+			ps.setString(3, pd.getDepartamento());
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
 			ps.setBigDecimal(6, pd.getMargem());
@@ -47,11 +47,11 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 	public int atualizar(Produtos pd) {
 		try {
 			ps = con
-					.prepareStatement("UPDATE produtos SET barras = ?, departamento = ?, descricao = ?,"
+					.prepareStatement("UPDATE produtos SET barras = ?, descricao = ?, departamento = ?,"
 							+ " unidade = ?, custo = ?, margem = ? WHERE id = " + pd.getId());
 			ps.setInt(1, pd.getBarras());
-			ps.setString(2, pd.getDepartamento());
-			ps.setString(3, pd.getDescricao());
+			ps.setString(2, pd.getDescricao());
+			ps.setString(3, pd.getDepartamento());
 			ps.setString(4, pd.getUnidade());
 			ps.setBigDecimal(5, pd.getCusto());
 			ps.setBigDecimal(6, pd.getMargem());
@@ -70,13 +70,13 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT barras, departamento, descricao, unidade, custo, margem "
+			rs = st.executeQuery("SELECT barras, descricao, departamento, unidade, custo, margem "
 					+ "FROM produtos WHERE id = " + id);
 			rs.next();
 			if (rs.getString("barras") != null) {
 				p = new Produtos(id , rs.getInt("barras"),
+						rs.getString("descricao"),
 						rs.getString("departamento"),
-						rs.getString("descricao"), 
 						rs.getString("unidade"), 
 						rs.getBigDecimal("custo"),
 						rs.getBigDecimal("margem"));
@@ -96,13 +96,13 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 		lista = new ArrayList<Produtos>();
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT id, barras, departamento, descricao, unidade, custo, margem "
+			rs = st.executeQuery("SELECT id, barras, descricao, departamento, unidade, custo, margem "
 					+ "FROM produtos");
 			while(rs.next()){
 				lista.add(p = new Produtos(rs.getInt("id") , 
 						rs.getInt("barras"),
-						rs.getString("departamento"),
 						rs.getString("descricao"),
+						rs.getString("departamento"),
 						rs.getString("unidade"), 
 						rs.getBigDecimal("custo"),
 						rs.getBigDecimal("margem")));

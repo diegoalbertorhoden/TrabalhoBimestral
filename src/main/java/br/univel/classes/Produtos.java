@@ -10,29 +10,30 @@ import java.util.Locale;
 public class Produtos {
 
 	private int id, barras;
-	private String departamento, descricao, unidade;
+	private String  descricao, departamento, unidade;
 	private BigDecimal custo, margem;
 
 	public Produtos() {
 
 	}
 
-	public Produtos(int id, int barras, String departamento, String descricao,
+	public Produtos(int id, int barras, String descricao, String departamento,
 			String unidade, BigDecimal custo, BigDecimal margem) {
 		this.id = id;
 		this.barras = barras;
-		this.departamento = departamento;
 		this.descricao = descricao;
+		this.departamento = departamento;
+		this.unidade = unidade;
 		this.custo = custo;
 		this.margem = margem;
-		this.unidade = unidade;
+		
 	}
 
-	public Produtos(int barras, String departamento, String descricao,
+	public Produtos(int barras, String descricao, String departamento,
 			String unidade, BigDecimal custo, BigDecimal margem) {
 		this.barras = barras;
-		this.departamento = departamento;
 		this.descricao = descricao;
+		this.departamento = departamento;
 		this.custo = custo;
 		this.margem = margem;
 		this.unidade = unidade;
