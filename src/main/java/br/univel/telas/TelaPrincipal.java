@@ -15,6 +15,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import br.univel.login.PainelLogin;
+
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
 
@@ -132,4 +134,41 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
+	//copiado do exemplo do professor
+	
+	PainelLogin painelLogin = new PainelLogin(acaoOk);
+	glass = new BlockPanel(painelLogin);
+	//-----------------------------------
+
+	setGlassPane(glass);
+
+	glass.setVisible(true);
+}
+
+	
+	private void blockParaLogin() {
+		Runnable acaoOk = () -> {
+			glass.setVisible(false);
+			glass = new BlockPanel();
+		};
+	
+	protected void block() {
+		setGlassPane(glass);
+		glass.setVisible(true);
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				for (int i =0; i < 5; i++) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				glass.setVisible(false);
+			}
+		}).start();
+	
 }
