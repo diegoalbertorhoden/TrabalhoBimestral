@@ -89,7 +89,7 @@ public class RelatoriosDao {
 		return null;
 	}
 	
-	public List<String> listarCatProd() {
+	public List<String> listarDepProd() {
 		List<String> lista = new ArrayList<>();
 		try {
 			st = con.createStatement();

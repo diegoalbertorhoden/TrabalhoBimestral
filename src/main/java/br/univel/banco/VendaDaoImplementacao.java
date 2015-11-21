@@ -115,9 +115,9 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 			int res = ps.executeUpdate();
 			ps.close();
 			if(res == 1)
-				JOptionPane.showMessageDialog(null, "Historico selecionado foi\nexcluido com sucesso");
-			else
 				JOptionPane.showMessageDialog(null, "Histórico selecionado não foi excluido!");
+			else
+				JOptionPane.showMessageDialog(null, "Historico selecionado foi\nexcluido com sucesso");
 			return res;
 		} catch (SQLException e) {
 			e.printStackTrace();

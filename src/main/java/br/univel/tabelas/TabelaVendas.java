@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import br.univel.banco.RelatoriosDao;
 import br.univel.banco.VendaDaoImplementacao;
 import br.univel.classes.Vendas;
 
@@ -81,8 +82,13 @@ public class TabelaVendas extends AbstractTableModel {
 		
 		this.lista.remove(indice);
 		this.fireTableStructureChanged();
-		
-		
+	}
+	
+	public List<Vendas> listarRelatorio(StringBuilder sql) {
+		RelatoriosDao d = new RelatoriosDao();
+		this.lista = d.relacionarVendas(sql);
+		this.fireTableDataChanged();		
+		return lista;
 	}
 
 }

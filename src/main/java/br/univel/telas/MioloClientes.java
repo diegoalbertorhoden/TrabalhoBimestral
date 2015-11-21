@@ -35,7 +35,6 @@ public class MioloClientes extends JPanel {
 	private Clientes cliente = new Clientes();
 	private JComboBox<String> cbEstado;
 	private JComboBox<String> cbGenero;
-
 	private TabelaClientes tabelaclientes;
 	private ClienteDaoImplementacao c = new ClienteDaoImplementacao();
 	private List<Clientes> listaC = new ArrayList<>();
@@ -101,6 +100,7 @@ public class MioloClientes extends JPanel {
 		txtId.setBounds(164, 60, 42, 20);
 		add(txtId);
 		txtId.setColumns(10);
+		txtId.setEnabled(false);
 
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
@@ -147,6 +147,7 @@ public class MioloClientes extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cadastrar();
+				
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -211,7 +212,6 @@ public class MioloClientes extends JPanel {
 				btnEditar.setEnabled(false);
 				btnExcluir.setEnabled(false);
 				btnSalvar.setEnabled(true);
-				btnNovo.setEnabled(false);
 
 			}
 		});
@@ -246,6 +246,7 @@ public class MioloClientes extends JPanel {
 		listaC = c.listar();
 		tabelaclientes.adicionarLista(listaC);
 		limparcampos();
+		
 
 	}
 
