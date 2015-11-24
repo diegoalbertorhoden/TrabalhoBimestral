@@ -77,13 +77,13 @@ public class Login extends JPanel {
 		add(btnEntrar, gbc_btnEntrar);
 	}
 
-	public Login(Runnable acaoOk) {
+	public Login(final Runnable acaoOk) {
 		this();
 		btnEntrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().trim().equals("1")
-						&& new String(passwordField.getPassword()).equals("1")) {
+				if (textField.getText().trim().equals("root")
+						&& new String(passwordField.getPassword()).equals("root")) {
 					acaoOk.run();
 				} else {
 					JOptionPane.showMessageDialog(Login.this,
