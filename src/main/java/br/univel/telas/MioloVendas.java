@@ -1,15 +1,12 @@
 package br.univel.telas;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import br.univel.banco.ClienteDaoImplementacao;
 import br.univel.banco.ProdutoDaoImplementacao;
@@ -32,8 +30,6 @@ import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Vendas;
 import br.univel.tabelas.TabelaVendas;
-import java.awt.Font;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class MioloVendas extends JPanel {
@@ -86,7 +82,7 @@ public class MioloVendas extends JPanel {
 
 		cbProdutos = new JComboBox<String>();
 		cbProdutos.setBounds(356, 77, 328, 20);
-		
+
 		cbProdutos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
@@ -181,7 +177,7 @@ public class MioloVendas extends JPanel {
 		add(scrollPane);
 
 		table = new JTable();
-		
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
@@ -193,17 +189,21 @@ public class MioloVendas extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
-		
+
 		JLabel lblNewLabel = new JLabel("Vendas");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel.setBounds(365, 0, 113, 25);
 		add(lblNewLabel);
-		
+
 		listaDeVendas();
-		
+
 		listaClienteProduto();
-		
+
 		rDataTime();
+
+		txtTotal.setEnabled(false);
+		txtPago.setEnabled(false);
+		txtTroco.setEnabled(false);
 	}
 
 	public void listaDeVendas() {
@@ -218,13 +218,13 @@ public class MioloVendas extends JPanel {
 	}
 
 	protected void cadastrar() {
-		Vendas vendas;
+
 		try {
-			vendas = new Vendas(
+			Vendas vendas = new Vendas(
 					listaCliente.get(cbClientes.getSelectedIndex() - 1)
-							.getId(),
+					.getId(),
 					listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-							.getId(),
+					.getId(),
 					String.valueOf(cbClientes.getSelectedItem()),
 					String.valueOf(cbProdutos.getSelectedItem()),
 					new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
@@ -235,13 +235,9 @@ public class MioloVendas extends JPanel {
 			listarVendas = v.listar();
 			tabelaVendas.adicionarLista(listarVendas);
 			limpar();
-		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null,
-					"Digite somete números e não letras");
+			JOptionPane.showMessageDialog(null, "Venda Concretizada!");
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 
@@ -251,9 +247,9 @@ public class MioloVendas extends JPanel {
 				Vendas vendas = new Vendas(
 						Integer.parseInt(txtCodigoVenda.getText()),
 						listaCliente.get(cbClientes.getSelectedIndex() - 1)
-								.getId(),
+						.getId(),
 						listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-								.getId(),
+						.getId(),
 						String.valueOf(cbClientes.getSelectedItem()),
 						String.valueOf(cbProdutos.getSelectedItem()),
 						new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
@@ -263,19 +259,15 @@ public class MioloVendas extends JPanel {
 				v.inserir(vendas);
 				listarVendas = v.listar();
 				tabelaVendas.adicionarLista(listarVendas);
-				limpar();
+				JOptionPane.showMessageDialog(null, "Venda alterada!");
+				limpar();				
 				indice = -1;
-			} catch (ParseException e) {
-				JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null,
-						"Digite somente números e não letras");
 			} catch (Exception e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,
-					"De um duplo click na tabela venda para poder atualizar!");
+					"Clique duas vezes no item da tabela para atualizar!");
 		}
 	}
 
@@ -293,6 +285,25 @@ public class MioloVendas extends JPanel {
 		txtTroco.setText(String.valueOf(v.getTroco()));
 		txtData.setText(v.getData());
 		txtHora.setText(v.getHora());
+		txtCodigoVenda.setEnabled(true);
+		txtCodigoVenda.setEditable(false);
+		txtData.setEnabled(true);
+		txtHora.setEnabled(true);
+		txtData.setEditable(true);
+		txtHora.setEditable(true);
+		mostrarbotoes();
+
+
+	}
+
+	private void mostrarbotoes() {
+		txtTotal.setEnabled(true);
+		txtPago.setEnabled(true);
+		txtTroco.setEnabled(true);
+		txtTotal.setEditable(false);
+		txtPago.setEditable(false);
+		txtTroco.setEditable(false);
+
 	}
 
 	private void limpar() {
@@ -329,25 +340,25 @@ public class MioloVendas extends JPanel {
 	}
 	protected void acaoComboBox() {
 		try {
-			
+
 			double vt = listaProduto.get(cbProdutos.getSelectedIndex() - 1) .CalcularMarLucrP();
 			txtTotal.setText(String.valueOf(vt));
 			double vp = Double.valueOf(JOptionPane.showInputDialog("Digite o valor do pagamento ?"));
 			if (vp >= vt) {
 				double troco = vp - vt;
 				txtPago.setText(String.valueOf(vp));
-				
+
 				BigDecimal bd = new BigDecimal(troco).setScale(2, RoundingMode.HALF_EVEN);
 				txtTroco.setText(bd.toString());
 			} else {
 				JOptionPane.showMessageDialog(null,
 						"Valor recebido é menor que o preço de custo do produto");
 			}
-
+			mostrarbotoes();
 		} catch (Exception e) {
 			JOptionPane
-					.showMessageDialog(null,
-							"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
+			.showMessageDialog(null,
+					"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
 		}
 	}
 
