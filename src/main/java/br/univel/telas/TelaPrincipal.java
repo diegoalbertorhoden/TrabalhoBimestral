@@ -243,6 +243,7 @@ public class TelaPrincipal extends JFrame {
 		pelicula = new Bloqueador(telaLogin);
 		setGlassPane(pelicula);
 		pelicula.setVisible(true);
+		
 
 	}
 	private void mostrarUltima() {

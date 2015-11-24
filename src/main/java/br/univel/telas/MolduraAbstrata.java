@@ -38,7 +38,7 @@ public abstract class MolduraAbstrata extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 
-		JLabel lblOl = new JLabel("Pagina Principal!");
+		JLabel lblOl = new JLabel("                                                                                                                        Deus é bom o tempo todo, o tempo todo Deus é bom!");
 		lblOl.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		GridBagConstraints gbc_lblOl = new GridBagConstraints();
 		gbc_lblOl.insets = new Insets(0, 0, 0, 5);

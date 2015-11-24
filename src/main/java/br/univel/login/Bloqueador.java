@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Bloqueador extends JPanel {
 	
 	public Bloqueador() {
@@ -23,9 +24,7 @@ public class Bloqueador extends JPanel {
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
-		setLayout(gridBagLayout);
-		
-		
+		setLayout(gridBagLayout);		
 		
 		addMouseListener(new MouseAdapter() {
 

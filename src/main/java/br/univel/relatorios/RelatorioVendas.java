@@ -21,6 +21,7 @@ import br.univel.banco.RelatoriosDao;
 import br.univel.classes.Vendas;
 import br.univel.tabelas.TabelaVendas;
 
+@SuppressWarnings("serial")
 public class RelatorioVendas extends JPanel {
 
 	private JTextField txtCliente;

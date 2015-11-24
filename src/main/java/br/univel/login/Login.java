@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
@@ -75,6 +76,14 @@ public class Login extends JPanel {
 		gbc_btnEntrar.gridx = 3;
 		gbc_btnEntrar.gridy = 3;
 		add(btnEntrar, gbc_btnEntrar);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				textField.requestFocus();
+			}
+		});
+		
 	}
 
 	public Login(final Runnable acaoOk) {

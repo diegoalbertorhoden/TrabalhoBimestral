@@ -47,76 +47,77 @@ public class MioloProdutos extends JPanel {
 
 		JLabel lblCadastroDeProdutos = new JLabel("Cadastro de Produtos");
 		lblCadastroDeProdutos.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCadastroDeProdutos.setBounds(132, 0, 183, 31);
+		lblCadastroDeProdutos.setBounds(322, 0, 183, 31);
 		add(lblCadastroDeProdutos);
 
 		JLabel lblNewLabel = new JLabel("ID");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(104, 74, 90, 14);
+		lblNewLabel.setBounds(246, 73, 90, 14);
 		add(lblNewLabel);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
 		lblDescrio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDescrio.setBounds(104, 121, 90, 14);
+		lblDescrio.setBounds(246, 120, 90, 14);
 		add(lblDescrio);
 
 		txtId = new JTextField();
-		txtId.setBounds(204, 71, 46, 20);
+		txtId.setBounds(346, 70, 208, 20);
 		add(txtId);
 		txtId.setColumns(10);
+		txtId.setEnabled(false);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(204, 119, 208, 20);
+		txtDescricao.setBounds(346, 118, 208, 20);
 		add(txtDescricao);
 		txtDescricao.setColumns(10);
 		txtDescricao.setEnabled(false);
 
 		JLabel lblDepartamento = new JLabel("Departamento");
 		lblDepartamento.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblDepartamento.setBounds(104, 147, 90, 14);
+		lblDepartamento.setBounds(246, 146, 90, 14);
 		add(lblDepartamento);
 
 		JLabel lblUnidade = new JLabel("Unidade");
 		lblUnidade.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUnidade.setBounds(104, 172, 90, 14);
+		lblUnidade.setBounds(246, 171, 90, 14);
 		add(lblUnidade);
 
 		JLabel lblCusto = new JLabel("Custo");
 		lblCusto.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCusto.setBounds(104, 198, 90, 14);
+		lblCusto.setBounds(246, 197, 90, 14);
 		add(lblCusto);
 
 		JLabel lblMarkup = new JLabel("Markup");
 		lblMarkup.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMarkup.setBounds(104, 222, 90, 14);
+		lblMarkup.setBounds(246, 221, 90, 14);
 		add(lblMarkup);
 
 		txtDepartamento = new JTextField();
-		txtDepartamento.setBounds(204, 144, 114, 20);
+		txtDepartamento.setBounds(346, 143, 208, 20);
 		add(txtDepartamento);
 		txtDepartamento.setColumns(10);
 		txtDepartamento.setEnabled(false);
 
 		txtCusto = new JTextField();
-		txtCusto.setBounds(204, 194, 86, 20);
+		txtCusto.setBounds(346, 193, 208, 20);
 		add(txtCusto);
 		txtCusto.setColumns(10);
 		txtCusto.setEnabled(false);
 
 		txtMarkup = new JTextField();
-		txtMarkup.setBounds(204, 219, 86, 20);
+		txtMarkup.setBounds(346, 218, 208, 20);
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
 		
 		txtBarras = new JTextField();
-		txtBarras.setBounds(204, 95, 86, 20);
+		txtBarras.setBounds(346, 94, 208, 20);
 		add(txtBarras);
 		txtBarras.setColumns(10);
 		txtBarras.setEnabled(false);
 
 		this.cbUnidade = new JComboBox(Unidade.values());
-		cbUnidade.setBounds(205, 169, 59, 20);
+		cbUnidade.setBounds(347, 168, 208, 20);
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
@@ -128,7 +129,7 @@ public class MioloProdutos extends JPanel {
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(226, 250, 89, 23);
+		btnSalvar.setBounds(398, 249, 125, 35);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
@@ -139,8 +140,18 @@ public class MioloProdutos extends JPanel {
 				limpar();
 			}
 		});
-		btnLimpar.setBounds(142, 249, 76, 23);
+		btnLimpar.setBounds(286, 246, 76, 23);
 		add(btnLimpar);
+
+		final JButton btnExcluirCadastro = new JButton("Excluir");
+		btnExcluirCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				deletar();
+			}
+		});
+		btnExcluirCadastro.setBounds(416, 29, 118, 30);
+		add(btnExcluirCadastro);
+		btnExcluirCadastro.setEnabled(true);
 
 		final JButton btnNovoCadastro = new JButton("Novo");
 		btnNovoCadastro.addActionListener(new ActionListener() {
@@ -157,23 +168,15 @@ public class MioloProdutos extends JPanel {
 				txtBarras.requestFocus();
 				btnSalvar.setEnabled(true);
 				btnNovoCadastro.setEnabled(false);
+				btnExcluirCadastro.setEnabled(false);
 			}
 		});
-		btnNovoCadastro.setBounds(104, 42, 80, 23);
+		btnNovoCadastro.setBounds(286, 29, 118, 31);
 		add(btnNovoCadastro);
 
-		JButton btnExcluirCadastro = new JButton("Excluir");
-		btnExcluirCadastro.setBounds(184, 42, 80, 23);
-		add(btnExcluirCadastro);
-		btnExcluirCadastro.setEnabled(false);
-
-		JButton btnEditarCadastro = new JButton("Editar");
-		btnEditarCadastro.setBounds(262, 42, 80, 23);
-		add(btnEditarCadastro);
-		btnEditarCadastro.setEnabled(false);
-
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 295, 415, 189);
+		scrollPane.setBounds(10, 295, 816, 308);
 		add(scrollPane);
 
 		table = new JTable();
@@ -183,7 +186,7 @@ public class MioloProdutos extends JPanel {
 
 		JLabel lblCdigoDeBarras = new JLabel("C\u00F3digo de Barras");
 		lblCdigoDeBarras.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCdigoDeBarras.setBounds(91, 97, 103, 14);
+		lblCdigoDeBarras.setBounds(233, 96, 103, 14);
 		add(lblCdigoDeBarras);
 
 		SwingUtilities.invokeLater(new Runnable() {
@@ -216,6 +219,11 @@ public class MioloProdutos extends JPanel {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void deletar() {
+		p.excluir(listaP.get(table.getSelectedRow()).getId());
+		tabelaProdutos.excluir(table.getSelectedRow());		
 	}
 	
 		
@@ -268,7 +276,7 @@ public class MioloProdutos extends JPanel {
 
 	private void limpar() {
 		txtDescricao.setText("");
-		txtDescricao.requestFocus();
+		txtBarras.requestFocus();
 		txtDepartamento.setText("");
 		txtCusto.setText("");
 		txtMarkup.setText("");

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import br.univel.relatorios.RelatorioVendas;
 
+@SuppressWarnings("serial")
 public class TelaRelatorioVendas extends MolduraAbstrata {
 
 	public TelaRelatorioVendas() {

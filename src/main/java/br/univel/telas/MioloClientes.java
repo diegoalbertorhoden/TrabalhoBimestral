@@ -45,100 +45,100 @@ public class MioloClientes extends JPanel {
 
 		JLabel lblCadastroDeClientes = new JLabel("Cadastro de Clientes");
 		lblCadastroDeClientes.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCadastroDeClientes.setBounds(139, 11, 169, 20);
+		lblCadastroDeClientes.setBounds(333, 11, 169, 20);
 		add(lblCadastroDeClientes);
 
 		JLabel lblId = new JLabel("Id");
 		lblId.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblId.setBounds(109, 63, 45, 14);
+		lblId.setBounds(278, 76, 45, 14);
 		add(lblId);
 
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNome.setBounds(109, 88, 45, 14);
+		lblNome.setBounds(278, 101, 45, 14);
 		add(lblNome);
 
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTelefone.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTelefone.setBounds(109, 115, 45, 14);
+		lblTelefone.setBounds(278, 128, 45, 14);
 		add(lblTelefone);
 
 		JLabel lblEndereo = new JLabel("Endere\u00E7o");
 		lblEndereo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEndereo.setBounds(109, 140, 45, 14);
+		lblEndereo.setBounds(278, 153, 45, 14);
 		add(lblEndereo);
 
 		JLabel lblCidade = new JLabel("Cidade");
 		lblCidade.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCidade.setBounds(109, 166, 45, 14);
+		lblCidade.setBounds(278, 179, 45, 14);
 		add(lblCidade);
 
 		JLabel lblEstado = new JLabel("Estado");
 		lblEstado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEstado.setBounds(109, 192, 45, 14);
+		lblEstado.setBounds(278, 205, 45, 14);
 		add(lblEstado);
 
 		JLabel lblEmail = new JLabel("E-mail");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEmail.setBounds(109, 217, 45, 14);
+		lblEmail.setBounds(278, 230, 45, 14);
 		add(lblEmail);
 
 		JLabel lblGnero = new JLabel("G\u00EAnero");
 		lblGnero.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGnero.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGnero.setBounds(109, 242, 45, 14);
+		lblGnero.setBounds(278, 255, 45, 14);
 		add(lblGnero);
 
 		txtId = new JTextField();
-		txtId.setBounds(164, 60, 42, 20);
+		txtId.setBounds(333, 73, 224, 20);
 		add(txtId);
 		txtId.setColumns(10);
 		txtId.setEnabled(false);
 
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
-		txtNome.setBounds(164, 85, 224, 20);
+		txtNome.setBounds(333, 98, 224, 20);
 		add(txtNome);
 		txtNome.setEnabled(false);
 
 		txtTelefone = new JTextField();
 		txtTelefone.setColumns(10);
-		txtTelefone.setBounds(164, 113, 86, 20);
+		txtTelefone.setBounds(333, 126, 224, 20);
 		add(txtTelefone);
 		txtTelefone.setEnabled(false);
 
 		txtEndereco = new JTextField();
 		txtEndereco.setColumns(10);
-		txtEndereco.setBounds(164, 138, 224, 20);
+		txtEndereco.setBounds(333, 151, 224, 20);
 		add(txtEndereco);
 		txtEndereco.setEnabled(false);
 
 		txtCidade = new JTextField();
 		txtCidade.setColumns(10);
-		txtCidade.setBounds(164, 163, 224, 20);
+		txtCidade.setBounds(333, 176, 224, 20);
 		add(txtCidade);
 		txtCidade.setEnabled(false);
 
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(164, 213, 86, 20);
+		txtEmail.setBounds(333, 226, 224, 20);
 		add(txtEmail);
 		txtEmail.setEnabled(false);
 
 		this.cbEstado = new JComboBox(Estado.values());
-		cbEstado.setBounds(164, 188, 86, 20);
+		cbEstado.setBounds(333, 201, 224, 20);
 		add(cbEstado);
 		cbEstado.setEnabled(false);
 
 		this.cbGenero = new JComboBox(Genero.values());
-		cbGenero.setBounds(164, 238, 86, 20);
+		cbGenero.setBounds(333, 251, 224, 20);
 		add(cbGenero);
 		cbGenero.setEnabled(false);
 
@@ -147,11 +147,10 @@ public class MioloClientes extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cadastrar();
-				
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnSalvar.setBounds(219, 260, 89, 23);
+		btnSalvar.setBounds(414, 275, 145, 40);
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
@@ -159,35 +158,30 @@ public class MioloClientes extends JPanel {
 		btnLimpar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				txtNome.setText("");
-				txtNome.requestFocus();
-				txtTelefone.setText("");
-				txtEndereco.setText("");
-				txtCidade.setText("");
-				txtEmail.setText("");
-
+				limparcampos();
 			}
 		});
-		btnLimpar.setBounds(127, 260, 89, 23);
+		btnLimpar.setBounds(315, 280, 89, 23);
 		add(btnLimpar);
 
-		final JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(188, 36, 80, 23);
-		add(btnEditar);
-		btnEditar.setEnabled(false);
-
 		final JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(267, 36, 80, 23);
+		btnExcluir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				deletar();				
+			}
+		});
+		btnExcluir.setBounds(422, 32, 107, 30);
 		add(btnExcluir);
-		btnExcluir.setEnabled(false);
+		btnExcluir.setEnabled(true);
 
 		final JButton btnNovo = new JButton("Novo");
-		btnNovo.setBounds(110, 36, 80, 23);
+		btnNovo.setBounds(315, 32, 107, 30);
 		add(btnNovo);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 282, 430, 180);
+		scrollPane.setBounds(10, 316, 826, 275);
 		add(scrollPane);
 
 		table = new JTable();
@@ -206,10 +200,8 @@ public class MioloClientes extends JPanel {
 				txtEmail.setEnabled(true);
 				txtEndereco.setEnabled(true);
 				txtTelefone.setEnabled(true);
-
 				cbEstado.setEnabled(true);
 				cbGenero.setEnabled(true);
-				btnEditar.setEnabled(false);
 				btnExcluir.setEnabled(false);
 				btnSalvar.setEnabled(true);
 
@@ -223,6 +215,11 @@ public class MioloClientes extends JPanel {
 			}
 		});
 
+	}
+	
+	private void deletar() {
+		c.excluir(listaC.get(table.getSelectedRow()).getId());
+		tabelaclientes.deletar(table.getSelectedRow());		
 	}
 
 	public void listaDeCliente() {
@@ -247,9 +244,9 @@ public class MioloClientes extends JPanel {
 		tabelaclientes.adicionarLista(listaC);
 		limparcampos();
 		
-
 	}
 
+	
 	public void returnCliente(Clientes c) {
 		txtId.setText(String.valueOf(c.getId()));
 		txtNome.setText(c.getNome());
@@ -270,5 +267,6 @@ public class MioloClientes extends JPanel {
 		cbEstado.setSelectedIndex(0);
 		txtEmail.setText("");
 		cbGenero.setSelectedIndex(0);
+		
 	}
 }
