@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -100,7 +101,12 @@ public class MioloUsuarios extends JPanel {
 		btnDeletar.setBounds(299, 125, 77, 23);
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
+				if (pergunta == 0) {
 				deletar();
+				}else if(pergunta ==1){
+					JOptionPane.showMessageDialog(null, "Usuario não excluído");
+				}
 			}
 		});
 		add(btnDeletar);

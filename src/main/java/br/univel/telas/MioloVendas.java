@@ -167,7 +167,12 @@ public class MioloVendas extends JPanel {
 		btnDeletarVenda.setBounds(313, 224, 105, 23);
 		btnDeletarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
+				if (pergunta == 0) {
 				deletar();
+				}else if(pergunta ==1){
+					JOptionPane.showMessageDialog(null, "Venda não excluída");
+				}
 			}
 		});
 		add(btnDeletarVenda);

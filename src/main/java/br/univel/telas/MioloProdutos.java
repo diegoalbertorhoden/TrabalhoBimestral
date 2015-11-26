@@ -41,6 +41,8 @@ public class MioloProdutos extends JPanel {
 	private List<Produtos> listaP = new ArrayList<>();
 	private int indice = -1;
 	private JTextField txtBarras;
+	private JButton btnExcluirCadastro;
+	private JButton btnNovoCadastro;
 
 	public MioloProdutos() {
 		setLayout(null);
@@ -143,17 +145,23 @@ public class MioloProdutos extends JPanel {
 		btnLimpar.setBounds(286, 246, 76, 23);
 		add(btnLimpar);
 
-		final JButton btnExcluirCadastro = new JButton("Excluir");
+		btnExcluirCadastro = new JButton("Excluir");
 		btnExcluirCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
+				if (pergunta == 0) {
 				deletar();
+				}else if(pergunta ==1){
+					JOptionPane.showMessageDialog(null, "Produto não excluído");
+				}
 			}
 		});
 		btnExcluirCadastro.setBounds(416, 29, 118, 30);
 		add(btnExcluirCadastro);
 		btnExcluirCadastro.setEnabled(true);
 
-		final JButton btnNovoCadastro = new JButton("Novo");
+		btnNovoCadastro = new JButton("Novo");
 		btnNovoCadastro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -211,6 +219,7 @@ public class MioloProdutos extends JPanel {
 			listaP = p.listar();
 			tabelaProdutos.adicionarLista(listaP);
 			limpar();
+			bloquearCampos();
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, "Valor digitado incorreto!");
 		} catch (NumberFormatException e) {
@@ -251,6 +260,7 @@ public class MioloProdutos extends JPanel {
 				p.atualizar(produtos);
 				tabelaProdutos.atualizarLista(indice, produtos);
 				limpar();
+				bloquearCampos();
 				indice = -1;
 			} catch (ParseException e) {
 				JOptionPane.showMessageDialog(null,"Erro com valor digitado!");
@@ -273,13 +283,27 @@ public class MioloProdutos extends JPanel {
 		txtCusto.setText(new BigDecimal(p.getCusto().toString()).setScale(2, RoundingMode.HALF_EVEN).toString());
 		txtMarkup.setText(String.valueOf(p.getMargem()));
 	}
+	
+	private void bloquearCampos(){
+		txtId.setEnabled(false);
+		txtBarras.setEnabled(false);
+		txtDescricao.setEnabled(false);
+		txtDepartamento.setEnabled(false);
+		txtCusto.setEnabled(false);
+		txtMarkup.setEnabled(false);
+		cbUnidade.setEnabled(false);
+		btnExcluirCadastro.setEnabled(true);
+		btnNovoCadastro.setEnabled(true);
+	}
 
 	private void limpar() {
+		
 		txtDescricao.setText("");
 		txtBarras.requestFocus();
 		txtDepartamento.setText("");
 		txtCusto.setText("");
 		txtMarkup.setText("");
-		txtBarras.setText("");
+		txtBarras.setText("");		
+	
 	}
 }

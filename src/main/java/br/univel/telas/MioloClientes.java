@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -169,7 +170,12 @@ public class MioloClientes extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				deletar();				
+				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
+				if (pergunta == 0) {
+				deletar();
+				}else if(pergunta ==1){
+					JOptionPane.showMessageDialog(null, "Cliente não excluído");
+				}			
 			}
 		});
 		btnExcluir.setBounds(422, 32, 107, 30);
