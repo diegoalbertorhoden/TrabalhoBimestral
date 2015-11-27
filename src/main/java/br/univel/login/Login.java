@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,6 +22,7 @@ public class Login extends JPanel {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JButton btnEntrar;
+	private Runnable acaoOk;
 
 	public Login() {
 		setBackground(Color.WHITE);
@@ -76,31 +77,56 @@ public class Login extends JPanel {
 		gbc_btnEntrar.gridx = 3;
 		gbc_btnEntrar.gridy = 3;
 		add(btnEntrar, gbc_btnEntrar);
-		
+
+		configuraListeners();
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				textField.requestFocus();
 			}
-		});
-		
+		});		
 	}
 
-	public Login(final Runnable acaoOk) {
-		this();
-		btnEntrar.addActionListener(new ActionListener() {
+	private void configuraListeners() {
+
+		textField.addKeyListener(new KeyAdapter(){
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (textField.getText().trim().equals("root")
-						&& new String(passwordField.getPassword()).equals("root")) {
-					acaoOk.run();
-				} else {
-					JOptionPane.showMessageDialog(Login.this,
-							"Usuário ou senha inválido!");
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					textField.transferFocus();
 				}
-			}
+			}			
 		});
 
+		passwordField.addKeyListener(new KeyAdapter(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					logar();
+				}
+			}
+		});		
+	}
+	
+	public Login(Runnable acaoOk) {
+		this();
+		this.acaoOk = acaoOk;
+		btnEntrar.addActionListener(e -> {
+			logar();			
+		});
+
+	}
+	private void logar(){
+		if (textField.getText().trim().equals("root")
+				&& new String(passwordField.getPassword()).equals("root")) {
+			acaoOk.run();
+		} else {
+			JOptionPane.showMessageDialog(Login.this,
+					"Usuário ou senha inválido!");
+		}
 	}
 
 }

@@ -121,6 +121,18 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		mnRelatrios.add(mntmVendas);
+
+		JMenu mnBloquearTela = new JMenu("Sistema");
+		menuBar.add(mnBloquearTela);
+
+		JMenuItem mntmBloquearTela = new JMenuItem("Bloquear Tela");
+		mntmBloquearTela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				block();
+			}
+		});
+		mnBloquearTela.add(mntmBloquearTela);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -129,11 +141,34 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 	}
-	
+
+	protected void block() {
+		setGlassPane(pelicula);
+		pelicula.setVisible(true);
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				for(int i = 0; i<5; i++){
+					try{
+						Thread.sleep(1000);
+					}catch(InterruptedException e){
+						e.printStackTrace();
+					}
+				}
+				pelicula.setVisible(false);
+				bloquearTelaPrincipal();
+				
+			}
+		}).start();
+	}
+
 	private void abrirTelaRelVendas() {		
 		final TelaRelatorioVendas trv = new TelaRelatorioVendas();
 		ActionListener action = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.remove(trv);				
@@ -143,11 +178,11 @@ public class TelaPrincipal extends JFrame {
 		tabbedPane.addTab("Relatório de Vendas", trv);
 		mostrarUltima();
 	}	
-	
+
 	private void abrirTelaRelClientes() {
 		final TelaRelatorioClientes x = new TelaRelatorioClientes();
 		ActionListener action = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.remove(x);				
@@ -161,7 +196,7 @@ public class TelaPrincipal extends JFrame {
 	private void abrirTelaRelProdutos() {
 		final TelaRelatorioProdutos y = new TelaRelatorioProdutos();
 		ActionListener action = new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.remove(y);				
@@ -243,7 +278,7 @@ public class TelaPrincipal extends JFrame {
 		pelicula = new Bloqueador(telaLogin);
 		setGlassPane(pelicula);
 		pelicula.setVisible(true);
-		
+
 
 	}
 	private void mostrarUltima() {
