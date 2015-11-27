@@ -9,7 +9,15 @@ import java.util.Locale;
 
 public class Produtos {
 
-	private int id, barras;
+	private int id, barras, quantidade;
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
 	private String  descricao, departamento, unidade;
 	private BigDecimal custo, margem;
 

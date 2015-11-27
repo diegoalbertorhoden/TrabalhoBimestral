@@ -29,6 +29,9 @@ import br.univel.classes.Clientes;
 import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Vendas;
+import br.univel.model.Produto;
+import br.univel.model.TabelaModel;
+import br.univel.tabelas.TabelaItensVenda;
 import br.univel.tabelas.TabelaVendas;
 import java.awt.event.KeyEvent;
 
@@ -43,6 +46,7 @@ public class MioloVendas extends JPanel {
 	private JComboBox<String> cbClientes;
 	private JComboBox<String> cbProdutos;
 	private JTable table;
+	private TabelaItensVenda tabItensVenda;
 
 	private TabelaVendas tabelaVendas;
 	private VendaDaoImplementacao v = new VendaDaoImplementacao();
@@ -51,6 +55,7 @@ public class MioloVendas extends JPanel {
 
 	private List<Clientes> listaCliente = new ArrayList<Clientes>();
 	private List<Produtos> listaProduto = new ArrayList<Produtos>();
+	private JTextField txtQuantidade;
 
 	@SuppressWarnings("deprecation")
 	public MioloVendas() {
@@ -58,31 +63,31 @@ public class MioloVendas extends JPanel {
 
 		JLabel lblCodigo = new JLabel("C\u00F3digo da Venda:");
 		lblCodigo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCodigo.setBounds(240, 30, 105, 14);
+		lblCodigo.setBounds(10, 63, 105, 14);
 		add(lblCodigo);
 
 		txtCodigoVenda = new JTextField();
-		txtCodigoVenda.setBounds(355, 30, 105, 20);
+		txtCodigoVenda.setBounds(125, 63, 76, 20);
 		add(txtCodigoVenda);
 		txtCodigoVenda.setColumns(10);
 		txtCodigoVenda.enable(false);
 
 		JLabel lblCliente = new JLabel("Cliente:");
 		lblCliente.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCliente.setBounds(240, 55, 105, 14);
+		lblCliente.setBounds(10, 88, 105, 14);
 		add(lblCliente);
 
 		cbClientes = new JComboBox<String>();
-		cbClientes.setBounds(356, 52, 328, 20);
+		cbClientes.setBounds(126, 85, 328, 20);
 		add(cbClientes);
 
 		JLabel lblProduto = new JLabel("Produto:");
 		lblProduto.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblProduto.setBounds(240, 80, 105, 14);
+		lblProduto.setBounds(10, 113, 105, 14);
 		add(lblProduto);
 
 		cbProdutos = new JComboBox<String>();
-		cbProdutos.setBounds(356, 77, 328, 20);
+		cbProdutos.setBounds(126, 110, 328, 20);
 
 		cbProdutos.addMouseListener(new MouseAdapter() {
 			@Override
@@ -96,53 +101,53 @@ public class MioloVendas extends JPanel {
 
 		JLabel lblTotal = new JLabel("Valor Total:");
 		lblTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTotal.setBounds(240, 105, 105, 14);
+		lblTotal.setBounds(10, 161, 105, 14);
 		add(lblTotal);
 
 		txtTotal = new JTextField();
-		txtTotal.setBounds(356, 102, 328, 20);
+		txtTotal.setBounds(126, 159, 122, 20);
 		add(txtTotal);
 		txtTotal.setColumns(10);
 
 		JLabel lblPago = new JLabel("Valor Pago:");
 		lblPago.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPago.setBounds(240, 130, 105, 14);
+		lblPago.setBounds(255, 161, 67, 14);
 		add(lblPago);
 
 		txtPago = new JTextField();
-		txtPago.setBounds(356, 127, 328, 20);
+		txtPago.setBounds(332, 159, 122, 20);
 		add(txtPago);
 		txtPago.setColumns(10);
 
 		JLabel lblTroco = new JLabel("Troco:");
 		lblTroco.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTroco.setBounds(240, 155, 105, 14);
+		lblTroco.setBounds(10, 188, 105, 14);
 		add(lblTroco);
 
 		txtTroco = new JTextField();
-		txtTroco.setBounds(356, 152, 328, 20);
+		txtTroco.setBounds(126, 185, 122, 20);
 		add(txtTroco);
 		txtTroco.setColumns(10);
 
 		JLabel lblData = new JLabel("Data:");
 		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblData.setBounds(240, 180, 105, 14);
+		lblData.setBounds(200, 64, 47, 14);
 		add(lblData);
 
 		txtData = new JTextField();
 		txtData.setHorizontalAlignment(SwingConstants.CENTER);
-		txtData.setBounds(355, 177, 176, 20);
+		txtData.setBounds(255, 60, 76, 20);
 		add(txtData);
 		txtData.setColumns(10);
 
 		JLabel lblHoras = new JLabel("Horas:");
 		lblHoras.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblHoras.setBounds(240, 205, 105, 14);
+		lblHoras.setBounds(326, 63, 47, 14);
 		add(lblHoras);
 
 		JButton btnFazerVenda = new JButton("F8 - Concluir");
 		btnFazerVenda.setMnemonic(KeyEvent.VK_F8);
-		btnFazerVenda.setBounds(541, 183, 143, 64);
+		btnFazerVenda.setBounds(265, 186, 189, 64);
 		btnFazerVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastrar();
@@ -151,14 +156,14 @@ public class MioloVendas extends JPanel {
 
 		txtHora = new JTextField();
 		txtHora.setHorizontalAlignment(SwingConstants.CENTER);
-		txtHora.setBounds(355, 202, 176, 20);
+		txtHora.setBounds(378, 60, 76, 20);
 		add(txtHora);
 		txtHora.setColumns(10);
 		add(btnFazerVenda);
 
 		JButton btnAlterarVenda = new JButton("F7 - Editar Venda");
 		btnAlterarVenda.setMnemonic(KeyEvent.VK_F7);
-		btnAlterarVenda.setBounds(428, 224, 105, 23);
+		btnAlterarVenda.setBounds(133, 227, 122, 23);
 		btnAlterarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				atualizar();
@@ -168,7 +173,7 @@ public class MioloVendas extends JPanel {
 
 		JButton btnDeletarVenda = new JButton("F3 - Excluir Venda");
 		btnDeletarVenda.setMnemonic(KeyEvent.VK_F3);
-		btnDeletarVenda.setBounds(299, 224, 119, 23);
+		btnDeletarVenda.setBounds(10, 227, 119, 23);
 		btnDeletarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
@@ -182,7 +187,7 @@ public class MioloVendas extends JPanel {
 		add(btnDeletarVenda);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 258, 900, 350);
+		scrollPane.setBounds(0, 311, 900, 297);
 		add(scrollPane);
 
 		table = new JTable();
@@ -200,8 +205,8 @@ public class MioloVendas extends JPanel {
 		scrollPane.setViewportView(table);
 
 		JLabel lblNewLabel = new JLabel("Vendas");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(365, 0, 113, 25);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(422, 11, 113, 25);
 		add(lblNewLabel);
 
 		listaDeVendas();
@@ -213,6 +218,38 @@ public class MioloVendas extends JPanel {
 		txtTotal.setEnabled(false);
 		txtPago.setEnabled(false);
 		txtTroco.setEnabled(false);
+		
+		JLabel lblVendasBaixadas = new JLabel("Vendas Baixadas");
+		lblVendasBaixadas.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblVendasBaixadas.setBounds(338, 277, 150, 23);
+		add(lblVendasBaixadas);
+		
+		JLabel lblQuantidade = new JLabel("Quantidade:");
+		lblQuantidade.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblQuantidade.setBounds(32, 138, 83, 14);
+		add(lblQuantidade);
+		
+		txtQuantidade = new JTextField();
+		txtQuantidade.setBounds(125, 135, 76, 20);
+		add(txtQuantidade);
+		txtQuantidade.setColumns(10);
+		
+		JButton btnAdicionaItem = new JButton("F2 - Adiciona Item");
+		btnAdicionaItem.setBounds(330, 133, 126, 23);
+		add(btnAdicionaItem);
+		
+		JButton btnRemoveItem = new JButton("F9 - Remove Item");
+		btnRemoveItem.setBounds(203, 133, 126, 23);
+		add(btnRemoveItem);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(481, 80, 419, 220);
+		add(scrollPane_1);
+		
+		JLabel lblItensDaVenda = new JLabel("Itens da Venda");
+		lblItensDaVenda.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblItensDaVenda.setBounds(647, 60, 122, 14);
+		add(lblItensDaVenda);
 	}
 
 	public void listaDeVendas() {
@@ -277,6 +314,29 @@ public class MioloVendas extends JPanel {
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"Clique duas vezes no item da tabela para atualizar!");
+		}
+	}
+	
+	private Produtos getProdutoSelecionado() {
+
+		Produtos p = null;
+
+		int index = table.getSelectedRow();
+		if (index == -1) {
+			JOptionPane.showMessageDialog(null, "Linha não selecionada");
+
+		} else {
+			p = ((TabelaItensVenda) table.getModel()).getClienteNaLinha(index);
+		}
+
+		return p;
+	}
+	
+	protected void removerProduto() {
+
+		Produtos p = getProdutoSelecionado();
+		if (p != null) {
+			((TabelaItensVenda) table.getModel()).removeProdutos(p);
 		}
 	}
 
