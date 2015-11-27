@@ -30,6 +30,7 @@ import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Vendas;
 import br.univel.tabelas.TabelaVendas;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloVendas extends JPanel {
@@ -139,7 +140,8 @@ public class MioloVendas extends JPanel {
 		lblHoras.setBounds(240, 205, 105, 14);
 		add(lblHoras);
 
-		JButton btnFazerVenda = new JButton("Concluir");
+		JButton btnFazerVenda = new JButton("F8 - Concluir");
+		btnFazerVenda.setMnemonic(KeyEvent.VK_F8);
 		btnFazerVenda.setBounds(541, 183, 143, 64);
 		btnFazerVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,7 +156,8 @@ public class MioloVendas extends JPanel {
 		txtHora.setColumns(10);
 		add(btnFazerVenda);
 
-		JButton btnAlterarVenda = new JButton("Edi\u00E7\u00E3o");
+		JButton btnAlterarVenda = new JButton("F7 - Editar Venda");
+		btnAlterarVenda.setMnemonic(KeyEvent.VK_F7);
 		btnAlterarVenda.setBounds(428, 224, 105, 23);
 		btnAlterarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -163,8 +166,9 @@ public class MioloVendas extends JPanel {
 		});
 		add(btnAlterarVenda);
 
-		JButton btnDeletarVenda = new JButton("Excluir");
-		btnDeletarVenda.setBounds(313, 224, 105, 23);
+		JButton btnDeletarVenda = new JButton("F3 - Excluir Venda");
+		btnDeletarVenda.setMnemonic(KeyEvent.VK_F3);
+		btnDeletarVenda.setBounds(299, 224, 119, 23);
 		btnDeletarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");

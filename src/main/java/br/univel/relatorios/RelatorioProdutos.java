@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
 
 import br.univel.tabelas.TabelaProdutos;
 import br.univel.classes.Produtos;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class RelatorioProdutos extends JPanel {
@@ -43,14 +44,15 @@ public class RelatorioProdutos extends JPanel {
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JButton btnExportar = new JButton("EXPORTAR PRA PDF");
+		JButton btnExportar = new JButton("F6 - Exportar em PDF");
+		btnExportar.setMnemonic(KeyEvent.VK_F6);
 		btnExportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				exportarParaPdf();
 			}
 		});
 
-		JLabel lblMargem = new JLabel("MARKUP: ");
+		JLabel lblMargem = new JLabel("Margem:");
 		GridBagConstraints gbc_lblMargem = new GridBagConstraints();
 		gbc_lblMargem.anchor = GridBagConstraints.EAST;
 		gbc_lblMargem.insets = new Insets(0, 0, 5, 5);
@@ -67,7 +69,7 @@ public class RelatorioProdutos extends JPanel {
 		add(txtMarkup, gbc_txtMarkup);
 		txtMarkup.setColumns(10);
 
-		JLabel lblDepartamento = new JLabel(" DEPARTAMENTO: ");
+		JLabel lblDepartamento = new JLabel("Departamento:");
 		GridBagConstraints gbc_lblDepartamento = new GridBagConstraints();
 		gbc_lblDepartamento.anchor = GridBagConstraints.EAST;
 		gbc_lblDepartamento.insets = new Insets(0, 0, 5, 5);
@@ -83,7 +85,8 @@ public class RelatorioProdutos extends JPanel {
 		gbc_cbDepartamento.gridy = 1;
 		add(cbDepartamento, gbc_cbDepartamento);
 
-		JButton btnFiltrar = new JButton("FILTRAR");
+		JButton btnFiltrar = new JButton("F2 - Filtrar");
+		btnFiltrar.setMnemonic(KeyEvent.VK_F2);
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				consultar();
@@ -95,7 +98,8 @@ public class RelatorioProdutos extends JPanel {
 		gbc_btnFiltrar.gridy = 1;
 		add(btnFiltrar, gbc_btnFiltrar);
 
-		JButton btnAtualizar = new JButton("ATUALIZAR");
+		JButton btnAtualizar = new JButton("F5 - Atualizar");
+		btnAtualizar.setMnemonic(KeyEvent.VK_F5);
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				modeloTable();

@@ -20,6 +20,7 @@ import javax.swing.table.TableModel;
 import br.univel.banco.RelatoriosDao;
 import br.univel.classes.Vendas;
 import br.univel.tabelas.TabelaVendas;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class RelatorioVendas extends JPanel {
@@ -54,7 +55,7 @@ public class RelatorioVendas extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JLabel lblNewLabel = new JLabel(" DIA: ");
+		JLabel lblNewLabel = new JLabel("Dia:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
@@ -70,7 +71,7 @@ public class RelatorioVendas extends JPanel {
 		gbc_cb_dia.gridy = 0;
 		panel.add(cb_dia, gbc_cb_dia);
 		
-		JLabel lblNewLabel_1 = new JLabel("  M\u00CAS: ");
+		JLabel lblNewLabel_1 = new JLabel("M\u00EAs:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -86,7 +87,7 @@ public class RelatorioVendas extends JPanel {
 		gbc_cb_mes.gridy = 0;
 		panel.add(cb_mes, gbc_cb_mes);
 		
-		JLabel lblDepartamentoDoProduto = new JLabel("  DEPARTAMENTO DO PRODUTO: ");
+		JLabel lblDepartamentoDoProduto = new JLabel("Departamento:");
 		GridBagConstraints gbc_lblDepartamentoDoProduto = new GridBagConstraints();
 		gbc_lblDepartamentoDoProduto.anchor = GridBagConstraints.EAST;
 		gbc_lblDepartamentoDoProduto.insets = new Insets(0, 0, 5, 5);
@@ -102,7 +103,7 @@ public class RelatorioVendas extends JPanel {
 		gbc_cbDepto.gridy = 0;
 		panel.add(cbDepto, gbc_cbDepto);
 		
-		JLabel lblCliente = new JLabel("  CLIENTE: ");
+		JLabel lblCliente = new JLabel("Cliente:");
 		GridBagConstraints gbc_lblCliente = new GridBagConstraints();
 		gbc_lblCliente.anchor = GridBagConstraints.EAST;
 		gbc_lblCliente.insets = new Insets(0, 0, 5, 5);
@@ -120,7 +121,8 @@ public class RelatorioVendas extends JPanel {
 		panel.add(txtCliente, gbc_txtCliente);
 		txtCliente.setColumns(10);
 		
-		JButton btnFiltrar = new JButton("FILTRAR");
+		JButton btnFiltrar = new JButton("F2 - Filtrar");
+		btnFiltrar.setMnemonic(KeyEvent.VK_F2);
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				consultar();
@@ -133,7 +135,8 @@ public class RelatorioVendas extends JPanel {
 		gbc_btnFiltrar.gridy = 0;
 		panel.add(btnFiltrar, gbc_btnFiltrar);
 		
-		JButton btnAtualizar = new JButton("ATUALIZAR");
+		JButton btnAtualizar = new JButton("F5 - Atualizar");
+		btnAtualizar.setMnemonic(KeyEvent.VK_F5);
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modeloTable();
@@ -146,7 +149,8 @@ public class RelatorioVendas extends JPanel {
 		gbc_btnAtualizar.gridy = 0;
 		panel.add(btnAtualizar, gbc_btnAtualizar);
 		
-		JButton btnGerarRelatorio = new JButton("GERAR RELAT\u00D3RIO");
+		JButton btnGerarRelatorio = new JButton("F6 - Exportar em PDF");
+		btnGerarRelatorio.setMnemonic(KeyEvent.VK_F6);
 		btnGerarRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exportarPdf();

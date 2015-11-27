@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import br.univel.banco.UsuarioDaoImplementacao;
 import br.univel.classes.Usuarios;
 import br.univel.tabelas.TabelaUsuarios;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloUsuarios extends JPanel {
@@ -88,7 +89,8 @@ public class MioloUsuarios extends JPanel {
 		txtSenha.setBounds(334, 97, 190, 20);
 		add(txtSenha);
 
-		btnCadastrar = new JButton("Salvar");
+		btnCadastrar = new JButton("F8 - Salvar");
+		btnCadastrar.setMnemonic(KeyEvent.VK_F8);
 		btnCadastrar.setBounds(414, 119, 110, 32);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,8 +99,9 @@ public class MioloUsuarios extends JPanel {
 		});
 		add(btnCadastrar);
 
-		btnDeletar = new JButton("Excluir");
-		btnDeletar.setBounds(299, 125, 77, 23);
+		btnDeletar = new JButton("F3 - Excluir");
+		btnDeletar.setMnemonic(KeyEvent.VK_F3);
+		btnDeletar.setBounds(311, 125, 93, 23);
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");

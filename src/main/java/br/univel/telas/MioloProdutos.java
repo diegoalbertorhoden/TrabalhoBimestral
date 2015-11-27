@@ -25,6 +25,7 @@ import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Unidade;
 import br.univel.tabelas.TabelaProdutos;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloProdutos extends JPanel {
@@ -123,7 +124,8 @@ public class MioloProdutos extends JPanel {
 		add(cbUnidade);
 		cbUnidade.setEnabled(false);
 
-		final JButton btnSalvar = new JButton("Salvar");
+		final JButton btnSalvar = new JButton("F8 - Salvar");
+		btnSalvar.setMnemonic(KeyEvent.VK_F8);
 		btnSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -135,17 +137,19 @@ public class MioloProdutos extends JPanel {
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
-		JButton btnLimpar = new JButton("Limpar");
+		JButton btnLimpar = new JButton("F7 - Limpar");
+		btnLimpar.setMnemonic(KeyEvent.VK_F7);
 		btnLimpar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				limpar();
 			}
 		});
-		btnLimpar.setBounds(286, 246, 76, 23);
+		btnLimpar.setBounds(286, 246, 90, 23);
 		add(btnLimpar);
 
-		btnExcluirCadastro = new JButton("Excluir");
+		btnExcluirCadastro = new JButton("F3 - Excluir");
+		btnExcluirCadastro.setMnemonic(KeyEvent.VK_F3);
 		btnExcluirCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -161,7 +165,8 @@ public class MioloProdutos extends JPanel {
 		add(btnExcluirCadastro);
 		btnExcluirCadastro.setEnabled(true);
 
-		btnNovoCadastro = new JButton("Novo");
+		btnNovoCadastro = new JButton("F2 - Novo");
+		btnNovoCadastro.setMnemonic(KeyEvent.VK_F2);
 		btnNovoCadastro.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
