@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public abstract class MolduraAbstrata extends JPanel {
@@ -52,7 +53,8 @@ public abstract class MolduraAbstrata extends JPanel {
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		add(panel_1, BorderLayout.SOUTH);
 
-		btnFechar = new JButton("Fechar");
+		btnFechar = new JButton("Fechar aba atual F4");
+		btnFechar.setMnemonic(KeyEvent.VK_F4);
 		panel_1.add(btnFechar);
 
 		configura();

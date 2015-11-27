@@ -22,6 +22,7 @@ import br.univel.classes.Clientes;
 import br.univel.classes.Estado;
 import br.univel.classes.Genero;
 import br.univel.tabelas.TabelaClientes;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloClientes extends JPanel {
@@ -143,7 +144,8 @@ public class MioloClientes extends JPanel {
 		add(cbGenero);
 		cbGenero.setEnabled(false);
 
-		final JButton btnSalvar = new JButton("Salvar");
+		final JButton btnSalvar = new JButton("F8 - Salvar");
+		btnSalvar.setMnemonic(KeyEvent.VK_F8);
 		btnSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -155,7 +157,8 @@ public class MioloClientes extends JPanel {
 		add(btnSalvar);
 		btnSalvar.setEnabled(false);
 
-		JButton btnLimpar = new JButton("Limpar");
+		JButton btnLimpar = new JButton("F7 - Limpar");
+		btnLimpar.setMnemonic(KeyEvent.VK_F7);
 		btnLimpar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -165,7 +168,8 @@ public class MioloClientes extends JPanel {
 		btnLimpar.setBounds(315, 280, 89, 23);
 		add(btnLimpar);
 
-		final JButton btnExcluir = new JButton("Excluir");
+		final JButton btnExcluir = new JButton("F3 - Excluir");
+		btnExcluir.setMnemonic(KeyEvent.VK_F3);
 		btnExcluir.addActionListener(new ActionListener() {
 			
 			@Override
@@ -182,7 +186,8 @@ public class MioloClientes extends JPanel {
 		add(btnExcluir);
 		btnExcluir.setEnabled(true);
 
-		final JButton btnNovo = new JButton("Novo");
+		final JButton btnNovo = new JButton("F2 - Novo");
+		btnNovo.setMnemonic(KeyEvent.VK_F2);
 		btnNovo.setBounds(315, 32, 107, 30);
 		add(btnNovo);
 

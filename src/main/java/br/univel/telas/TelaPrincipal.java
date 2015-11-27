@@ -17,6 +17,9 @@ import javax.swing.border.EmptyBorder;
 
 import br.univel.login.Bloqueador;
 import br.univel.login.Login;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
@@ -57,6 +60,7 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnCadastro);
 
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
+		mntmProdutos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, InputEvent.CTRL_MASK));
 		mntmProdutos.addActionListener(new ActionListener() {
 
 			@Override
@@ -68,6 +72,7 @@ public class TelaPrincipal extends JFrame {
 		mnCadastro.add(mntmProdutos);
 
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		mntmClientes.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F3, InputEvent.CTRL_MASK));
 		mntmClientes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -77,6 +82,7 @@ public class TelaPrincipal extends JFrame {
 		mnCadastro.add(mntmClientes);
 
 		JMenuItem mntmUsurios = new JMenuItem("Usu\u00E1rios");
+		mntmUsurios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, InputEvent.CTRL_MASK));
 		mntmUsurios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaUsuarios();
@@ -88,6 +94,7 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnVendas);
 
 		JMenuItem mntmNovaVenda = new JMenuItem("Nova Venda");
+		mntmNovaVenda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6, InputEvent.CTRL_MASK));
 		mntmNovaVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaVendas();				
@@ -99,6 +106,7 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnRelatrios);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Produtos");
+		mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F7, InputEvent.CTRL_MASK));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaRelProdutos();
@@ -107,6 +115,7 @@ public class TelaPrincipal extends JFrame {
 		mnRelatrios.add(mntmNewMenuItem);
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Clientes");
+		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, InputEvent.CTRL_MASK));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				abrirTelaRelClientes();
@@ -115,6 +124,7 @@ public class TelaPrincipal extends JFrame {
 		mnRelatrios.add(mntmNewMenuItem_1);
 
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
+		mntmVendas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F9, InputEvent.CTRL_MASK));
 		mntmVendas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				abrirTelaRelVendas();
@@ -126,6 +136,7 @@ public class TelaPrincipal extends JFrame {
 		menuBar.add(mnBloquearTela);
 
 		JMenuItem mntmBloquearTela = new JMenuItem("Bloquear Tela");
+		mntmBloquearTela.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK));
 		mntmBloquearTela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
