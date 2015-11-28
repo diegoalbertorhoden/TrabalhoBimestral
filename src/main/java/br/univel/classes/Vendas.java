@@ -18,6 +18,7 @@ public class Vendas {
 	private BigDecimal troco;
 	private String data;
 	private String hora;
+	private String quantidade;
 
 	public Vendas(){
 
@@ -37,7 +38,7 @@ public class Vendas {
 		this.hora = hora;
 
 	}
-	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto,
+	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, int quantidade,
 			BigDecimal subtotal, BigDecimal valorPago,
 			BigDecimal troco, String data, String hora) {
 		this.cod_v= cod_v;
@@ -65,6 +66,54 @@ public class Vendas {
 		this.data = data;
 		this.hora = hora;
 
+	}
+
+	public Vendas(int cod_v, int id_c, String cliente, String produto, int quantidade ,BigDecimal subtotal,
+			BigDecimal valorPago, BigDecimal troco, String data, String hora) {
+		this.cod_v = cod_v;
+		this.id_c = id_c;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.subtotal = subtotal;
+		this.valorPago = valorPago;
+		this.troco = troco;
+		this.data = data;
+		this.hora = hora;
+	}
+
+	public Vendas(int cod_v, int id_c, String cliente, String produto, String quantidade, BigDecimal subtotal,
+			BigDecimal valorPago, BigDecimal troco, String data, String hora) {
+
+		this.cod_v = cod_v;
+		this.id_c = id_c;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.quantidade = quantidade;
+		this.subtotal = subtotal;
+		this.valorPago = valorPago;
+		this.troco = troco;
+		this.data = data;
+		this.hora = hora;
+	}
+
+	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, String quantidade,
+			BigDecimal subtotal, BigDecimal valorPago, BigDecimal troco,
+			String data, String hora) {
+		this.id_c = id_c;
+		this.cod_p = cod_p;
+		this.cod_v = cod_v;
+		this.cliente = cliente;
+		this.produto = produto;
+		this.quantidade= quantidade;
+		this.subtotal = subtotal;
+		this.valorPago = valorPago;
+		this.troco = troco;
+		this.data = data;
+		this.hora = hora;
+	}
+
+	public String getQuantidade(){
+		return quantidade;
 	}
 
 	public int getCod_v() {

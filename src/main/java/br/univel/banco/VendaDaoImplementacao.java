@@ -23,11 +23,12 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 
 	public int inserir(Vendas vd) {
 		try {
-			ps = con.prepareStatement("INSERT INTO vendas (id_c, cliente, cod_p, produto, subtotal, valorPago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			ps = con.prepareStatement("INSERT INTO vendas (id_c, cliente, cod_p, produto, quantidade, subtotal, valorPago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, vd.getId_c());
 			ps.setString(2, vd.getCliente());
 			ps.setInt(3, vd.getCod_p());
 			ps.setString(4, vd.getProduto());
+			ps.setString(5, vd.getQuantidade());
 			ps.setBigDecimal(5, vd.getSubTotal());
 			ps.setBigDecimal(6, vd.getValorPago());
 			ps.setBigDecimal(7, vd.getTroco());
@@ -81,13 +82,14 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT cod_v, id_c, cliente, cod_p,"
-					+ "produto, subtotal, valorPago, troco, data, hora FROM vendas");
+					+ "produto, quantidade, subtotal, valorPago, troco, data, hora FROM vendas");
 			while (rs.next()) {
 				lista.add(v = new Vendas(rs.getInt("cod_v"),
 						rs.getInt("id_c"),
 						rs.getInt("cod_p"),
 						rs.getString("cliente"),
 						rs.getString("produto"),
+						rs.getInt("quantidade"),
 						rs.getBigDecimal("subtotal"),
 						rs.getBigDecimal("valorPago"),
 						rs.getBigDecimal("troco"),
