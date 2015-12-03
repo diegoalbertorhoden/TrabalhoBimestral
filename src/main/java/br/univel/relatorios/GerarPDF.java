@@ -19,7 +19,7 @@ public class GerarPDF {
 	private String tipo;
 
 	private String arq = "C:\\Users\\user\\git\\TrabalhoBimestral\\src\\main\\resources\\";
-	private String salvarLocal = "C:\\Users\\user\\git\\TrabalhoBimestral\\src\\main\\resources\\";
+	private String salvarLocal = "C:\\Users\\user\\Desktop";
 
 	public GerarPDF(String tipo, TableModel tbModel) {
 		this.tipo = tipo;
@@ -65,6 +65,6 @@ public class GerarPDF {
 			return this.arq = this.arq + "RelatorioProdutos.jasper";
 		else if (tipo.equals("Vendas"))
 			return this.arq = this.arq + "RelatorioVendas.jasper";
-		return "NoExisteTipo";
+		return "Nao Existe o Tipo";
 	}
 }

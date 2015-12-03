@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +50,7 @@ public class MioloVendas extends JPanel {
 	private TabelaVendas tabelaVendas;
 	private VendaDaoImplementacao v = new VendaDaoImplementacao();
 	private List<Vendas> listarVendas = new ArrayList<>();
+	private List<Produtos> listarItens = new ArrayList();
 	protected int indice = -1;
 
 	private List<Clientes> listaCliente = new ArrayList<Clientes>();
@@ -258,10 +260,22 @@ public class MioloVendas extends JPanel {
 	}
 
 	protected void adicionaItem() {
-		Produtos p = new Produtos();
-		Vendas sale = new Vendas(listaProduto.get(cbProdutos.getSelectedIndex() - 1).toString(),
-				txtQuantidade.getText(), unitario = p.getCusto().multiply(p.getMargem()));
-		// tabItensVenda.incluir(sale);
+		String produto = listaProduto.get(cbProdutos.getSelectedIndex() - 1).toString();
+		int qtd = Integer.parseInt(txtQuantidade.getText());
+		String qtdDigitada = txtQuantidade.getText().trim();
+		BigDecimal custo = new ProdutoDaoImplementacao().buscarValorProd(indice);
+	    BigDecimal margem = margemLucro(indice);
+	    BigDecimal mg = custo.multiply(margem);
+	    BigDecimal total = mg.divide(new BigDecimal(100.00)).add(custo)
+	    		.multiply(new BigDecimal(qtdDigitada));
+	    Produtos p = new Produtos();
+	    p.setDescricao(produto);
+	    p.setQuantidade(qtd);
+	    p.setCusto(total);
+	    tabItensVenda.incluir(p);
+	    listarItens.add(p);
+	    txtTotal.setText(NumberFormat.getCurrencyInstance()
+	    		.format(p.getCusto()).toString());
 
 	}
 
