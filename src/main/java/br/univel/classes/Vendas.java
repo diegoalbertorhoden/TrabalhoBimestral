@@ -21,12 +21,11 @@ public class Vendas {
 	private String quantidade;
 	private BigDecimal unitario;
 
-	public Vendas(){
+	public Vendas() {
 
 	}
 
-	public Vendas(int id_c, int cod_p, String cliente, String produto,
-			BigDecimal subtotal, BigDecimal valorPago,
+	public Vendas(int id_c, int cod_p, String cliente, String produto, BigDecimal subtotal, BigDecimal valorPago,
 			BigDecimal troco, String data, String hora) {
 		this.id_c = id_c;
 		this.cod_p = cod_p;
@@ -39,10 +38,10 @@ public class Vendas {
 		this.hora = hora;
 
 	}
-	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, int quantidade,
-			BigDecimal subtotal, BigDecimal valorPago,
-			BigDecimal troco, String data, String hora) {
-		this.cod_v= cod_v;
+
+	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, int quantidade, BigDecimal subtotal,
+			BigDecimal valorPago, BigDecimal troco, String data, String hora) {
+		this.cod_v = cod_v;
 		this.id_c = id_c;
 		this.cliente = cliente;
 		this.produto = produto;
@@ -54,10 +53,8 @@ public class Vendas {
 
 	}
 
-
-	public Vendas(int cod_v, String cliente, String produto,
-			BigDecimal subtotal, BigDecimal valorPago,BigDecimal troco,
-			String data, String hora){
+	public Vendas(int cod_v, String cliente, String produto, BigDecimal subtotal, BigDecimal valorPago,
+			BigDecimal troco, String data, String hora) {
 		this.cod_v = cod_v;
 		this.cliente = cliente;
 		this.produto = produto;
@@ -69,7 +66,7 @@ public class Vendas {
 
 	}
 
-	public Vendas(int cod_v, int id_c, String cliente, String produto, int quantidade ,BigDecimal subtotal,
+	public Vendas(int cod_v, int id_c, String cliente, String produto, int quantidade, BigDecimal subtotal,
 			BigDecimal valorPago, BigDecimal troco, String data, String hora) {
 		this.cod_v = cod_v;
 		this.id_c = id_c;
@@ -98,14 +95,13 @@ public class Vendas {
 	}
 
 	public Vendas(int cod_v, int id_c, int cod_p, String cliente, String produto, String quantidade,
-			BigDecimal subtotal, BigDecimal valorPago, BigDecimal troco,
-			String data, String hora) {
+			BigDecimal subtotal, BigDecimal valorPago, BigDecimal troco, String data, String hora) {
 		this.id_c = id_c;
 		this.cod_p = cod_p;
 		this.cod_v = cod_v;
 		this.cliente = cliente;
 		this.produto = produto;
-		this.quantidade= quantidade;
+		this.quantidade = quantidade;
 		this.subtotal = subtotal;
 		this.valorPago = valorPago;
 		this.troco = troco;
@@ -114,12 +110,12 @@ public class Vendas {
 	}
 
 	public Vendas(String produtos, String quantidade, BigDecimal unitario) {
-		this.produto=produtos;
-		this.quantidade=quantidade;
-		this.unitario=unitario;
+		this.produto = produtos;
+		this.quantidade = quantidade;
+		this.unitario = unitario;
 	}
 
-	public String getQuantidade(){
+	public String getQuantidade() {
 		return quantidade;
 	}
 
@@ -131,34 +127,42 @@ public class Vendas {
 
 		return id_c;
 	}
+
 	public String getCliente() {
 
 		return cliente;
 	}
+
 	public int getCod_p() {
 
 		return cod_p;
 	}
+
 	public String getProduto() {
 
 		return produto;
 	}
+
 	public BigDecimal getSubTotal() {
 
 		return subtotal;
 	}
+
 	public BigDecimal getValorPago() {
 
 		return valorPago;
 	}
+
 	public BigDecimal getTroco() {
 
 		return troco;
 	}
+
 	public String getData() {
 
 		return data;
 	}
+
 	public String getHora() {
 
 		return hora;

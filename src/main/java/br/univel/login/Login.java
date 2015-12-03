@@ -28,10 +28,10 @@ public class Login extends JPanel {
 		setBackground(Color.WHITE);
 		setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{36, 0, 0, 395, -4, 18, 0, 7, 0};
-		gridBagLayout.rowHeights = new int[]{20, 20, 23, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] { 36, 0, 0, 395, -4, 18, 0, 7, 0 };
+		gridBagLayout.rowHeights = new int[] { 20, 20, 23, 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JLabel lblUsurio = new JLabel("Usuário");
@@ -85,22 +85,22 @@ public class Login extends JPanel {
 			public void run() {
 				textField.requestFocus();
 			}
-		});		
+		});
 	}
 
 	private void configuraListeners() {
 
-		textField.addKeyListener(new KeyAdapter(){
+		textField.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					textField.transferFocus();
 				}
-			}			
+			}
 		});
 
-		passwordField.addKeyListener(new KeyAdapter(){
+		passwordField.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -108,24 +108,23 @@ public class Login extends JPanel {
 					logar();
 				}
 			}
-		});		
+		});
 	}
-	
+
 	public Login(Runnable acaoOk) {
 		this();
 		this.acaoOk = acaoOk;
 		btnEntrar.addActionListener(e -> {
-			logar();			
+			logar();
 		});
 
 	}
-	private void logar(){
-		if (textField.getText().trim().equals("root")
-				&& new String(passwordField.getPassword()).equals("root")) {
+
+	private void logar() {
+		if (textField.getText().trim().equals("root") && new String(passwordField.getPassword()).equals("root")) {
 			acaoOk.run();
 		} else {
-			JOptionPane.showMessageDialog(Login.this,
-					"Usuário ou senha inválido!");
+			JOptionPane.showMessageDialog(Login.this, "Usuário ou senha inválido!");
 		}
 	}
 

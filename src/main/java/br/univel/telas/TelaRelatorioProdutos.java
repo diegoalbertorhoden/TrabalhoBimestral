@@ -7,7 +7,7 @@ import br.univel.relatorios.RelatorioProdutos;
 @SuppressWarnings("serial")
 public class TelaRelatorioProdutos extends MolduraAbstrata {
 
-	public TelaRelatorioProdutos(){
+	public TelaRelatorioProdutos() {
 		super();
 	}
 

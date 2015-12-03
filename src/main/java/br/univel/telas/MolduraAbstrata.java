@@ -8,11 +8,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public abstract class MolduraAbstrata extends JPanel {
@@ -21,7 +21,7 @@ public abstract class MolduraAbstrata extends JPanel {
 
 	protected abstract void configura();
 
-	public void setCloseAction(ActionListener action){
+	public void setCloseAction(ActionListener action) {
 		btnFechar.addActionListener(action);
 	}
 
@@ -33,13 +33,14 @@ public abstract class MolduraAbstrata extends JPanel {
 		panel.setBackground(Color.LIGHT_GRAY);
 		add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		JLabel lblOl = new JLabel("                                                                                                                        Deus é bom o tempo todo, o tempo todo Deus é bom!");
+		JLabel lblOl = new JLabel(
+				"                                                                                                                        Deus é bom o tempo todo, o tempo todo Deus é bom!");
 		lblOl.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		GridBagConstraints gbc_lblOl = new GridBagConstraints();
 		gbc_lblOl.insets = new Insets(0, 0, 0, 5);
@@ -60,4 +61,3 @@ public abstract class MolduraAbstrata extends JPanel {
 		configura();
 	}
 }
-

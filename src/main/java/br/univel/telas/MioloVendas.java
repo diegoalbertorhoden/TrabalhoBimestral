@@ -178,7 +178,7 @@ public class MioloVendas extends JPanel {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
 				if (pergunta == 0) {
 					deletar();
-				}else if(pergunta ==1){
+				} else if (pergunta == 1) {
 					JOptionPane.showMessageDialog(null, "Venda não excluída");
 				}
 			}
@@ -236,7 +236,7 @@ public class MioloVendas extends JPanel {
 		JButton btnAdicionaItem = new JButton("F2 - Adiciona Item");
 		btnAdicionaItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				adicionaItem();
 			}
 		});
@@ -258,15 +258,11 @@ public class MioloVendas extends JPanel {
 	}
 
 	protected void adicionaItem() {
-			Produtos p = new Produtos();
-			Vendas sale = new Vendas(
-		listaProduto.get(cbProdutos.getSelectedIndex() - 1).toString(),
-		txtQuantidade.getText(),
-		unitario = p.getCusto().multiply(p.getMargem())
-		);
-//			tabItensVenda.incluir(sale);
-		
-		
+		Produtos p = new Produtos();
+		Vendas sale = new Vendas(listaProduto.get(cbProdutos.getSelectedIndex() - 1).toString(),
+				txtQuantidade.getText(), unitario = p.getCusto().multiply(p.getMargem()));
+		// tabItensVenda.incluir(sale);
+
 	}
 
 	public void listaDeVendas() {
@@ -279,22 +275,17 @@ public class MioloVendas extends JPanel {
 			}
 		}).start();
 	}
-	
+
 	protected void cadastrar() {
 
 		try {
-			Vendas vendas = new Vendas(
-					listaCliente.get(cbClientes.getSelectedIndex() - 1)
-					.getId(),
-					listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-					.getId(),
-					txtQuantidade.getText(),
-					String.valueOf(cbClientes.getSelectedItem()),
-					String.valueOf(cbProdutos.getSelectedItem()),
+			Vendas vendas = new Vendas(listaCliente.get(cbClientes.getSelectedIndex() - 1).getId(),
+					listaProduto.get(cbProdutos.getSelectedIndex() - 1).getId(), txtQuantidade.getText(),
+					String.valueOf(cbClientes.getSelectedItem()), String.valueOf(cbProdutos.getSelectedItem()),
 					new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
 					new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
-					new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
-					txtData.getText(), txtHora.getText());
+					new TratamentoException().tratamentoBigDecimal(txtTroco.getText()), txtData.getText(),
+					txtHora.getText());
 			v.inserir(vendas);
 			listarVendas = v.listar();
 			tabelaVendas.adicionarLista(listarVendas);
@@ -308,31 +299,25 @@ public class MioloVendas extends JPanel {
 	protected void atualizar() {
 		if (indice > -1) {
 			try {
-				Vendas vendas = new Vendas(
-						Integer.parseInt(txtCodigoVenda.getText()),
-						listaCliente.get(cbClientes.getSelectedIndex() - 1)
-						.getId(),
-						listaProduto.get(cbProdutos.getSelectedIndex() - 1)
-						.getId(),
-						txtQuantidade.getText(),
-						String.valueOf(cbClientes.getSelectedItem()),
-						String.valueOf(cbProdutos.getSelectedItem()),
+				Vendas vendas = new Vendas(Integer.parseInt(txtCodigoVenda.getText()),
+						listaCliente.get(cbClientes.getSelectedIndex() - 1).getId(),
+						listaProduto.get(cbProdutos.getSelectedIndex() - 1).getId(), txtQuantidade.getText(),
+						String.valueOf(cbClientes.getSelectedItem()), String.valueOf(cbProdutos.getSelectedItem()),
 						new TratamentoException().tratamentoBigDecimal(txtTotal.getText()),
 						new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
-						new TratamentoException().tratamentoBigDecimal(txtTroco.getText()),
-						txtData.getText(), txtHora.getText());
+						new TratamentoException().tratamentoBigDecimal(txtTroco.getText()), txtData.getText(),
+						txtHora.getText());
 				v.inserir(vendas);
 				listarVendas = v.listar();
 				tabelaVendas.adicionarLista(listarVendas);
 				JOptionPane.showMessageDialog(null, "Venda alterada!");
-				limpar();				
+				limpar();
 				indice = -1;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());
 			}
 		} else {
-			JOptionPane.showMessageDialog(null,
-					"Clique duas vezes no item da tabela para atualizar!");
+			JOptionPane.showMessageDialog(null, "Clique duas vezes no item da tabela para atualizar!");
 		}
 	}
 
@@ -381,7 +366,6 @@ public class MioloVendas extends JPanel {
 		txtHora.setEditable(true);
 		mostrarbotoes();
 
-
 	}
 
 	private void mostrarbotoes() {
@@ -426,10 +410,11 @@ public class MioloVendas extends JPanel {
 			cbProdutos.addItem(p.getDescricao());
 		}
 	}
+
 	protected void acaoComboBox() {
 		try {
 
-			double vt = listaProduto.get(cbProdutos.getSelectedIndex() - 1) .CalcularMarLucrP();
+			double vt = listaProduto.get(cbProdutos.getSelectedIndex() - 1).CalcularMarLucrP();
 			txtTotal.setText(String.valueOf(vt));
 			double vp = Double.valueOf(JOptionPane.showInputDialog("Digite o valor do pagamento ?"));
 			if (vp >= vt) {
@@ -439,28 +424,21 @@ public class MioloVendas extends JPanel {
 				BigDecimal bd = new BigDecimal(troco).setScale(2, RoundingMode.HALF_EVEN);
 				txtTroco.setText(bd.toString());
 			} else {
-				JOptionPane.showMessageDialog(null,
-						"Valor recebido é menor que o preço de custo do produto");
+				JOptionPane.showMessageDialog(null, "Valor recebido é menor que o preço de custo do produto");
 			}
 			mostrarbotoes();
 		} catch (Exception e) {
-			JOptionPane
-			.showMessageDialog(null,
-					"O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
+			JOptionPane.showMessageDialog(null, "O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
 		}
 	}
-
 
 	private void limparCampos() {
 		txtQuantidade.setText("");
 		txtPago.setText("");
 		txtTotal.setText("");
 
-
-
 		limparCampos();
 	}
-
 
 	private BigDecimal margemLucro(int i) {
 
@@ -473,7 +451,6 @@ public class MioloVendas extends JPanel {
 		ProdutoDaoImplementacao pd = new ProdutoDaoImplementacao();
 		return pd.buscarValorProd(idProd);
 	}
-
 
 	private void rDataTime() {
 		SimpleDateFormat frm = new SimpleDateFormat("dd/MM/yyyy");

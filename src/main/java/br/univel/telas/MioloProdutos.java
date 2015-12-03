@@ -3,6 +3,7 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.ParseException;
@@ -25,7 +26,6 @@ import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Unidade;
 import br.univel.tabelas.TabelaProdutos;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloProdutos extends JPanel {
@@ -112,7 +112,7 @@ public class MioloProdutos extends JPanel {
 		add(txtMarkup);
 		txtMarkup.setColumns(10);
 		txtMarkup.setEnabled(false);
-		
+
 		txtBarras = new JTextField();
 		txtBarras.setBounds(346, 94, 208, 20);
 		add(txtBarras);
@@ -152,11 +152,11 @@ public class MioloProdutos extends JPanel {
 		btnExcluirCadastro.setMnemonic(KeyEvent.VK_F3);
 		btnExcluirCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
 				if (pergunta == 0) {
-				deletar();
-				}else if(pergunta ==1){
+					deletar();
+				} else if (pergunta == 1) {
 					JOptionPane.showMessageDialog(null, "Produto não excluído");
 				}
 			}
@@ -187,14 +187,13 @@ public class MioloProdutos extends JPanel {
 		btnNovoCadastro.setBounds(286, 29, 118, 31);
 		add(btnNovoCadastro);
 
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 295, 816, 308);
 		add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 		listaDeProdutos();
 
 		JLabel lblCdigoDeBarras = new JLabel("C\u00F3digo de Barras");
@@ -213,11 +212,8 @@ public class MioloProdutos extends JPanel {
 
 	protected void cadastrar() {
 		try {
-			Produtos produtos = new Produtos(
-					Integer.parseInt(txtBarras.getText()),
-					txtDescricao.getText(),
-					txtDepartamento.getText(),
-					cbUnidade.getSelectedItem().toString(), 
+			Produtos produtos = new Produtos(Integer.parseInt(txtBarras.getText()), txtDescricao.getText(),
+					txtDepartamento.getText(), cbUnidade.getSelectedItem().toString(),
 					new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
 					new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
 			p.inserir(produtos);
@@ -228,19 +224,17 @@ public class MioloProdutos extends JPanel {
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(null, "Valor digitado incorreto!");
 		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null,
-					"Campo somente para números");
+			JOptionPane.showMessageDialog(null, "Campo somente para números");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void deletar() {
 		p.excluir(listaP.get(table.getSelectedRow()).getId());
-		tabelaProdutos.excluir(table.getSelectedRow());		
+		tabelaProdutos.excluir(table.getSelectedRow());
 	}
-	
-		
+
 	public void listaDeProdutos() {
 		new Thread(new Runnable() {
 			@Override
@@ -251,34 +245,32 @@ public class MioloProdutos extends JPanel {
 			}
 		}).start();
 	}
-	
+
 	protected void atualizar() {
 		if (indice > -1) {
 			try {
 				Produtos produtos = new Produtos(Integer.parseInt(txtId.getText()),
-											  Integer.parseInt(txtBarras.getText()),
-											  txtDescricao.getText(),
-											  txtDepartamento.getText(),
-											  cbUnidade.getSelectedItem().toString(),
-											  new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
-											  new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
+						Integer.parseInt(txtBarras.getText()), txtDescricao.getText(), txtDepartamento.getText(),
+						cbUnidade.getSelectedItem().toString(),
+						new TratamentoException().tratamentoBigDecimal(txtCusto.getText()),
+						new TratamentoException().tratamentoBigDecimal(txtMarkup.getText()));
 				p.atualizar(produtos);
 				tabelaProdutos.atualizarLista(indice, produtos);
 				limpar();
 				bloquearCampos();
 				indice = -1;
 			} catch (ParseException e) {
-				JOptionPane.showMessageDialog(null,"Erro com valor digitado!");
+				JOptionPane.showMessageDialog(null, "Erro com valor digitado!");
 			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null,"Digite somente números e não letras");
+				JOptionPane.showMessageDialog(null, "Digite somente números e não letras");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			JOptionPane.showMessageDialog(null,"De um duplo click no produtos que deseja alterar!");
+			JOptionPane.showMessageDialog(null, "De um duplo click no produtos que deseja alterar!");
 		}
 	}
-	
+
 	public void returnProduto(Produtos p) {
 		txtId.setText(String.valueOf(p.getId()));
 		txtBarras.setText(String.valueOf(p.getBarras()));
@@ -288,8 +280,8 @@ public class MioloProdutos extends JPanel {
 		txtCusto.setText(new BigDecimal(p.getCusto().toString()).setScale(2, RoundingMode.HALF_EVEN).toString());
 		txtMarkup.setText(String.valueOf(p.getMargem()));
 	}
-	
-	private void bloquearCampos(){
+
+	private void bloquearCampos() {
 		txtId.setEnabled(false);
 		txtBarras.setEnabled(false);
 		txtDescricao.setEnabled(false);
@@ -302,13 +294,13 @@ public class MioloProdutos extends JPanel {
 	}
 
 	private void limpar() {
-		
+
 		txtDescricao.setText("");
 		txtBarras.requestFocus();
 		txtDepartamento.setText("");
 		txtCusto.setText("");
 		txtMarkup.setText("");
-		txtBarras.setText("");		
-	
+		txtBarras.setText("");
+
 	}
 }

@@ -15,7 +15,7 @@ public class TelaProdutos extends MolduraAbstrata {
 	@Override
 	protected void configura() {
 		super.add(new MioloProdutos(), BorderLayout.CENTER);
-		
+
 	}
 
 }

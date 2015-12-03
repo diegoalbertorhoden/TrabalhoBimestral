@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -19,9 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import br.univel.tabelas.TabelaProdutos;
 import br.univel.classes.Produtos;
-import java.awt.event.KeyEvent;
+import br.univel.tabelas.TabelaProdutos;
 
 @SuppressWarnings("serial")
 public class RelatorioProdutos extends JPanel {
@@ -29,19 +29,17 @@ public class RelatorioProdutos extends JPanel {
 	private JTextField txtMarkup;
 	private JComboBox<String> cbDepartamento;
 	private JTable table;
-	
+
 	private List<Produtos> listaP;
 	private TabelaProdutos tableModelProduto;
-	
+
 	public RelatorioProdutos() {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 113, 99, 46, 106, 47, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 10, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0,
-				Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JButton btnExportar = new JButton("F6 - Exportar em PDF");
@@ -148,15 +146,17 @@ public class RelatorioProdutos extends JPanel {
 	private void popularCombobox() {
 		for (int i = 0; i < listaP.size(); i++) {
 			int indice = 0;
-			if (i == 0){
+			if (i == 0) {
 				cbDepartamento.addItem("");
-			}			
+			}
 			for (int j = 0; j < cbDepartamento.getItemCount(); j++) {
-				if (listaP.get(i).getDepartamento().equals(cbDepartamento.getItemAt(j).toString())) 
+				if (listaP.get(i).getDepartamento().equals(cbDepartamento.getItemAt(j).toString()))
 					indice++;
-				if (indice > 1) break; 
-			}			
-			if (indice < 1) cbDepartamento.addItem(listaP.get(i).getDepartamento());			
+				if (indice > 1)
+					break;
+			}
+			if (indice < 1)
+				cbDepartamento.addItem(listaP.get(i).getDepartamento());
 		}
 	}
 
@@ -166,11 +166,11 @@ public class RelatorioProdutos extends JPanel {
 		try {
 			if (Double.valueOf(txtMarkup.getText()) > 0) {
 				txtMarkup.setBackground(Color.WHITE);
-				sql.append("WHERE margem >= '" + txtMarkup.getText()+"' ");
+				sql.append("WHERE margem >= '" + txtMarkup.getText() + "' ");
 				if (cbDepartamento.getSelectedItem() != null)
-					sql.append("AND departamento = '"+ cbDepartamento.getSelectedItem()+"'");
-			}else if (cbDepartamento.getSelectedItem() != null) {
-				sql.append("WHERE departamento = '" + cbDepartamento.getSelectedItem()+"'");
+					sql.append("AND departamento = '" + cbDepartamento.getSelectedItem() + "'");
+			} else if (cbDepartamento.getSelectedItem() != null) {
+				sql.append("WHERE departamento = '" + cbDepartamento.getSelectedItem() + "'");
 			}
 			listaP = tableModelProduto.listarRelatorio(sql.toString());
 			table.setModel(tableModelProduto);
@@ -202,7 +202,4 @@ public class RelatorioProdutos extends JPanel {
 		return new DefaultTableModel(data, columnNames);
 	}
 
-
 }
-
-

@@ -41,9 +41,10 @@ public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 
 	@Override
 	public int atualizar(Usuarios u) {
-		
+
 		try {
-			ps = con.prepareStatement("UPDATE usuarios SET id_cliente = ?, cliente = ? , senha = ? WHERE id_usuario = "+ u.getId());
+			ps = con.prepareStatement(
+					"UPDATE usuarios SET id_cliente = ?, cliente = ? , senha = ? WHERE id_usuario = " + u.getId());
 			ps.setInt(1, u.getIdCliente());
 			ps.setString(2, u.getCliente());
 			ps.setString(3, u.getSenha());
@@ -59,9 +60,9 @@ public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 
 	@Override
 	public int excluir(int id_usuario) {
-		
+
 		try {
-			ps = con.prepareStatement("DELETE FROM usuarios WHERE id_usuario = "+id_usuario);
+			ps = con.prepareStatement("DELETE FROM usuarios WHERE id_usuario = " + id_usuario);
 			int res = ps.executeUpdate();
 			ps.close();
 			JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso!");
@@ -74,35 +75,35 @@ public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 
 	@Override
 	public Usuarios buscar(int id_usuario) {
-		try{
-		st = con.createStatement();
-		rs = st.executeQuery("SELECT id_cliente, cliente, senha FROM usuarios WHERE id_usuariosuario = "
-				+ id_usuario);
-		rs.next();
-		if (rs.getString("cliente") != null) {
-			u = new Usuarios();
-			u.setId(id_usuario);
-			u.setIdCliente(rs.getInt("id_cliente"));
-			u.setCliente(rs.getString("cliente"));
-			u.setSenha(rs.getString("senha"));
-			rs.close();
-			st.close();
-			return u;
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(
+					"SELECT id_cliente, cliente, senha FROM usuarios WHERE id_usuariosuario = " + id_usuario);
+			rs.next();
+			if (rs.getString("cliente") != null) {
+				u = new Usuarios();
+				u.setId(id_usuario);
+				u.setIdCliente(rs.getInt("id_cliente"));
+				u.setCliente(rs.getString("cliente"));
+				u.setSenha(rs.getString("senha"));
+				rs.close();
+				st.close();
+				return u;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return null;
+		return null;
 	}
 
 	@Override
 	public List<Usuarios> listar() {
-		
+
 		lista = new ArrayList<Usuarios>();
 		try {
 			st = con.createStatement();
 			rs = st.executeQuery("SELECT id_usuario, id_cliente, cliente, senha FROM usuarios");
-			while (rs.next()) {				
+			while (rs.next()) {
 				u = new Usuarios();
 				u.setId(rs.getInt("id_usuario"));
 				u.setIdCliente(rs.getInt("id_cliente"));
@@ -118,20 +119,23 @@ public class UsuarioDaoImplementacao implements DaoGenerico<Usuarios> {
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
-	public Connection getCon(){
+
+	public Connection getCon() {
 		return con;
 	}
-	public boolean Autentica(String user, String pass){
+
+	public boolean Autentica(String user, String pass) {
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT cliente, senha FROM usuarios WHERE cliente = "+user+"' AND senha = MD5('"+pass+"')");
+			rs = st.executeQuery("SELECT cliente, senha FROM usuarios WHERE cliente = " + user + "' AND senha = MD5('"
+					+ pass + "')");
 			boolean v = rs.next();
 			return v;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;		
+		return false;
 	}
 }

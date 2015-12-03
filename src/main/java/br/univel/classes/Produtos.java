@@ -10,6 +10,7 @@ import java.util.Locale;
 public class Produtos {
 
 	private int id, barras, quantidade;
+
 	public int getQuantidade() {
 		return quantidade;
 	}
@@ -18,15 +19,15 @@ public class Produtos {
 		this.quantidade = quantidade;
 	}
 
-	private String  descricao, departamento, unidade;
+	private String descricao, departamento, unidade;
 	private BigDecimal custo, margem;
 
 	public Produtos() {
 
 	}
 
-	public Produtos(int id, int barras, String descricao, String departamento,
-			String unidade, BigDecimal custo, BigDecimal margem) {
+	public Produtos(int id, int barras, String descricao, String departamento, String unidade, BigDecimal custo,
+			BigDecimal margem) {
 		this.id = id;
 		this.barras = barras;
 		this.descricao = descricao;
@@ -34,11 +35,11 @@ public class Produtos {
 		this.unidade = unidade;
 		this.custo = custo;
 		this.margem = margem;
-		
+
 	}
 
-	public Produtos(int barras, String descricao, String departamento,
-			String unidade, BigDecimal custo, BigDecimal margem) {
+	public Produtos(int barras, String descricao, String departamento, String unidade, BigDecimal custo,
+			BigDecimal margem) {
 		this.barras = barras;
 		this.descricao = descricao;
 		this.departamento = departamento;
@@ -102,8 +103,8 @@ public class Produtos {
 	public void setMargem(BigDecimal margem) {
 		this.margem = margem;
 	}
-	
-	public Double CalcularMarLucrP(){
+
+	public Double CalcularMarLucrP() {
 		double valor = this.custo.doubleValue() + (this.custo.doubleValue() * (this.margem.doubleValue() / 100));
 		return Double.valueOf(String.format(Locale.US, "%.3f", valor));
 	}

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -12,14 +14,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import br.univel.login.Bloqueador;
 import br.univel.login.Login;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 
 @SuppressWarnings("serial")
 public class TelaPrincipal extends JFrame {
@@ -65,7 +65,7 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				abrirTelaProdutos();				
+				abrirTelaProdutos();
 			}
 		});
 
@@ -77,7 +77,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				abrirTelaClientes();
-			}			
+			}
 		});
 		mnCadastro.add(mntmClientes);
 
@@ -97,7 +97,7 @@ public class TelaPrincipal extends JFrame {
 		mntmNovaVenda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6, InputEvent.CTRL_MASK));
 		mntmNovaVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				abrirTelaVendas();				
+				abrirTelaVendas();
 			}
 		});
 		mnVendas.add(mntmNovaVenda);
@@ -117,7 +117,7 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Clientes");
 		mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F8, InputEvent.CTRL_MASK));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {
 				abrirTelaRelClientes();
 			}
 		});
@@ -126,7 +126,7 @@ public class TelaPrincipal extends JFrame {
 		JMenuItem mntmVendas = new JMenuItem("Vendas");
 		mntmVendas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F9, InputEvent.CTRL_MASK));
 		mntmVendas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {
 				abrirTelaRelVendas();
 			}
 		});
@@ -162,33 +162,33 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void run() {
 
-				for(int i = 0; i<5; i++){
-					try{
+				for (int i = 0; i < 5; i++) {
+					try {
 						Thread.sleep(1000);
-					}catch(InterruptedException e){
+					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 				pelicula.setVisible(false);
 				bloquearTelaPrincipal();
-				
+
 			}
 		}).start();
 	}
 
-	private void abrirTelaRelVendas() {		
+	private void abrirTelaRelVendas() {
 		final TelaRelatorioVendas trv = new TelaRelatorioVendas();
 		ActionListener action = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(trv);				
+				tabbedPane.remove(trv);
 			}
 		};
 		trv.setCloseAction(action);
 		tabbedPane.addTab("Relatório de Vendas", trv);
 		mostrarUltima();
-	}	
+	}
 
 	private void abrirTelaRelClientes() {
 		final TelaRelatorioClientes x = new TelaRelatorioClientes();
@@ -196,21 +196,21 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(x);				
+				tabbedPane.remove(x);
 			}
 		};
 		x.setCloseAction(action);
 		tabbedPane.addTab("Relatório de Clientes", x);
 		mostrarUltima();
 	}
-	
+
 	private void abrirTelaRelProdutos() {
 		final TelaRelatorioProdutos y = new TelaRelatorioProdutos();
 		ActionListener action = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(y);				
+				tabbedPane.remove(y);
 			}
 		};
 		y.setCloseAction(action);
@@ -218,14 +218,13 @@ public class TelaPrincipal extends JFrame {
 		mostrarUltima();
 	}
 
-
 	private void abrirTelaVendas() {
 		final TelaVendas tv = new TelaVendas();
 		ActionListener action = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(tv);				
+				tabbedPane.remove(tv);
 			}
 		};
 		tv.setCloseAction(action);
@@ -239,12 +238,12 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(tu);				
+				tabbedPane.remove(tu);
 			}
 		};
 		tu.setCloseAction(action);
 		tabbedPane.addTab("Cadastro de Usuários", tu);
-		mostrarUltima();		
+		mostrarUltima();
 	}
 
 	private void abrirTelaClientes() {
@@ -253,7 +252,7 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(tc);				
+				tabbedPane.remove(tc);
 			}
 		};
 		tc.setCloseAction(action);
@@ -263,11 +262,11 @@ public class TelaPrincipal extends JFrame {
 
 	private void abrirTelaProdutos() {
 		final TelaProdutos tp = new TelaProdutos();
-		ActionListener action = new ActionListener() {					
+		ActionListener action = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tabbedPane.remove(tp);						
+				tabbedPane.remove(tp);
 			}
 		};
 		tp.setCloseAction(action);
@@ -275,11 +274,10 @@ public class TelaPrincipal extends JFrame {
 		mostrarUltima();
 	}
 
-
 	private void bloquearTelaPrincipal() {
 
-		Runnable acaoOk = new Runnable(){
-			public void run(){
+		Runnable acaoOk = new Runnable() {
+			public void run() {
 				pelicula.setVisible(false);
 				pelicula = new Bloqueador();
 			}
@@ -290,8 +288,8 @@ public class TelaPrincipal extends JFrame {
 		setGlassPane(pelicula);
 		pelicula.setVisible(true);
 
-
 	}
+
 	private void mostrarUltima() {
 		tabbedPane.setSelectedIndex(tabbedPane.getTabCount() - 1);
 	}

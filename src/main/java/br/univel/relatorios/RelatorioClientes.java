@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -23,7 +24,6 @@ import javax.swing.table.TableModel;
 import br.univel.classes.Clientes;
 import br.univel.classes.Estado;
 import br.univel.tabelas.TabelaClientes;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class RelatorioClientes extends JPanel {
@@ -41,10 +41,8 @@ public class RelatorioClientes extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 121, 125, 0, 125, 0, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 10, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0,
-				Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
 		JButton btnNewButton = new JButton("F6 - Exportar em PDF");
@@ -149,7 +147,6 @@ public class RelatorioClientes extends JPanel {
 		listarDDF();
 	}
 
-
 	private void modeloTable() {
 		tbClienteModelo = new TabelaClientes();
 		listaC = tbClienteModelo.listar();
@@ -160,7 +157,6 @@ public class RelatorioClientes extends JPanel {
 			}
 		}).start();
 	}
-
 
 	private void listarDDF() {
 		int indice = 0;
@@ -179,8 +175,7 @@ public class RelatorioClientes extends JPanel {
 			}
 
 			for (int j = 0; j < cdCidade.getItemCount(); j++) {
-				if (listaC.get(i).getCidade()
-						.equals(cdCidade.getItemAt(j).toString()))
+				if (listaC.get(i).getCidade().equals(cdCidade.getItemAt(j).toString()))
 					indice++;
 				if (indice > 1)
 					break;
@@ -190,20 +185,15 @@ public class RelatorioClientes extends JPanel {
 		}
 	}
 
-
 	protected void filtroEC() {
 		if (cdCidade.getSelectedItem() != "" && cbEstado.getSelectedItem() != "") {
 			StringBuilder filtrosql = new StringBuilder();
-			filtrosql.append(sql+ " WHERE estado = '"
-					+ Estado.transformar(cbEstado.getSelectedItem().toString())
-					+ "' AND cidade ='"
-					+ cdCidade.getSelectedItem().toString() +
-					"'");
+			filtrosql.append(sql + " WHERE estado = '" + Estado.transformar(cbEstado.getSelectedItem().toString())
+					+ "' AND cidade ='" + cdCidade.getSelectedItem().toString() + "'");
 			listaC = tbClienteModelo.listarRelatorio(filtrosql.toString());
 			table.setModel(tbClienteModelo);
 		} else {
-			JOptionPane.showMessageDialog(null,
-					"Selecione cidade e estado para filtrar.");
+			JOptionPane.showMessageDialog(null, "Selecione cidade e estado para filtrar.");
 		}
 
 	}
@@ -211,8 +201,7 @@ public class RelatorioClientes extends JPanel {
 	protected void filtrarPorCidade() {
 		if (cdCidade.getSelectedItem() != "") {
 			StringBuilder filtrosql = new StringBuilder();
-			filtrosql.append(sql + " WHERE cidade = '"
-					+ cdCidade.getSelectedItem() + "'");
+			filtrosql.append(sql + " WHERE cidade = '" + cdCidade.getSelectedItem() + "'");
 			listaC = tbClienteModelo.listarRelatorio(filtrosql.toString());
 			table.setModel(tbClienteModelo);
 		}
@@ -221,8 +210,8 @@ public class RelatorioClientes extends JPanel {
 	protected void filtrarPorEstado() {
 		if (cbEstado.getSelectedItem() != "") {
 			StringBuilder filtrosql = new StringBuilder();
-			filtrosql.append(sql+ " WHERE estado = '"
-					+ Estado.transformar(cbEstado.getSelectedItem().toString()) + "'");
+			filtrosql.append(
+					sql + " WHERE estado = '" + Estado.transformar(cbEstado.getSelectedItem().toString()) + "'");
 			listaC = tbClienteModelo.listarRelatorio(filtrosql.toString());
 			table.setModel(tbClienteModelo);
 		}
@@ -232,10 +221,8 @@ public class RelatorioClientes extends JPanel {
 		new GerarPDF("Cliente", getTableModelProduto());
 	}
 
-
 	private TableModel getTableModelProduto() {
-		String[] columnNames = { "id", "nome", "telefone", "endereco",
-				"cidade", "estado", "email", "genero" };
+		String[] columnNames = { "id", "nome", "telefone", "endereco", "cidade", "estado", "email", "genero" };
 
 		Object[][] data = new Object[listaC.size()][8];
 		for (int i = 0; i < listaC.size(); i++) {
@@ -253,5 +240,3 @@ public class RelatorioClientes extends JPanel {
 	}
 
 }
-
-

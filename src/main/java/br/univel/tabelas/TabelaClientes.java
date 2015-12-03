@@ -68,14 +68,14 @@ public class TabelaClientes extends AbstractTableModel {
 		this.fireTableStructureChanged();
 	}
 
-	 public List<Clientes> listarRelatorio(String sql){
-		 
-		 RelatoriosDao d = new RelatoriosDao();
-			this.lista = d.relacionarClientes(sql);
-			this.fireTableDataChanged();		
-			return lista;
-	
-	 }
+	public List<Clientes> listarRelatorio(String sql) {
+
+		RelatoriosDao d = new RelatoriosDao();
+		this.lista = d.relacionarClientes(sql);
+		this.fireTableDataChanged();
+		return lista;
+
+	}
 
 	@Override
 	public Object getValueAt(int row, int col) {

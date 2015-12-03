@@ -15,7 +15,7 @@ public class TelaUsuarios extends MolduraAbstrata {
 	@Override
 	protected void configura() {
 		super.add(new MioloUsuarios(), BorderLayout.CENTER);
-		
+
 	}
 
 }

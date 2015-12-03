@@ -3,6 +3,7 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,6 @@ import br.univel.classes.Clientes;
 import br.univel.classes.Estado;
 import br.univel.classes.Genero;
 import br.univel.tabelas.TabelaClientes;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloClientes extends JPanel {
@@ -171,15 +171,15 @@ public class MioloClientes extends JPanel {
 		final JButton btnExcluir = new JButton("F3 - Excluir");
 		btnExcluir.setMnemonic(KeyEvent.VK_F3);
 		btnExcluir.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
 				if (pergunta == 0) {
-				deletar();
-				}else if(pergunta ==1){
+					deletar();
+				} else if (pergunta == 1) {
 					JOptionPane.showMessageDialog(null, "Cliente não excluído");
-				}			
+				}
 			}
 		});
 		btnExcluir.setBounds(422, 32, 107, 30);
@@ -197,7 +197,7 @@ public class MioloClientes extends JPanel {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
+
 		listaDeCliente();
 
 		btnNovo.addActionListener(new ActionListener() {
@@ -227,10 +227,10 @@ public class MioloClientes extends JPanel {
 		});
 
 	}
-	
+
 	private void deletar() {
 		c.excluir(listaC.get(table.getSelectedRow()).getId());
-		tabelaclientes.deletar(table.getSelectedRow());		
+		tabelaclientes.deletar(table.getSelectedRow());
 	}
 
 	public void listaDeCliente() {
@@ -246,18 +246,16 @@ public class MioloClientes extends JPanel {
 
 	protected void cadastrar() {
 
-		Clientes cliente = new Clientes(txtNome.getText(),
-				txtTelefone.getText(), txtEndereco.getText(),
-				txtCidade.getText(), cbEstado.getSelectedItem().toString(),
-				txtEmail.getText(), cbGenero.getSelectedItem().toString());
+		Clientes cliente = new Clientes(txtNome.getText(), txtTelefone.getText(), txtEndereco.getText(),
+				txtCidade.getText(), cbEstado.getSelectedItem().toString(), txtEmail.getText(),
+				cbGenero.getSelectedItem().toString());
 		c.inserir(cliente);
 		listaC = c.listar();
 		tabelaclientes.adicionarLista(listaC);
 		limparcampos();
-		
+
 	}
 
-	
 	public void returnCliente(Clientes c) {
 		txtId.setText(String.valueOf(c.getId()));
 		txtNome.setText(c.getNome());
@@ -278,6 +276,6 @@ public class MioloClientes extends JPanel {
 		cbEstado.setSelectedIndex(0);
 		txtEmail.setText("");
 		cbGenero.setSelectedIndex(0);
-		
+
 	}
 }

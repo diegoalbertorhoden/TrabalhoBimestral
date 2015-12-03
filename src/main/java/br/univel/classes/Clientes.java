@@ -10,17 +10,18 @@ public class Clientes {
 	private String nome;
 	private String estado;
 	private String genero;
-	
-	public Clientes(){
-		
-	}
 
-	public Clientes(int i, String string, String string2, String string3, String string4, Estado estado2, String string5, Genero genero2) {
+	public Clientes() {
 
 	}
 
-	public Clientes(int id, String nome, String telefone, String endereco,
-			String cidade, String estado, String email, String genero) {
+	public Clientes(int i, String string, String string2, String string3, String string4, Estado estado2,
+			String string5, Genero genero2) {
+
+	}
+
+	public Clientes(int id, String nome, String telefone, String endereco, String cidade, String estado, String email,
+			String genero) {
 		this.Id = id;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -31,8 +32,8 @@ public class Clientes {
 		this.genero = genero;
 	}
 
-	public Clientes(String nome, String telefone, String endereco,
-			String cidade, String estado, String email, String genero) {
+	public Clientes(String nome, String telefone, String endereco, String cidade, String estado, String email,
+			String genero) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.endereco = endereco;

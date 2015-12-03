@@ -1,17 +1,15 @@
 package br.univel.classes;
+
 /**
  * Classe que possui as siglas dos estados e os estados própriamente ditos
  */
 public enum Estado {
 
-	AC("Acre"), AL("Alagoas"), AP("Amapá"), AM("Amazonas"), BA("Bahia"), CE(
-			"Ceará"), DF("Distrito Federal"), ES("Espirito Santo"), GO("Goiás"), MA(
-			"Maranhão"), MT("Mato Grosso"), MS("Mato Grosso do Sul"), MG(
-			"Minas Gerais"), PA("Pará"), PB("Paraíba"), PR("Paraná"), PE(
-			"Pernambuco"), PI("Piauí"), RJ("Rio de Janeiro"), RN(
-			"Rio Grande do Norte"), RS("Rio Grande do Sul"), RO("Rondônia"), RR(
-			"Roraima"), SC("Santa Catarina"), SP("São Paulo"), SE("Sergipe"), TO(
-			"Tocantins");
+	AC("Acre"), AL("Alagoas"), AP("Amapá"), AM("Amazonas"), BA("Bahia"), CE("Ceará"), DF("Distrito Federal"), ES(
+			"Espirito Santo"), GO("Goiás"), MA("Maranhão"), MT("Mato Grosso"), MS("Mato Grosso do Sul"), MG(
+					"Minas Gerais"), PA("Pará"), PB("Paraíba"), PR("Paraná"), PE("Pernambuco"), PI("Piauí"), RJ(
+							"Rio de Janeiro"), RN("Rio Grande do Norte"), RS("Rio Grande do Sul"), RO("Rondônia"), RR(
+									"Roraima"), SC("Santa Catarina"), SP("São Paulo"), SE("Sergipe"), TO("Tocantins");
 
 	private String nome;
 
@@ -24,12 +22,12 @@ public enum Estado {
 	}
 
 	public static String transformar(String estado) {
-		for(Estado e: Estado.values()){
-			if(e.getNome().equals(estado)){
+		for (Estado e : Estado.values()) {
+			if (e.getNome().equals(estado)) {
 				return e.name();
 			}
 		}
 		return "";
 	}
-	
+
 }

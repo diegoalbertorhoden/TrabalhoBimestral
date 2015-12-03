@@ -3,6 +3,7 @@ package br.univel.telas;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -21,11 +22,10 @@ import javax.swing.SwingConstants;
 import br.univel.banco.UsuarioDaoImplementacao;
 import br.univel.classes.Usuarios;
 import br.univel.tabelas.TabelaUsuarios;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class MioloUsuarios extends JPanel {
-	
+
 	protected JTextField txtIdUsuario;
 	protected JTextField txtIdCliente;
 	private JTextField txtCliente;
@@ -43,7 +43,7 @@ public class MioloUsuarios extends JPanel {
 	@SuppressWarnings("deprecation")
 	public MioloUsuarios() {
 		setLayout(null);
-		
+
 		lblCadastroDeUsurios = new JLabel("Cadastro de Usu\u00E1rios");
 		lblCadastroDeUsurios.setBounds(313, 0, 211, 23);
 		lblCadastroDeUsurios.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -106,8 +106,8 @@ public class MioloUsuarios extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int pergunta = JOptionPane.showConfirmDialog(null, "Quer excluir mesmo?");
 				if (pergunta == 0) {
-				deletar();
-				}else if(pergunta ==1){
+					deletar();
+				} else if (pergunta == 1) {
 					JOptionPane.showMessageDialog(null, "Usuario não excluído");
 				}
 			}
@@ -119,7 +119,7 @@ public class MioloUsuarios extends JPanel {
 		add(scrollPane);
 
 		table = new JTable();
-		
+
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
@@ -131,9 +131,10 @@ public class MioloUsuarios extends JPanel {
 			}
 		});
 		scrollPane.setViewportView(table);
-		
+
 		listaDeUsuarios();
 	}
+
 	public void listaDeUsuarios() {
 		new Thread(new Runnable() {
 			@Override
@@ -173,8 +174,8 @@ public class MioloUsuarios extends JPanel {
 		txtIdUsuario.setText("");
 		txtIdCliente.setText("");
 		txtCliente.setText("");
-		txtSenha.setText("");;
+		txtSenha.setText("");
+		;
 	}
-
 
 }

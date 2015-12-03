@@ -9,11 +9,11 @@ public class Usuarios {
 	private String senha;
 	private int idCliente;
 	private String Cliente;
-	
-	public Usuarios(){
-		
+
+	public Usuarios() {
+
 	}
-	
+
 	public int getIdCliente() {
 		return idCliente;
 	}

@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Bloqueador extends JPanel {
-	
+
 	public Bloqueador() {
-		
+
 		setOpaque(false);
 		setBackground(Color.GRAY);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -24,15 +24,15 @@ public class Bloqueador extends JPanel {
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
-		setLayout(gridBagLayout);		
-		
+		setLayout(gridBagLayout);
+
 		addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				arg0.consume();
 			}
-			
+
 		});
 	}
 
@@ -46,22 +46,20 @@ public class Bloqueador extends JPanel {
 		add(painelCentral, gbc_panel);
 		setVisible(true);
 
-
 	}
-	
-	private AlphaComposite alcom = AlphaComposite.getInstance(
-			AlphaComposite.SRC_OVER, 0.3f);
-	
+
+	private AlphaComposite alcom = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
+
 	@Override
 	protected void paintComponent(Graphics g) {
-		
+
 		Graphics2D g2 = (Graphics2D) g.create();
-		
+
 		int posH = (getWidth() / 2);
 		int posV = (getHeight() / 2);
-		
+
 		g2.drawImage(null, posH, posV, null);
-		
+
 		g2.setColor(getBackground());
 		g2.setComposite(alcom);
 		g2.fillRect(0, 0, getWidth() - 1, getHeight() - 1);

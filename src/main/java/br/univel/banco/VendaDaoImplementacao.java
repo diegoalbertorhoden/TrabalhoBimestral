@@ -1,6 +1,5 @@
 package br.univel.banco;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +22,8 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 
 	public int inserir(Vendas vd) {
 		try {
-			ps = con.prepareStatement("INSERT INTO vendas (id_c, cliente, cod_p, produto, quantidade, subtotal, valorPago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			ps = con.prepareStatement(
+					"INSERT INTO vendas (id_c, cliente, cod_p, produto, quantidade, subtotal, valorPago, troco, data, hora) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, vd.getId_c());
 			ps.setString(2, vd.getCliente());
 			ps.setInt(3, vd.getCod_p());
@@ -36,7 +36,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 			ps.setString(9, vd.getHora());
 			int res = ps.executeUpdate();
 			ps.close();
-			if(res == 1)
+			if (res == 1)
 				JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso.");
 			else
 				JOptionPane.showMessageDialog(null, "Venda não efetuada!");
@@ -48,25 +48,19 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 	}
 
 	public int atualizar(Vendas vd) {
-		
+
 		return 0;
 	}
 
 	public Vendas buscarUm(int cod_v) {
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v ="+ cod_v);
+			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v =" + cod_v);
 			rs.next();
 			if (rs.getString("id_c") != null) {
-				v = new Vendas(rs.getInt("id_c"),
-						rs.getInt("cod_p"),
-						rs.getString("cliente"),
-						rs.getString("produto"),
-						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valoPago"),
-						rs.getBigDecimal("troco"),
-						rs.getString("data"),
-						rs.getString("hora"));
+				v = new Vendas(rs.getInt("id_c"), rs.getInt("cod_p"), rs.getString("cliente"), rs.getString("produto"),
+						rs.getBigDecimal("subtotal"), rs.getBigDecimal("valoPago"), rs.getBigDecimal("troco"),
+						rs.getString("data"), rs.getString("hora"));
 			}
 			rs.close();
 			st.close();
@@ -84,17 +78,10 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 			rs = st.executeQuery("SELECT cod_v, id_c, cliente, cod_p,"
 					+ "produto, quantidade, subtotal, valorPago, troco, data, hora FROM vendas");
 			while (rs.next()) {
-				lista.add(v = new Vendas(rs.getInt("cod_v"),
-						rs.getInt("id_c"),
-						rs.getInt("cod_p"),
-						rs.getString("cliente"),
-						rs.getString("produto"),
-						rs.getInt("quantidade"),
-						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valorPago"),
-						rs.getBigDecimal("troco"),
-						rs.getString("data"),
-						rs.getString("hora")));
+				lista.add(v = new Vendas(rs.getInt("cod_v"), rs.getInt("id_c"), rs.getInt("cod_p"),
+						rs.getString("cliente"), rs.getString("produto"), rs.getInt("quantidade"),
+						rs.getBigDecimal("subtotal"), rs.getBigDecimal("valorPago"), rs.getBigDecimal("troco"),
+						rs.getString("data"), rs.getString("hora")));
 			}
 			rs.close();
 			st.close();
@@ -104,8 +91,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 		}
 		return null;
 	}
-	
-	
+
 	public Connection getCon() {
 		return con;
 	}
@@ -116,7 +102,7 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 			ps = con.prepareStatement("DELETE FROM vendas WHERE cod_v =" + cod_v);
 			int res = ps.executeUpdate();
 			ps.close();
-			if(res == 1)
+			if (res == 1)
 				JOptionPane.showMessageDialog(null, "Histórico selecionado não foi excluido!");
 			else
 				JOptionPane.showMessageDialog(null, "Historico selecionado foi\nexcluido com sucesso");
@@ -131,18 +117,12 @@ public class VendaDaoImplementacao implements DaoGenerico<Vendas> {
 	public Vendas buscar(int cod_v) {
 		try {
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v ="+ cod_v);
+			rs = st.executeQuery("SELECT * FROM vendas WHERE cod_v =" + cod_v);
 			rs.next();
 			if (rs.getString("id_c") != null) {
-				v = new Vendas(rs.getInt("id_c"),
-						rs.getInt("cod_p"),
-						rs.getString("cliente"),
-						rs.getString("produto"),
-						rs.getBigDecimal("subtotal"),
-						rs.getBigDecimal("valoPago"),
-						rs.getBigDecimal("troco"),
-						rs.getString("data"),
-						rs.getString("hora"));
+				v = new Vendas(rs.getInt("id_c"), rs.getInt("cod_p"), rs.getString("cliente"), rs.getString("produto"),
+						rs.getBigDecimal("subtotal"), rs.getBigDecimal("valoPago"), rs.getBigDecimal("troco"),
+						rs.getString("data"), rs.getString("hora"));
 			}
 			rs.close();
 			st.close();

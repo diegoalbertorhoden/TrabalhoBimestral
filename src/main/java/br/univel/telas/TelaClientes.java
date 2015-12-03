@@ -6,7 +6,8 @@ import java.awt.BorderLayout;
 public class TelaClientes extends MolduraAbstrata {
 
 	/**
-	 * Não consegui inserir o botão de fechar, resolvi investir no Miolo que o professor passou, porém que eu faltei na aula..
+	 * Não consegui inserir o botão de fechar, resolvi investir no Miolo que o
+	 * professor passou, porém que eu faltei na aula..
 	 */
 	public TelaClientes() {
 		super();
@@ -15,7 +16,7 @@ public class TelaClientes extends MolduraAbstrata {
 	@Override
 	protected void configura() {
 		super.add(new MioloClientes(), BorderLayout.CENTER);
-		
+
 	}
 
 }
