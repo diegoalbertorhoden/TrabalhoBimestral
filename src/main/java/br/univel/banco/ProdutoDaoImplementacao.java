@@ -1,5 +1,6 @@
 package br.univel.banco;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -130,5 +131,15 @@ public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	public BigDecimal buscaMargem(int i) {
+			
+		return null;
+	}
+
+	public BigDecimal buscarValorProd(int idProd) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

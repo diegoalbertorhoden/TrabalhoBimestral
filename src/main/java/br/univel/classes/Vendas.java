@@ -19,6 +19,7 @@ public class Vendas {
 	private String data;
 	private String hora;
 	private String quantidade;
+	private BigDecimal unitario;
 
 	public Vendas(){
 
@@ -110,6 +111,12 @@ public class Vendas {
 		this.troco = troco;
 		this.data = data;
 		this.hora = hora;
+	}
+
+	public Vendas(String produtos, String quantidade, BigDecimal unitario) {
+		this.produto=produtos;
+		this.quantidade=quantidade;
+		this.unitario=unitario;
 	}
 
 	public String getQuantidade(){
