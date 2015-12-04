@@ -5,12 +5,17 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import br.univel.classes.ItemVenda;
 import br.univel.classes.Produtos;
 
 @SuppressWarnings("serial")
 public class TabelaItensVenda extends AbstractTableModel {
 
 	private List<Produtos> lista = new ArrayList<Produtos>();
+
+	public TabelaItensVenda(List<ItemVenda> itensVenda) {
+
+	}
 
 	public int getColumnCount() {
 		return 3;

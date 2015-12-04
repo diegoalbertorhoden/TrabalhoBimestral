@@ -8,7 +8,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,11 +22,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.TableModel;
 
 import br.univel.banco.ClienteDaoImplementacao;
+import br.univel.banco.ItemVendaDao;
 import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.banco.VendaDaoImplementacao;
 import br.univel.classes.Clientes;
+import br.univel.classes.ItemVenda;
 import br.univel.classes.Produtos;
 import br.univel.classes.TratamentoException;
 import br.univel.classes.Vendas;
@@ -45,16 +47,20 @@ public class MioloVendas extends JPanel {
 	private JComboBox<String> cbClientes;
 	private JComboBox<String> cbProdutos;
 	private JTable table;
-	private TabelaItensVenda tabItensVenda;
+	private JTable tabItensVenda;
 
-	private TabelaVendas tabelaVendas;
-	private VendaDaoImplementacao v = new VendaDaoImplementacao();
+	private List<ItemVenda> itensVenda = new ArrayList<ItemVenda>();
 	private List<Vendas> listarVendas = new ArrayList<>();
-	private List<Produtos> listarItens = new ArrayList();
-	protected int indice = -1;
-
 	private List<Clientes> listaCliente = new ArrayList<Clientes>();
 	private List<Produtos> listaProduto = new ArrayList<Produtos>();
+
+	private ItemVendaDao itemVendaDao = new ItemVendaDao();
+	private TabelaVendas tabelaVendas;
+	private VendaDaoImplementacao v = new VendaDaoImplementacao();
+
+	protected int indice = -1;
+
+
 	private JTextField txtQuantidade;
 	private BigDecimal unitario;
 
@@ -264,18 +270,19 @@ public class MioloVendas extends JPanel {
 		int qtd = Integer.parseInt(txtQuantidade.getText());
 		String qtdDigitada = txtQuantidade.getText().trim();
 		BigDecimal custo = new ProdutoDaoImplementacao().buscarValorProd(indice);
-	    BigDecimal margem = margemLucro(indice);
-	    BigDecimal mg = custo.multiply(margem);
-	    BigDecimal total = mg.divide(new BigDecimal(100.00)).add(custo)
-	    		.multiply(new BigDecimal(qtdDigitada));
-	    Produtos p = new Produtos();
-	    p.setDescricao(produto);
-	    p.setQuantidade(qtd);
-	    p.setCusto(total);
-	    tabItensVenda.incluir(p);
-	    listarItens.add(p);
-	    txtTotal.setText(NumberFormat.getCurrencyInstance()
-	    		.format(p.getCusto()).toString());
+		BigDecimal margem = margemLucro(indice);
+		BigDecimal mg = custo.multiply(margem);
+		BigDecimal total = mg.divide(new BigDecimal(100.00)).add(custo)
+				.multiply(new BigDecimal(qtdDigitada));
+
+		ItemVenda itemVenda = new ItemVenda(Integer.parseInt(txtCodigoVenda.getText())
+				, Integer.parseInt(txtQuantidade.getText())
+				, produto
+				, mg
+				, total);
+		itensVenda.add(itemVenda);
+		tabItensVenda.setModel((TableModel)new TabelaItensVenda(itensVenda));
+		txtTotal.setText(total.toString());
 
 	}
 
