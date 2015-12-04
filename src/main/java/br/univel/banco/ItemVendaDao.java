@@ -13,11 +13,9 @@ import br.univel.classes.ItemVenda;
 
 public class ItemVendaDao implements DaoGenerico<ItemVenda> {
 
-
 	private PreparedStatement ps = null;
 	private ItemVenda iv = null;
 	private Connection con = Conexao.getInstance().conOpen();
-
 
 	@Override
 	public int inserir(ItemVenda itemVenda) {
@@ -74,10 +72,10 @@ public class ItemVendaDao implements DaoGenerico<ItemVenda> {
 		List<ItemVenda> itensVenda = new ArrayList<ItemVenda>();
 
 		ResultSet result;
-		ps= con.prepareStatement(sql);
+		ps = con.prepareStatement(sql);
 		result = ps.executeQuery();
 
-		while(result.next()){
+		while (result.next()) {
 			ItemVenda novoItem = new ItemVenda();
 
 			novoItem.setId(result.getInt("id"));

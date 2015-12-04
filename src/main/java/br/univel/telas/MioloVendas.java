@@ -60,7 +60,6 @@ public class MioloVendas extends JPanel {
 
 	protected int indice = -1;
 
-
 	private JTextField txtQuantidade;
 	private BigDecimal unitario;
 
@@ -272,16 +271,12 @@ public class MioloVendas extends JPanel {
 		BigDecimal custo = new ProdutoDaoImplementacao().buscarValorProd(indice);
 		BigDecimal margem = margemLucro(indice);
 		BigDecimal mg = custo.multiply(margem);
-		BigDecimal total = mg.divide(new BigDecimal(100.00)).add(custo)
-				.multiply(new BigDecimal(qtdDigitada));
+		BigDecimal total = mg.divide(new BigDecimal(100.00)).add(custo).multiply(new BigDecimal(qtdDigitada));
 
-		ItemVenda itemVenda = new ItemVenda(Integer.parseInt(txtCodigoVenda.getText())
-				, Integer.parseInt(txtQuantidade.getText())
-				, produto
-				, mg
-				, total);
+		ItemVenda itemVenda = new ItemVenda(Integer.parseInt(txtCodigoVenda.getText()),
+				Integer.parseInt(txtQuantidade.getText()), produto, mg, total);
 		itensVenda.add(itemVenda);
-		tabItensVenda.setModel((TableModel)new TabelaItensVenda(itensVenda));
+		tabItensVenda.setModel((TableModel) new TabelaItensVenda(itensVenda));
 		txtTotal.setText(total.toString());
 
 	}

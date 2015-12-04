@@ -3,7 +3,7 @@ package br.univel.classes;
 import java.math.BigDecimal;
 
 public class ItemVenda {
-	
+
 	private int id;
 	private int idVenda;
 	private int idProduto;
@@ -12,13 +12,12 @@ public class ItemVenda {
 	private BigDecimal vlrUnidade;
 	private int qtd;
 	private BigDecimal vlrTotal;
-	
+
 	public ItemVenda() {
 
 	}
-	
-	public ItemVenda(int idVenda, int idProduto, String descricao,
-			BigDecimal vlrUnidade, BigDecimal vlrTotal) {
+
+	public ItemVenda(int idVenda, int idProduto, String descricao, BigDecimal vlrUnidade, BigDecimal vlrTotal) {
 
 		this.idVenda = idVenda;
 		this.idProduto = idProduto;
@@ -92,6 +91,5 @@ public class ItemVenda {
 	public void setVlrTotal(BigDecimal vlrTotal) {
 		this.vlrTotal = vlrTotal;
 	}
-	
 
 }
