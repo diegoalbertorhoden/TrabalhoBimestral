@@ -1,5 +1,8 @@
 package br.univel.banco;
 
+/**
+ * @author Diego Alberto Rhoden Classe dos itens da venda 03/12/2015
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,4 +106,10 @@ public class ItemVendaDao implements DaoGenerico<ItemVenda> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	// @Override
+	// public List<Produtos> listar() {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 }

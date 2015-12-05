@@ -1,5 +1,8 @@
 package br.univel.login;
 
+/**
+ * @author Diego Alberto Rhoden ferramenta para login no java
+ */
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

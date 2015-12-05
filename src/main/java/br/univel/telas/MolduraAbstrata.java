@@ -1,5 +1,8 @@
 package br.univel.telas;
 
+/**
+ * @author Diego Alberto Rhoden moldura de padronização das telas...
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;

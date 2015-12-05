@@ -1,5 +1,8 @@
 package br.univel.tabelas;
 
+/**
+ * @author Diego Alberto Rhoden tabela de produtos
+ */
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;

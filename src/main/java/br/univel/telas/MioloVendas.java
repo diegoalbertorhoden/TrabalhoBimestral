@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.TableModel;
 
 import br.univel.banco.ClienteDaoImplementacao;
-import br.univel.banco.ItemVendaDao;
 import br.univel.banco.ProdutoDaoImplementacao;
 import br.univel.banco.VendaDaoImplementacao;
 import br.univel.classes.Clientes;
@@ -38,30 +37,31 @@ import br.univel.tabelas.TabelaVendas;
 
 @SuppressWarnings("serial")
 public class MioloVendas extends JPanel {
+
 	private JTextField txtTotal;
 	private JTextField txtPago;
 	private JTextField txtTroco;
 	private JTextField txtData;
 	private JTextField txtHora;
 	private JTextField txtCodigoVenda;
+	private JTextField txtQuantidade;
+
 	private JComboBox<String> cbClientes;
 	private JComboBox<String> cbProdutos;
-	private JTable table;
-	private JTable tabItensVenda;
+
+	private JTable tbl_vendas;
+	// private JTable tabItensVenda;
+	private TabelaVendas tabelaVendas;
 
 	private List<ItemVenda> itensVenda = new ArrayList<ItemVenda>();
 	private List<Vendas> listarVendas = new ArrayList<>();
 	private List<Clientes> listaCliente = new ArrayList<Clientes>();
 	private List<Produtos> listaProduto = new ArrayList<Produtos>();
 
-	private ItemVendaDao itemVendaDao = new ItemVendaDao();
-	private TabelaVendas tabelaVendas;
-	private VendaDaoImplementacao v = new VendaDaoImplementacao();
+	private VendaDaoImplementacao vendaDAO = new VendaDaoImplementacao();
 
 	protected int indice = -1;
-
-	private JTextField txtQuantidade;
-	private BigDecimal unitario;
+	private JTable tabItensVenda;
 
 	@SuppressWarnings("deprecation")
 	public MioloVendas() {
@@ -196,19 +196,19 @@ public class MioloVendas extends JPanel {
 		scrollPane.setBounds(0, 311, 900, 297);
 		add(scrollPane);
 
-		table = new JTable();
+		tbl_vendas = new JTable();
 
-		table.addMouseListener(new MouseAdapter() {
+		tbl_vendas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent evt) {
 				if (evt.getClickCount() == 2) {
-					Vendas vd = listarVendas.get(table.getSelectedRow());
+					Vendas vd = listarVendas.get(tbl_vendas.getSelectedRow());
 					returnVenda(vd);
-					indice = table.getSelectedRow();
+					indice = tbl_vendas.getSelectedRow();
 				}
 			}
 		});
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(tbl_vendas);
 
 		JLabel lblNewLabel = new JLabel("Vendas");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -258,6 +258,9 @@ public class MioloVendas extends JPanel {
 		scrollPane_1.setBounds(481, 80, 419, 220);
 		add(scrollPane_1);
 
+		tabItensVenda = new JTable();
+		scrollPane_1.setViewportView(tabItensVenda);
+
 		JLabel lblItensDaVenda = new JLabel("Itens da Venda");
 		lblItensDaVenda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblItensDaVenda.setBounds(647, 60, 122, 14);
@@ -265,8 +268,9 @@ public class MioloVendas extends JPanel {
 	}
 
 	protected void adicionaItem() {
+
+		txtTotal.getText();
 		String produto = listaProduto.get(cbProdutos.getSelectedIndex() - 1).toString();
-		int qtd = Integer.parseInt(txtQuantidade.getText());
 		String qtdDigitada = txtQuantidade.getText().trim();
 		BigDecimal custo = new ProdutoDaoImplementacao().buscarValorProd(indice);
 		BigDecimal margem = margemLucro(indice);
@@ -287,10 +291,21 @@ public class MioloVendas extends JPanel {
 			public void run() {
 				tabelaVendas = new TabelaVendas();
 				listarVendas = tabelaVendas.listar();
-				table.setModel(tabelaVendas);
+				tbl_vendas.setModel((TableModel) tbl_vendas);
 			}
 		}).start();
 	}
+
+	// public void listaDeItens() {
+	// new Thread(new Runnable() {
+	// @Override
+	// public void run() {
+	// tabItensVenda = new TabelaItensVenda(itensVenda);
+	// itensVenda = tabItensVenda.listar();
+	// tabItensVenda.setModel((TableModel) tabItensVenda);
+	// }
+	// }).start();
+	// }
 
 	protected void cadastrar() {
 
@@ -302,8 +317,8 @@ public class MioloVendas extends JPanel {
 					new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
 					new TratamentoException().tratamentoBigDecimal(txtTroco.getText()), txtData.getText(),
 					txtHora.getText());
-			v.inserir(vendas);
-			listarVendas = v.listar();
+			vendaDAO.inserir(vendas);
+			listarVendas = vendaDAO.listar();
 			tabelaVendas.adicionarLista(listarVendas);
 			limpar();
 			JOptionPane.showMessageDialog(null, "Venda Concretizada!");
@@ -323,8 +338,8 @@ public class MioloVendas extends JPanel {
 						new TratamentoException().tratamentoBigDecimal(txtPago.getText()),
 						new TratamentoException().tratamentoBigDecimal(txtTroco.getText()), txtData.getText(),
 						txtHora.getText());
-				v.inserir(vendas);
-				listarVendas = v.listar();
+				vendaDAO.inserir(vendas);
+				listarVendas = vendaDAO.listar();
 				tabelaVendas.adicionarLista(listarVendas);
 				JOptionPane.showMessageDialog(null, "Venda alterada!");
 				limpar();
@@ -341,12 +356,12 @@ public class MioloVendas extends JPanel {
 
 		Produtos p = null;
 
-		int index = table.getSelectedRow();
+		int index = tbl_vendas.getSelectedRow();
 		if (index == -1) {
 			JOptionPane.showMessageDialog(null, "Linha não selecionada");
 
 		} else {
-			p = ((TabelaItensVenda) table.getModel()).getClienteNaLinha(index);
+			p = ((TabelaItensVenda) tbl_vendas.getModel()).getClienteNaLinha(index);
 		}
 
 		return p;
@@ -356,13 +371,13 @@ public class MioloVendas extends JPanel {
 
 		Produtos p = getProdutoSelecionado();
 		if (p != null) {
-			((TabelaItensVenda) table.getModel()).removeProdutos(p);
+			((TabelaItensVenda) tbl_vendas.getModel()).removeProdutos(p);
 		}
 	}
 
 	private void deletar() {
-		v.excluir(listarVendas.get(table.getSelectedRow()).getCod_p());
-		tabelaVendas.excluir(table.getSelectedRow());
+		vendaDAO.excluir(listarVendas.get(tbl_vendas.getSelectedRow()).getCod_p());
+		tabelaVendas.excluir(tbl_vendas.getSelectedRow());
 	}
 
 	private void returnVenda(Vendas v) {
@@ -446,14 +461,6 @@ public class MioloVendas extends JPanel {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "O valor digitado deve ser número ou com ponto\nEX: 50 ou 21.25");
 		}
-	}
-
-	private void limparCampos() {
-		txtQuantidade.setText("");
-		txtPago.setText("");
-		txtTotal.setText("");
-
-		limparCampos();
 	}
 
 	private BigDecimal margemLucro(int i) {

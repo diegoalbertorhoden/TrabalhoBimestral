@@ -1,5 +1,8 @@
 package br.univel.classes;
 
+/**
+ * @author Diego Alberto Rhoden Classe de clientes
+ */
 public class Clientes {
 
 	private int Id;

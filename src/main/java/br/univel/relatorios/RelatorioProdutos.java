@@ -1,5 +1,8 @@
 package br.univel.relatorios;
 
+/**
+ * @author Diego Alberto Rhoden relatorio de produtos
+ */
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

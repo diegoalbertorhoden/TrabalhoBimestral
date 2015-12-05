@@ -1,5 +1,8 @@
 package br.univel.classes;
 
+/**
+ * @author Diego Alberto Rhoden Classe para tratamento de exceção Bigdecimal
+ */
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.ParseException;

@@ -1,5 +1,8 @@
 package br.univel.relatorios;
 
+/**
+ * @author Diego Alberto Rhoden Classe que envia os relatórios para pdf
+ */
 import java.awt.Desktop;
 import java.io.File;
 import java.text.SimpleDateFormat;

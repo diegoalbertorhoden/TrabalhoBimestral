@@ -1,5 +1,8 @@
 package br.univel.banco;
 
+/**
+ * @author Diego Alberto Rhoden Classe de padronização de conexao em um local
+ */
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

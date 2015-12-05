@@ -1,5 +1,8 @@
 package br.univel.tabelas;
 
+/**
+ * @author Diego Alberto Rhoden tabela de vendas
+ */
 import java.util.ArrayList;
 import java.util.List;
 

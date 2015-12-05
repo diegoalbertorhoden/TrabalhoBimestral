@@ -1,5 +1,8 @@
 package br.univel.telas;
 
+/**
+ * @author Diego Alberto Rhoden configuração para tela de produtos
+ */
 import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")

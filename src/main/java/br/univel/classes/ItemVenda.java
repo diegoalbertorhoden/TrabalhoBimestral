@@ -1,5 +1,8 @@
 package br.univel.classes;
 
+/**
+ * @author Diego Alberto Rhoden Classe de itens da venda
+ */
 import java.math.BigDecimal;
 
 public class ItemVenda {

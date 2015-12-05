@@ -1,7 +1,6 @@
-//Id, código de barras, departamento (LIMPEZA, PEÇAS, ALIMENTAÇÃO, ETC), descrição, unidade (KG, UN, PCT, CX), custo (BigDecimal) 
-//e margem de lucro (BigDecimal).
-//BigDecimal deve ser utilizado para valores monetários. Nunca deve-se utilizar float e Double para valores monetários por causa 
-//de erros de arredondamento por ponto flutuante em valores fracionários.
+/**
+ * @author Diego Alberto Rhoden Classe dos produtos
+ */
 package br.univel.classes;
 
 import java.math.BigDecimal;

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import br.univel.classes.Produtos;
 
 /**
- * @author Diego Alberto Rhoden
+ * @author Diego Alberto Rhoden implementacao do produto
  */
 public class ProdutoDaoImplementacao implements DaoGenerico<Produtos> {
 

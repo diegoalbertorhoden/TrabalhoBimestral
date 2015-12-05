@@ -19,3 +19,20 @@
 * na univel funciona 100%, já em casa, na firma... vo te fala... é erro no maven pra lá... falha pra commit pra cá... triste.
 * criação dos miolos em implementação
 * produtodao incrementado com as lists
+11/11/2015
+*criação do usuariodao e implementação da moldura abstrata..
+12/11/2015
+*Criação do tratamento para bigdecimal conforme prof passou em sala ainda falta popular tabelade produtos
+17/11/2015
+*implementacao de tabela de vendas, implementacao de relatorios inicial com relatoriosdao para comunicacao e relatorio de cliente.
+21/11/2015
+*inserção de login, painel login e infos tela principal
+24/11/2015
+*ajustes no layout e escritas erradas usabilidade, request nos campos
+27/11/2015
+*Consegui implementar o botão de bloquear, implementar também a opção de fazer login com enter ou clicando no botão. x)
+03/12/2015
+*criada classe itemvenda, ajustados os relatórios.
+04/12/2015
+*criada a implementação do item venda para jogar na list, na table e somar os itens para que seja concluida a venda.
+

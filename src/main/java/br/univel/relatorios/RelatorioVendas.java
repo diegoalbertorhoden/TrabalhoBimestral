@@ -1,5 +1,8 @@
 package br.univel.relatorios;
 
+/**
+ * @author Diego Alberto Rhoden relatorio de vendas
+ */
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;

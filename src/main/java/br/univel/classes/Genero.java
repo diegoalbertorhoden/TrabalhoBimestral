@@ -1,5 +1,8 @@
 package br.univel.classes;
 
+/**
+ * @author Diego Alberto Rhoden Enum dos estados
+ */
 public enum Genero {
 
 	M("Masculino"), F("Feminino");

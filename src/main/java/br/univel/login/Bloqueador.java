@@ -1,5 +1,8 @@
 package br.univel.login;
 
+/**
+ * @author Diego Alberto Rhoden jpanel para bloqueio da tela
+ */
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,5 +1,8 @@
 package br.univel.banco;
 
+/**
+ * @author Diego Alberto Rhoden Classe da implementação para usuários
+ */
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

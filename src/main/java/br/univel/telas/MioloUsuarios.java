@@ -1,5 +1,8 @@
 package br.univel.telas;
 
+/**
+ * @author Diego Alberto Rhoden miolo dos funcionarios(usuarios)
+ */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

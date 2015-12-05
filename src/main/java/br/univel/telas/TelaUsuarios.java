@@ -1,5 +1,8 @@
 package br.univel.telas;
 
+/**
+ * @author Diego Alberto Rhoden Configura tela de usuarios
+ */
 import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")

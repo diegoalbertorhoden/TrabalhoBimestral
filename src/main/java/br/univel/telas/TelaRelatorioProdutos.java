@@ -1,5 +1,8 @@
 package br.univel.telas;
 
+/**
+ * @author Diego Alberto Rhoden Configura relatorio produtos
+ */
 import java.awt.BorderLayout;
 
 import br.univel.relatorios.RelatorioProdutos;

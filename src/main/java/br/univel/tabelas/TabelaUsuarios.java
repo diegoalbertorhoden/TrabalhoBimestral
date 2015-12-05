@@ -8,6 +8,9 @@ import javax.swing.table.AbstractTableModel;
 import br.univel.banco.UsuarioDaoImplementacao;
 import br.univel.classes.Usuarios;
 
+/**
+ * @author Diego Alberto Rhoden tabela de usuarios
+ */
 @SuppressWarnings("serial")
 public class TabelaUsuarios extends AbstractTableModel {
 

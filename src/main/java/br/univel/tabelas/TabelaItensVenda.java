@@ -1,5 +1,8 @@
 package br.univel.tabelas;
 
+/**
+ * @author Diego Alberto Rhoden tabela de itens da venda que nao deu muito certo infelizmente...
+ */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +74,12 @@ public class TabelaItensVenda extends AbstractTableModel {
 
 		return lista.get(index);
 	}
+
+	// public List<Produtos> listar() {
+	//
+	//// ItemVendaDao ivd = new ItemVendaDao();
+	//// return lista = ivd.listar();
+	// }
 
 	public void removeProdutos(Produtos p) {
 		int idx = this.lista.indexOf(p);
